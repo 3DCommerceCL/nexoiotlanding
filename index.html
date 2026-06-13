@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nexo IoT — Sistema de domótica para hoteles y cabañas en Chile. Control total desde el celular del huésped sin descargar apps.">
-<title>Nexo IoT — Automatización inteligente para hoteles</title>
+<meta name="description" content="smartrooms — Sistema de domótica para hoteles y cabañas en Chile, con foco en hotelería y próximamente oficinas y hospitales. Control total desde el celular del huésped sin descargar apps. Una marca de NEXOSMART.">
+<title>smartrooms — Automatización inteligente para hoteles</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -30,8 +30,9 @@ body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;o
 /* ── NAVBAR ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
 .nav.scrolled{background:#fff;box-shadow:0 1px 20px rgba(0,0,0,.08)}
-.nav-logo{font-size:1.4rem;font-weight:800;color:var(--g900);text-decoration:none;letter-spacing:-.5px;flex-shrink:0}
+.nav-logo{font-size:1.4rem;font-weight:800;color:var(--g900);text-decoration:none;letter-spacing:-.5px;flex-shrink:0;display:flex;align-items:center}
 .nav-logo span{color:var(--teal)}
+.nav-logo-img{height:30px;display:block}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:var(--g700);font-size:.88rem;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--teal)}
@@ -244,7 +245,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
 
 <!-- NAVBAR -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo">Nexo IoT<span>.</span></a>
+  <a href="#" class="nav-logo"><img src="assets/logo-smartrooms.png" alt="smartrooms" class="nav-logo-img"></a>
   <ul class="nav-links">
     <li><a href="#como-funciona">Cómo funciona</a></li>
     <li><a href="#que-incluye">Qué incluye</a></li>
@@ -325,7 +326,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
                 <div class="tog off"></div>
               </div>
             </div>
-            <div class="s-foot">Nexo IoT · Acceso expira al checkout</div>
+            <div class="s-foot">smartrooms · Acceso expira al checkout</div>
           </div>
         </div>
       </div>
@@ -368,7 +369,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       <div class="video-header fu" style="text-align:center">
         <span class="pill">Demo en vivo</span>
         <h2 class="h2">Mira el sistema en acción</h2>
-        <p class="sub" style="margin:0 auto;max-width:580px">Descubre cómo Nexo IoT transforma la experiencia de tus huéspedes desde el momento en que abren la puerta.</p>
+        <p class="sub" style="margin:0 auto;max-width:580px">Descubre cómo smartrooms transforma la experiencia de tus huéspedes desde el momento en que abren la puerta.</p>
       </div>
       <!-- REEMPLAZAR: cambiar este div por <video> o iframe de YouTube/Vimeo cuando el video esté listo -->
       <div class="video-ratio fu d2" id="videoPh" onclick="alert('Video disponible próximamente')">
@@ -600,7 +601,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     <div class="fu" style="text-align:center">
       <span class="pill">Instalaciones</span>
       <h2 class="h2">Instalaciones reales</h2>
-      <p class="sub" style="margin:0 auto">Habitaciones transformadas con tecnología Nexo IoT</p>
+      <p class="sub" style="margin:0 auto">Habitaciones transformadas con tecnología smartrooms</p>
     </div>
     <div class="gallery-grid">
 
@@ -689,12 +690,12 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   </div>
 </section>
 
-<!-- POR QUÉ NEXO IOT -->
+<!-- POR QUÉ SMARTROOMS -->
 <section id="por-que">
   <div class="container">
     <div class="fu" style="text-align:center">
       <span class="pill">Nuestra propuesta</span>
-      <h2 class="h2">Por qué Nexo IoT</h2>
+      <h2 class="h2">Por qué smartrooms</h2>
       <p class="sub" style="margin:0 auto">Diseñado para el contexto chileno. Sin complejidades técnicas ni para el huésped ni para el hotel.</p>
     </div>
     <div class="why-grid">
@@ -768,7 +769,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
 <footer>
   <div class="container">
     <div class="foot-top">
-      <div class="foot-logo">Nexo IoT<span>.</span></div>
+      <div class="foot-logo">smart<span>rooms</span></div>
       <ul class="foot-links">
         <li><a href="#">Inicio</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -778,7 +779,8 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       </ul>
     </div>
     <div class="foot-bottom">
-      <p>© 2026 Nexo IoT · Santiago, Chile · Automatización inteligente para hoteles</p>
+      <p>© 2026 smartrooms · Santiago, Chile · Automatización inteligente para hoteles, con foco también en oficinas y hospitales</p>
+      <p style="margin-top:6px">smartrooms es una marca de NEXOSMART — soluciones inteligentes</p>
     </div>
   </div>
 </footer>
