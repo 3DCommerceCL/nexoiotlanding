@@ -28,13 +28,13 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;overflow-x:hidden}
 
 /* ── NAVBAR ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
-.nav.scrolled{background:#fff;box-shadow:0 1px 20px rgba(0,0,0,.08)}
-.nav-logo{font-size:1.4rem;font-weight:800;color:var(--g900);text-decoration:none;letter-spacing:-.5px;flex-shrink:0;display:flex;align-items:center}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;background:var(--g900);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,.25)}
+.nav-logo{font-size:1.4rem;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.5px;flex-shrink:0;display:flex;align-items:center}
 .nav-logo span{color:var(--teal)}
 .nav-logo-img{height:30px;display:block}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--g700);font-size:.88rem;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--teal)}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 22px;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;border:2px solid transparent;font-family:var(--font)}
 .btn-primary{background:var(--teal);color:#fff}
@@ -44,7 +44,7 @@ body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;o
 .btn-outline-teal{background:transparent;color:var(--teal);border-color:var(--teal)}
 .btn-outline-teal:hover{background:var(--teal);color:#fff}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{width:24px;height:2px;background:var(--g700);border-radius:2px;transition:all .3s;display:block}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s;display:block}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
