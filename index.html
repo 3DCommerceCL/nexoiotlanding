@@ -171,24 +171,6 @@ section{padding:96px 32px}
 .gal-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;color:rgba(255,255,255,.9);font-size:.78rem;font-weight:600;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 100%)}
 .gallery-cta{text-align:center;margin-top:32px}
 
-/* ── GALLERY LIGHTBOX ── */
-.lightbox{position:fixed;inset:0;background:rgba(13,21,30,.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
-.lightbox.open{display:flex}
-.lightbox-figure{position:relative;max-width:min(900px,92vw);max-height:88vh;display:flex;flex-direction:column}
-.lightbox-figure img{max-width:100%;max-height:80vh;border-radius:var(--r);object-fit:contain;background:#000}
-.lightbox-label{margin-top:12px;color:#fff;font-size:.95rem;font-weight:600;text-align:left}
-.lightbox-close{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.12);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.lightbox-close:hover{background:rgba(255,255,255,.25)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.lightbox-nav:hover{background:rgba(255,255,255,.25)}
-.lightbox-prev{left:-60px}
-.lightbox-next{right:-60px}
-@media(max-width:760px){
-  .lightbox-prev{left:0}
-  .lightbox-next{right:0}
-  .lightbox-close{top:-44px;right:0}
-}
-
 /* ── WHY ── */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
 .why-item{text-align:center}
@@ -623,37 +605,37 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="gallery-grid">
 
-      <div class="gal-item fu d1" data-index="0">
+      <div class="gal-item fu d1">
         <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Habitación con iluminación ambiente smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Habitación — iluminación ambiente</div>
       </div>
 
-      <div class="gal-item fu d2" data-index="1">
+      <div class="gal-item fu d2">
         <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Cortina automática</div>
       </div>
 
-      <div class="gal-item fu d3" data-index="2">
+      <div class="gal-item fu d3">
         <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Panel de control — web app</div>
       </div>
 
-      <div class="gal-item fu d1" data-index="3">
+      <div class="gal-item fu d1">
         <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente, Plan Max Comfort smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Baño inteligente — Plan Max Comfort</div>
       </div>
 
-      <div class="gal-item fu d2" data-index="4">
+      <div class="gal-item fu d2">
         <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Dashboard recepción</div>
       </div>
 
-      <div class="gal-item fu d3" data-index="5">
+      <div class="gal-item fu d3">
         <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Echo Dot, control por voz smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Echo Dot — control por voz</div>
@@ -761,17 +743,6 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   </div>
 </footer>
 
-<!-- LIGHTBOX GALERÍA -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lightbox-figure">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
-    <img id="lightboxImg" src="" alt="">
-    <div class="lightbox-label" id="lightboxLabel"></div>
-  </div>
-</div>
-
 <script>
 // Navbar scroll
 const nav = document.getElementById('nav');
@@ -823,58 +794,6 @@ document.getElementById('cform').addEventListener('submit', e => {
   e.preventDefault();
   document.getElementById('cform').style.display = 'none';
   document.getElementById('fok').style.display = 'block';
-});
-
-// Galería: lightbox
-const galItems = Array.from(document.querySelectorAll('.gal-item'));
-const galPhotos = galItems.map(item => ({
-  src: item.querySelector('img').src,
-  label: item.querySelector('.gal-label').textContent,
-}));
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxLabel = document.getElementById('lightboxLabel');
-let lightboxIndex = 0;
-
-function openLightbox(index) {
-  lightboxIndex = index;
-  showLightboxPhoto();
-  lightbox.classList.add('open');
-  lightbox.setAttribute('aria-hidden', 'false');
-}
-function showLightboxPhoto() {
-  const photo = galPhotos[lightboxIndex];
-  lightboxImg.src = photo.src;
-  lightboxImg.alt = photo.label;
-  lightboxLabel.textContent = photo.label;
-}
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  lightbox.setAttribute('aria-hidden', 'true');
-}
-function showNextPhoto() {
-  lightboxIndex = (lightboxIndex + 1) % galPhotos.length;
-  showLightboxPhoto();
-}
-function showPrevPhoto() {
-  lightboxIndex = (lightboxIndex - 1 + galPhotos.length) % galPhotos.length;
-  showLightboxPhoto();
-}
-
-galItems.forEach((item, index) => {
-  item.addEventListener('click', () => openLightbox(index));
-});
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); showNextPhoto(); });
-document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); showPrevPhoto(); });
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) closeLightbox();
-});
-document.addEventListener('keydown', e => {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') showNextPhoto();
-  if (e.key === 'ArrowLeft') showPrevPhoto();
 });
 </script>
 </body>
