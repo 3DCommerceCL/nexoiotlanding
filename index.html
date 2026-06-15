@@ -3,8 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="smartrooms — Sistema de domótica para hoteles y cabañas en Chile, con foco en hotelería y próximamente oficinas y hospitales. Control total desde el celular del huésped sin descargar apps. Una marca de NEXOSMART.">
+<meta name="description" content="smartrooms — Sistema de domótica para hoteles en Chile. Control total desde el celular del huésped sin descargar apps. Soporte local en Santiago. Una marca de NEXOSMART.">
 <title>smartrooms — Automatización inteligente para hoteles</title>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="smartrooms — Automatización inteligente para hoteles">
+<meta property="og:description" content="Sistema de domótica para hoteles en Chile. Control total desde el celular del huésped, sin descargar ninguna app. Instalación profesional y soporte local incluido.">
+<meta property="og:image" content="assets/logo-smartrooms.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="smartrooms — Automatización inteligente para hoteles">
+<meta name="twitter:description" content="Sistema de domótica para hoteles en Chile. Sin apps, sin fricción.">
+<meta name="twitter:image" content="assets/logo-smartrooms.png">
+
+<link rel="icon" type="image/png" href="assets/logo-smartrooms.png">
+<link rel="apple-touch-icon" href="assets/logo-smartrooms.png">
+
+<!-- Google Analytics 4 — COMPLETAR: reemplaza G-XXXXXXXXXX con tu Measurement ID -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -31,11 +50,13 @@ body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;o
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;background:var(--g900);transition:box-shadow .3s}
 .nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,.25)}
 .nav-logo{font-size:1.4rem;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.5px;flex-shrink:0;display:flex;align-items:center}
-.nav-logo span{color:var(--teal)}
 .nav-logo-img{height:30px;display:block}
+.nav-center{display:flex;align-items:center;gap:24px}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.badge-chile{display:inline-flex;align-items:center;gap:4px;background:rgba(29,158,117,.18);border:1px solid rgba(29,158,117,.35);color:rgba(255,255,255,.9);font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 22px;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;border:2px solid transparent;font-family:var(--font)}
 .btn-primary{background:var(--teal);color:#fff}
 .btn-primary:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,158,117,.35)}
@@ -74,11 +95,15 @@ section{padding:96px 32px}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .hero-h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;line-height:1.08;letter-spacing:-1.5px;color:var(--g900);margin-bottom:22px}
 .hero-h1 em{font-style:normal;color:var(--teal)}
-.hero-sub{font-size:1.1rem;color:var(--g500);line-height:1.75;margin-bottom:36px;max-width:460px}
+.hero-sub{font-size:1.1rem;color:var(--g500);line-height:1.75;margin-bottom:6px;max-width:460px}
+.hero-sub-alt{font-size:.88rem;color:var(--g400);margin-bottom:24px;max-width:460px}
+.trust-bar{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:32px}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--g500);font-weight:500}
+.trust-check{color:var(--teal);font-weight:700;font-size:1rem;flex-shrink:0;line-height:1}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .hero-btns .btn{padding:13px 26px;font-size:1rem}
 
-/* Phone */
+/* Phone mockup */
 .phone-wrap{display:flex;justify-content:center;align-items:center}
 .phone{width:256px;height:512px;background:#16213e;border-radius:42px;padding:10px;box-shadow:0 0 0 2px #2a2a4a,0 40px 90px rgba(0,0,0,.28),0 0 120px rgba(29,158,117,.08);position:relative;animation:float 4s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -115,19 +140,7 @@ section{padding:96px 32px}
 .step h3{font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:10px}
 .step p{font-size:.875rem;color:var(--g500);line-height:1.65}
 
-/* ── VIDEO ── */
-#video{background:#F8F8F8;padding:80px 32px}
-.video-inner{max-width:900px;margin:0 auto}
-.video-header{margin-bottom:40px}
-.video-ratio{position:relative;padding-bottom:56.25%;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 20px 60px rgba(0,0,0,.18)}
-.video-ph{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:filter .3s}
-.video-ph:hover{filter:brightness(1.12)}
-.play-ring{width:80px;height:80px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:transform .25s,background .25s}
-.video-ph:hover .play-ring{transform:scale(1.08);background:rgba(255,255,255,.18)}
-.play-tri{width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:24px solid #fff;margin-left:4px}
-.video-ph-text{color:rgba(255,255,255,.65);font-size:.88rem;font-weight:500;letter-spacing:.2px}
-
-/* ── FEATURES ── */
+/* ── QUÉ INCLUYE ── */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 .fc{background:#fff;border:1.5px solid var(--g200);border-radius:var(--r);padding:28px 24px;transition:all .3s}
 .fc:hover{border-color:var(--teal);box-shadow:0 8px 28px rgba(29,158,117,.1);transform:translateY(-3px)}
@@ -135,7 +148,32 @@ section{padding:96px 32px}
 .fc h3{font-size:1rem;font-weight:700;color:var(--g900);margin-bottom:8px}
 .fc p{font-size:.875rem;color:var(--g500);line-height:1.65}
 
-/* ── PLANS ── */
+/* ── BENEFICIOS (Lo que gana tu hotel) ── */
+#beneficios{background:var(--g900)}
+#beneficios .pill{background:rgba(29,158,117,.2);color:var(--teal)}
+#beneficios .h2{color:#fff}
+#beneficios .sub{color:rgba(255,255,255,.6)}
+.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.bc{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:var(--r);padding:32px 26px;transition:all .3s}
+.bc:hover{border-color:rgba(29,158,117,.5);background:rgba(29,158,117,.08);transform:translateY(-3px)}
+.bc-ico{font-size:2rem;margin-bottom:16px;display:block}
+.bc h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:10px}
+.bc p{font-size:.875rem;color:rgba(255,255,255,.62);line-height:1.7}
+
+/* ── GALERÍA ── */
+#galeria{background:#fff}
+.gallery-context{font-size:.85rem;color:var(--g400);margin-top:8px;font-style:italic}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.gal-item{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer}
+.gal-item::before{content:'';display:block;padding-top:75%}
+.gal-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:transform .35s ease}
+.gal-item:hover .gal-inner{transform:scale(1.04)}
+.gal-inner img{width:100%;height:100%;object-fit:cover}
+.gal-overlay{position:absolute;inset:0;background:rgba(29,158,117,0);transition:background .3s;z-index:1;pointer-events:none}
+.gal-item:hover .gal-overlay{background:rgba(29,158,117,.22)}
+.gal-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;color:rgba(255,255,255,.9);font-size:.78rem;font-weight:600;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 100%)}
+
+/* ── PLANES ── */
 #planes{background:var(--g50)}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 .pc{background:#fff;border:2px solid var(--g200);border-radius:var(--rl);padding:28px 22px;position:relative;transition:box-shadow .3s;display:flex;flex-direction:column}
@@ -154,31 +192,32 @@ section{padding:96px 32px}
 .pc-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1}
 .pc-feats li{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;color:var(--g700);line-height:1.4}
 .pc-feats li::before{content:'';width:16px;height:16px;border-radius:50%;background:var(--teal-l) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D9E75' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/9px no-repeat;flex-shrink:0;margin-top:2px}
-.plan-note{text-align:center;font-size:.82rem;color:var(--g400);margin-top:24px;line-height:1.7}
 .btn-full{width:100%;padding:13px;text-align:center;margin-top:auto}
+.plan-disclaimer{background:#fff;border:1px solid var(--g200);border-radius:10px;padding:18px 22px;margin-top:28px;font-size:.83rem;color:var(--g500);line-height:1.8}
+.plan-disclaimer strong{color:var(--g700)}
+.plan-pdf-cta{text-align:center;margin-top:18px}
+.plan-pdf-cta a{color:var(--teal);font-size:.9rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+.plan-pdf-cta a:hover{color:var(--teal-d)}
 
-/* ── GALLERY ── */
-#galeria{background:#fff}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
-.gal-item{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer}
-.gal-item::before{content:'';display:block;padding-top:75%}
-.gal-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:transform .35s ease}
-.gal-item:hover .gal-inner{transform:scale(1.04)}
-.gal-inner img{width:100%;height:100%;object-fit:cover}
-.gal-overlay{position:absolute;inset:0;background:rgba(29,158,117,0);transition:background .3s;z-index:1;pointer-events:none}
-.gal-item:hover .gal-overlay{background:rgba(29,158,117,.22)}
-.gal-ico{opacity:.5}
-.gal-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;color:rgba(255,255,255,.9);font-size:.78rem;font-weight:600;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 100%)}
-.gallery-cta{text-align:center;margin-top:32px}
-
-/* ── WHY ── */
+/* ── SOPORTE ── */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
 .why-item{text-align:center}
 .why-ico{width:68px;height:68px;border-radius:18px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.7rem}
 .why-item h3{font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:10px}
 .why-item p{font-size:.875rem;color:var(--g500);line-height:1.7}
 
-/* ── CONTACT ── */
+/* ── EQUIPO ── */
+#equipo{background:var(--g50)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.team-card{text-align:center;padding:36px 24px;background:#fff;border:1.5px solid var(--g200);border-radius:var(--rl);transition:all .3s}
+.team-card:hover{border-color:var(--teal);box-shadow:0 8px 28px rgba(29,158,117,.1);transform:translateY(-3px)}
+.team-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 20px;overflow:hidden;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;color:var(--teal);border:3px solid rgba(29,158,117,.15);flex-shrink:0}
+.team-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.team-name{font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:4px}
+.team-role{font-size:.73rem;color:var(--teal);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px}
+.team-bio{font-size:.875rem;color:var(--g500);line-height:1.65}
+
+/* ── CONTACTO ── */
 #contacto{background:var(--teal);padding:96px 32px}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .ct h2{font-size:clamp(2rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.5px;margin-bottom:18px}
@@ -187,6 +226,8 @@ section{padding:96px 32px}
 .ct-perk{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.9);font-size:.9rem}
 .ct-perk-ico{font-size:1.1rem;flex-shrink:0}
 .form-box{background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);border-radius:var(--rl);padding:32px}
+.plan-badge{font-size:.78rem;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);border-radius:6px;padding:6px 12px;margin-bottom:14px;display:none}
+.plan-badge.visible{display:block}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .ff{display:flex;flex-direction:column;gap:6px}
 .ff label{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.3px}
@@ -203,41 +244,61 @@ section{padding:96px 32px}
 /* ── FOOTER ── */
 footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
 .foot-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:32px}
-.foot-logo{font-size:1.3rem;font-weight:800;color:#fff}
-.foot-logo span{color:var(--teal)}
 .foot-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
 .foot-links a{color:var(--g400);text-decoration:none;font-size:.875rem;transition:color .2s}
 .foot-links a:hover{color:var(--teal)}
 .foot-bottom{border-top:1px solid #1f2937;padding-top:24px;text-align:center}
 .foot-bottom p{color:var(--g500);font-size:.8rem}
+.foot-legal{color:var(--g400);font-size:.75rem;margin-top:8px;line-height:1.8}
+.foot-legal a{color:var(--g400);text-decoration:none}
+.foot-legal a:hover{color:var(--teal)}
+
+/* ── WHATSAPP FAB ── */
+.wa-fab-wrap{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.wa-tooltip{background:rgba(0,0,0,.78);color:#fff;font-size:.78rem;padding:6px 12px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none}
+.wa-fab-wrap:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+.wa-fab{width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 4px 16px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,box-shadow .2s;flex-shrink:0}
+.wa-fab:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(37,211,102,.55)}
+.wa-fab svg{width:30px;height:30px;fill:#fff}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1060px){
   .plans{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
 }
 @media(max-width:960px){
-  section,#contacto,#video{padding:72px 24px}
+  section,#contacto{padding:72px 24px}
   .hero-grid{grid-template-columns:1fr;gap:48px;text-align:center}
-  .hero-sub{max-width:100%;margin-left:auto;margin-right:auto}
+  .hero-sub,.hero-sub-alt{max-width:100%;margin-left:auto;margin-right:auto}
+  .trust-bar{justify-content:center}
   .hero-btns{justify-content:center}
   .phone-wrap{order:-1}
   .steps{grid-template-columns:1fr;gap:40px}
   .steps::before{display:none}
   .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .benefit-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:1fr;gap:36px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
   .contact-grid{grid-template-columns:1fr;gap:40px}
   .foot-top{flex-direction:column;text-align:center}
   .foot-links{justify-content:center}
 }
-@media(max-width:600px){
-  .nav-links,.nav-cta{display:none}
+@media(max-width:768px){
+  .nav-links,.nav-cta,.badge-chile{display:none}
   .hamburger{display:flex}
+  .team-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
+  .wa-fab-wrap{bottom:20px;right:16px}
+}
+@media(max-width:600px){
   .feat-grid{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr}
   .hero-h1{font-size:2.1rem}
   .phone{width:220px;height:440px}
+  .trust-bar{flex-direction:column;gap:10px;align-items:center}
+}
+@media(max-width:480px){
+  .phone-wrap{display:none}
 }
 :focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 </style>
@@ -251,22 +312,25 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     <li><a href="#como-funciona">Cómo funciona</a></li>
     <li><a href="#que-incluye">Qué incluye</a></li>
     <li><a href="#planes">Planes</a></li>
-    <li><a href="#soporte">Soporte y mantención</a></li>
+    <li><a href="#soporte">Soporte</a></li>
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="#contacto" class="btn btn-primary nav-cta">Solicitar demo</a>
-  <button class="hamburger" id="ham" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <span class="badge-chile">Empresa chilena 🇨🇱</span>
+    <a href="#contacto" class="btn btn-primary nav-cta">Solicitar demo</a>
+    <button class="hamburger" id="ham" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mob" role="navigation">
+<div class="mobile-menu" id="mob" role="navigation" aria-label="Menú móvil">
   <a href="#como-funciona" class="mob-link">Cómo funciona</a>
   <a href="#que-incluye" class="mob-link">Qué incluye</a>
   <a href="#planes" class="mob-link">Planes</a>
-  <a href="#soporte" class="mob-link">Soporte y mantención</a>
+  <a href="#soporte" class="mob-link">Soporte</a>
   <a href="#galeria" class="mob-link">Galería</a>
   <a href="#contacto" class="mob-link">Contacto</a>
   <a href="#contacto" class="btn btn-primary mob-link">Solicitar demo</a>
@@ -282,7 +346,13 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           Sistema listo para instalar
         </div>
         <h1 class="hero-h1">Tu hotel,<br><em>inteligente</em><br>desde el primer día</h1>
-        <p class="hero-sub">Sistema de domótica para hoteles y cabañas. Control total desde el celular del huésped, sin descargar ninguna app.</p>
+        <p class="hero-sub">Sistema de domótica para hoteles. Control total desde el celular del huésped, sin descargar ninguna app.</p>
+        <p class="hero-sub-alt">También disponible para cabañas y apart-hoteles.</p>
+        <div class="trust-bar">
+          <span class="trust-item"><span class="trust-check">✓</span> Instalado en hoteles boutique en Chile</span>
+          <span class="trust-item"><span class="trust-check">✓</span> Soporte local en Santiago</span>
+          <span class="trust-item"><span class="trust-check">✓</span> Demo en vivo en 30 min</span>
+        </div>
         <div class="hero-btns">
           <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
           <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona</a>
@@ -300,30 +370,10 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
               <div class="s-chip">🌡️ 22°C · Clima activo</div>
             </div>
             <div class="s-controls">
-              <div class="cc on">
-                <span class="cc-ico">💡</span>
-                <div class="cc-lbl">Iluminación</div>
-                <div class="cc-val">80% · Cálida</div>
-                <div class="tog on"></div>
-              </div>
-              <div class="cc">
-                <span class="cc-ico">🪟</span>
-                <div class="cc-lbl">Cortina</div>
-                <div class="cc-val">Cerrada</div>
-                <div class="tog off"></div>
-              </div>
-              <div class="cc on">
-                <span class="cc-ico">❄️</span>
-                <div class="cc-lbl">Aire AC</div>
-                <div class="cc-val">22°C · Auto</div>
-                <div class="tog on"></div>
-              </div>
-              <div class="cc">
-                <span class="cc-ico">🔌</span>
-                <div class="cc-lbl">Enchufe</div>
-                <div class="cc-val">Apagado</div>
-                <div class="tog off"></div>
-              </div>
+              <div class="cc on"><span class="cc-ico">💡</span><div class="cc-lbl">Iluminación</div><div class="cc-val">80% · Cálida</div><div class="tog on"></div></div>
+              <div class="cc"><span class="cc-ico">🪟</span><div class="cc-lbl">Cortina</div><div class="cc-val">Cerrada</div><div class="tog off"></div></div>
+              <div class="cc on"><span class="cc-ico">❄️</span><div class="cc-lbl">Aire AC</div><div class="cc-val">22°C · Auto</div><div class="tog on"></div></div>
+              <div class="cc"><span class="cc-ico">🔌</span><div class="cc-lbl">Enchufe</div><div class="cc-val">Apagado</div><div class="tog off"></div></div>
             </div>
             <div class="s-foot">smartrooms · Acceso expira al checkout</div>
           </div>
@@ -356,29 +406,6 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
         <div class="step-ico">✅</div>
         <h3>Control total</h3>
         <p>Luces, cortinas, aire acondicionado y más, desde la palma de la mano. El acceso expira automáticamente al momento del checkout.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO INSTITUCIONAL -->
-<!-- OCULTO: pendiente hasta tener el video listo -->
-<section id="video" style="display:none">
-  <div class="container">
-    <div class="video-inner">
-      <div class="video-header fu" style="text-align:center">
-        <span class="pill">Demo en vivo</span>
-        <h2 class="h2">Mira el sistema en acción</h2>
-        <p class="sub" style="margin:0 auto;max-width:580px">Descubre cómo smartrooms transforma la experiencia de tus huéspedes desde el momento en que abren la puerta.</p>
-      </div>
-      <!-- REEMPLAZAR: cambiar este div por <video> o iframe de YouTube/Vimeo cuando el video esté listo -->
-      <div class="video-ratio fu d2" id="videoPh" onclick="alert('Video disponible próximamente')">
-        <div class="video-ph">
-          <div class="play-ring">
-            <div class="play-tri"></div>
-          </div>
-          <p class="video-ph-text">Video demostrativo — próximamente</p>
-        </div>
       </div>
     </div>
   </div>
@@ -427,11 +454,83 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   </div>
 </section>
 
+<!-- LO QUE GANA TU HOTEL -->
+<section id="beneficios">
+  <div class="container">
+    <div class="fu" style="text-align:center">
+      <span class="pill">Impacto en tu negocio</span>
+      <h2 class="h2">Lo que gana tu hotel</h2>
+      <p class="sub" style="margin:0 auto">Más que tecnología — una ventaja competitiva concreta.</p>
+    </div>
+    <div class="benefit-grid">
+      <div class="bc fu d1">
+        <span class="bc-ico">🏆</span>
+        <h3>Diferenciación competitiva</h3>
+        <p>Ofrece lo que muy pocos hoteles en Chile tienen. Atrae huéspedes que valoran la experiencia y generan mejores reseñas en Google y TripAdvisor.</p>
+      </div>
+      <div class="bc fu d2">
+        <span class="bc-ico">⚡</span>
+        <h3>Ahorro energético real</h3>
+        <p>El clima se apaga solo cuando el huésped sale. Las cortinas y luces se ajustan automáticamente. Menos consumo sin que nadie tenga que acordarse.</p>
+      </div>
+      <div class="bc fu d3">
+        <span class="bc-ico">🙌</span>
+        <h3>Menos carga para tu equipo</h3>
+        <p>El huésped controla todo desde su celular. Menos llamadas a recepción por ajustar la temperatura o subir las cortinas. Tu equipo se enfoca en lo que importa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="container">
+    <div class="fu" style="text-align:center">
+      <span class="pill">Galería</span>
+      <h2 class="h2">Así podría verse tu espacio</h2>
+      <p class="sub" style="margin:0 auto">Recibe a tus huéspedes con la mejor tecnología y atención</p>
+      <p class="gallery-context">Imágenes referenciales del tipo de instalación. Solicita ver fotos reales en tu demo.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item fu d1">
+        <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Habitación con iluminación ambiente smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Habitación — iluminación ambiente</div>
+      </div>
+      <div class="gal-item fu d2">
+        <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Cortina automática</div>
+      </div>
+      <div class="gal-item fu d3">
+        <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Panel de control — web app</div>
+      </div>
+      <div class="gal-item fu d1">
+        <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente, Plan Max Comfort smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Baño inteligente — Plan Max Comfort</div>
+      </div>
+      <div class="gal-item fu d2">
+        <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Dashboard recepción</div>
+      </div>
+      <div class="gal-item fu d3">
+        <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Echo Dot, control por voz smartrooms" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Echo Dot — control por voz</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PLANES -->
 <section id="planes">
   <div class="container">
     <div class="fu" style="text-align:center">
-      <span class="pill">Pricing</span>
+      <span class="pill">Precios</span>
       <h2 class="h2">Planes para cada hotel</h2>
       <p class="sub" style="margin:0 auto">Instalación profesional, suscripción mensual o anual, soporte local incluido.</p>
     </div>
@@ -470,7 +569,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           <li>2 mantenciones anuales incluidas</li>
           <li>Soporte remoto</li>
         </ul>
-        <a href="#contacto" class="btn btn-outline btn-full">Solicitar cotización</a>
+        <a href="#contacto" class="btn btn-outline btn-full btn-cotizacion" data-plan="Base">Solicitar cotización</a>
       </div>
 
       <!-- PLAN PREMIUM -->
@@ -507,7 +606,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           <li>2 mantenciones anuales incluidas</li>
           <li>Soporte remoto prioritario</li>
         </ul>
-        <a href="#contacto" class="btn btn-full" style="background:#534AB7;color:#fff;border-color:#534AB7">Solicitar cotización</a>
+        <a href="#contacto" class="btn btn-full btn-cotizacion" style="background:#534AB7;color:#fff;border-color:#534AB7" data-plan="Premium">Solicitar cotización</a>
       </div>
 
       <!-- PLAN MAX COMFORT -->
@@ -543,11 +642,20 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           <li>2 mantenciones anuales incluidas</li>
           <li>Soporte remoto prioritario</li>
         </ul>
-        <a href="#contacto" class="btn btn-primary btn-full">Solicitar cotización</a>
+        <a href="#contacto" class="btn btn-primary btn-full btn-cotizacion" data-plan="Max Comfort">Solicitar cotización</a>
       </div>
 
     </div>
-    <p class="plan-note fu">Precios desde, en UF + IVA. Mínimo 10 habitaciones por proyecto. El valor final de instalación puede variar según el estado de la habitación y adaptaciones específicas requeridas (p. ej. cambio de motores de cortina u otras instalaciones eléctricas).<br>Suscripción anual incluye 2 visitas de mantención presencial. Cotización sin compromiso.</p>
+
+    <div class="plan-disclaimer fu">
+      <strong>Precios desde, en UF + IVA. Mínimo 10 habitaciones por proyecto.</strong> El valor final de instalación puede variar según el estado de la habitación y adaptaciones específicas requeridas (p. ej. cambio de motores de cortina u otras instalaciones eléctricas). La suscripción anual incluye 2 visitas de mantención presencial. Cotización sin compromiso.
+    </div>
+
+    <!-- COMPLETAR: reemplazar con PDF real cuando esté disponible -->
+    <div class="plan-pdf-cta fu">
+      <a href="assets/smartrooms-propuesta.pdf" download>↓ Descargar propuesta completa en PDF</a>
+    </div>
+
   </div>
 </section>
 
@@ -578,67 +686,52 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="fu d3" style="max-width:760px;margin:48px auto 0;background:var(--teal-l);border-radius:20px;padding:32px 36px">
       <h3 style="font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:12px">¿Y si un dispositivo se rompe físicamente?</h3>
-      <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">
-        Si un aparato presenta una falla física que no se puede solucionar de forma remota, enviamos un técnico a la brevedad para repararlo o reemplazarlo.
-      </p>
-      <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">
-        Luego evaluamos la causa de la falla:
-      </p>
+      <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">Si un aparato presenta una falla física que no se puede solucionar de forma remota, enviamos un técnico a la brevedad para repararlo o reemplazarlo.</p>
+      <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">Luego evaluamos la causa de la falla:</p>
       <ul style="font-size:.9rem;color:var(--g500);line-height:1.8;padding-left:20px;margin-bottom:10px">
         <li><strong>Desgaste natural o falla no atribuible a mal uso:</strong> el reemplazo o reparación no tiene costo para el hotel.</li>
         <li><strong>Daño por mal uso:</strong> el costo del dispositivo se cobra en la siguiente mensualidad.</li>
       </ul>
-      <p style="font-size:.9rem;color:var(--g500);line-height:1.8">
-        Las 2 mantenciones anuales son justamente para anticiparse a estos casos, renovando equipos de forma preventiva antes de que dejen de funcionar.
-      </p>
+      <p style="font-size:.9rem;color:var(--g500);line-height:1.8">Las 2 mantenciones anuales son justamente para anticiparse a estos casos, renovando equipos de forma preventiva antes de que dejen de funcionar.</p>
     </div>
   </div>
 </section>
 
-<!-- GALERÍA -->
-<section id="galeria">
+<!-- EL EQUIPO -->
+<section id="equipo">
   <div class="container">
     <div class="fu" style="text-align:center">
-      <span class="pill">Galería</span>
-      <h2 class="h2">Así podría verse tu espacio</h2>
-      <p class="sub" style="margin:0 auto">Recibe a tus huéspedes con la mejor tecnología y atención</p>
+      <span class="pill">El equipo</span>
+      <h2 class="h2">Las personas detrás de smartrooms</h2>
+      <p class="sub" style="margin:0 auto">Un equipo chileno especializado en automatización, hotelería y tecnología.</p>
     </div>
-    <div class="gallery-grid">
+    <div class="team-grid">
 
-      <div class="gal-item fu d1">
-        <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Habitación con iluminación ambiente smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Habitación — iluminación ambiente</div>
+      <!-- COMPLETAR: reemplazar iniciales, nombre, cargo y descripción con datos reales del equipo -->
+      <div class="team-card fu d1">
+        <!-- COMPLETAR: <img src="assets/team/persona1.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
+        <div class="team-avatar">CF</div>
+        <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
+        <div class="team-role">Co-founder &amp; Director Comercial</div>
+        <p class="team-bio">10 años en automatización industrial y proyectos de infraestructura hotelera en Chile.</p>
       </div>
 
-      <div class="gal-item fu d2">
-        <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Cortina automática</div>
+      <!-- COMPLETAR: segundo miembro del equipo -->
+      <div class="team-card fu d2">
+        <!-- COMPLETAR: <img src="assets/team/persona2.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
+        <div class="team-avatar" style="background:var(--purple-l);color:var(--purple)">MA</div>
+        <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
+        <div class="team-role">Co-founder &amp; Directora de Operaciones</div>
+        <p class="team-bio">Especialista en gestión hotelera con experiencia en implementación de tecnología para cadenas boutique.</p>
       </div>
 
-      <div class="gal-item fu d3">
-        <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Panel de control — web app</div>
-      </div>
-
-      <div class="gal-item fu d1">
-        <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente, Plan Max Comfort smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Baño inteligente — Plan Max Comfort</div>
-      </div>
-
-      <div class="gal-item fu d2">
-        <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Dashboard recepción</div>
-      </div>
-
-      <div class="gal-item fu d3">
-        <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Echo Dot, control por voz smartrooms" loading="lazy"></div>
-        <div class="gal-overlay"></div>
-        <div class="gal-label">Echo Dot — control por voz</div>
+      <!-- COMPLETAR: tercer miembro del equipo -->
+      <div class="team-card fu d3">
+        <!-- COMPLETAR: <img src="assets/team/persona3.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
+        <div class="team-avatar" style="background:#fef3c7;color:#d97706">RP</div>
+        <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
+        <div class="team-role">Técnico de Instalaciones</div>
+        <p class="team-bio">Certificado en sistemas de domótica e integración de dispositivos IoT para ambientes comerciales.</p>
       </div>
 
     </div>
@@ -689,6 +782,9 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       <div class="fu d2">
         <div class="form-box">
           <form id="cform">
+            <!-- Campo hidden: se llena automáticamente cuando el usuario hace clic en "Solicitar cotización" desde un plan -->
+            <input type="hidden" id="plan-interes" name="plan_interes" value="">
+            <div class="plan-badge" id="plan-badge"></div>
             <div class="fgrid">
               <div class="ff">
                 <label for="nombre">Nombre</label>
@@ -705,6 +801,10 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
               <div class="ff">
                 <label for="tel">Teléfono</label>
                 <input type="tel" id="tel" placeholder="+56 9 1234 5678">
+              </div>
+              <div class="ff">
+                <label for="habs">N° de habitaciones</label>
+                <input type="number" id="habs" min="1" placeholder="Ej: 20" required>
               </div>
             </div>
             <button type="submit" class="btn-send">Solicitar demo gratuita →</button>
@@ -724,21 +824,35 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
 <footer>
   <div class="container">
     <div class="foot-top">
-      <div class="foot-logo">smart<span>rooms</span></div>
+      <a href="#"><img src="assets/logo-smartrooms.png" alt="smartrooms" style="height:26px;display:block"></a>
       <ul class="foot-links">
         <li><a href="#">Inicio</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li><a href="#planes">Planes</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li><a href="politica-privacidad.html">Política de privacidad</a></li>
       </ul>
     </div>
     <div class="foot-bottom">
       <p>© 2026 smartrooms · Santiago, Chile · Automatización inteligente para hoteles, oficinas y hospitales.</p>
-      <p style="margin-top:6px">smartrooms es una marca de NEXOSMART — soluciones inteligentes</p>
+      <p class="foot-legal">
+        smartrooms es una marca de <strong>NEXOSMART SpA</strong> · Santiago, Chile ·
+        <!-- COMPLETAR: RUT XX.XXX.XXX-X -->
+        <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
+        <!-- COMPLETAR: actualizar email si es diferente -->
+      </p>
     </div>
   </div>
 </footer>
+
+<!-- WhatsApp FAB — COMPLETAR: reemplazar 56XXXXXXXXX con el número real (sin el +) -->
+<div class="wa-fab-wrap">
+  <span class="wa-tooltip">Escríbenos por WhatsApp</span>
+  <a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20smartrooms" class="wa-fab" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
 
 <script>
 // Navbar scroll
@@ -759,7 +873,7 @@ document.querySelectorAll('.mob-link').forEach(l => {
   l.addEventListener('click', () => {
     mob.classList.remove('open');
     ham.classList.remove('open');
-    ham.setAttribute('aria-expanded', false);
+    ham.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -786,7 +900,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Form
+// Plan interest — populate hidden field + show badge when clicking from plans section
+document.querySelectorAll('.btn-cotizacion').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const plan = btn.dataset.plan;
+    document.getElementById('plan-interes').value = plan;
+    const badge = document.getElementById('plan-badge');
+    badge.textContent = `Plan seleccionado: ${plan} ✓`;
+    badge.classList.add('visible');
+  });
+});
+
+// Form submit
 document.getElementById('cform').addEventListener('submit', e => {
   e.preventDefault();
   document.getElementById('cform').style.display = 'none';
