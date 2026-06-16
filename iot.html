@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexoSuite IoT — Habitaciones inteligentes para hoteles en Chile</title>
+<meta name="description" content="Control de luces, cortinas y clima desde el celular del huésped. QR sin app. Instalación desde UF 9,3/hab. PMS gratis incluido. Soporte local Santiago.">
+<meta name="robots" content="index, follow">
+<meta name="language" content="es-CL">
+<meta name="geo.region" content="CL-RM">
+<meta name="geo.placename" content="Santiago, Chile">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="NexoSuite IoT — Habitaciones inteligentes para hoteles en Chile">
+<meta property="og:description" content="Domótica hotelera instalada en Chile. Sin apps, sin fricción. PMS incluido gratis.">
+<meta property="og:url" content="https://smartrooms.cl/iot.html">
+<meta property="og:image" content="https://smartrooms.cl/assets/og-nexosuite.png">
+<!-- COMPLETAR: crear assets/og-nexosuite.png (1200x630px) -->
+<meta property="og:locale" content="es_CL">
+
+<link rel="canonical" href="https://smartrooms.cl/iot.html">
+<link rel="icon" type="image/png" href="assets/logo-smartrooms.png">
+<link rel="apple-touch-icon" href="assets/logo-smartrooms.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/nexosuite.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NexoSuite IoT",
+  "applicationCategory": "BusinessApplication",
+  "description": "Domótica hotelera para Chile. Control de habitaciones sin apps.",
+  "offers": [
+    {"@type":"Offer","name":"Plan Base","price":"9.3","priceCurrency":"CLF"},
+    {"@type":"Offer","name":"Plan Premium","price":"11.7","priceCurrency":"CLF"},
+    {"@type":"Offer","name":"Plan Max Comfort","price":"19.1","priceCurrency":"CLF"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 178 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+        <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="600" font-size="26" fill="#085041">NEXO</text>
+        <text x="93" y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="300" font-size="26" fill="#1D9E75">Suite</text>
+      </svg>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-link" data-page="index.html">Inicio</a>
+      <a href="pms.html" class="nav-link" data-page="pms.html">NexoSuite PMS <span class="nav-module-badge badge-pms">PMS</span></a>
+      <a href="iot.html" class="nav-link" data-page="iot.html">NexoSuite IoT <span class="nav-module-badge badge-iot">IoT</span></a>
+      <a href="index.html#precios" class="nav-link">Precios</a>
+      <a href="#contacto" class="btn nav-cta">Solicitar demo</a>
+    </div>
+    <button class="nav-hamburger" id="ham" aria-label="Menú" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="section" style="padding-top:calc(var(--nav-h) + 64px)">
+  <div class="container">
+    <div class="grid-2">
+      <div class="reveal">
+        <span class="eyebrow">NexoSuite IoT</span>
+        <h1 class="hero-headline">Tus huéspedes controlan su habitación. <em>Tu equipo deja de intermediar.</em></h1>
+        <p class="lead">Domótica hotelera instalada en Chile. Luces, cortinas y clima desde el celular del huésped — sin apps, sin instrucciones, sin llamadas a recepción. PMS incluido gratis.</p>
+        <div class="trust-bar" style="margin-top:24px">
+          <span class="trust-item"><span class="trust-dot"></span> Sin app que descargar</span>
+          <span class="trust-item"><span class="trust-dot"></span> QR expira al checkout</span>
+          <span class="trust-item"><span class="trust-dot"></span> Soporte emergencia 24/7</span>
+        </div>
+        <div class="btn-group">
+          <a href="#contacto" class="btn btn-primary btn-lg">Solicitar demo gratuita</a>
+          <a href="#como-funciona" class="btn btn-ghost">Ver cómo funciona</a>
+        </div>
+      </div>
+      <div class="phone-wrap reveal reveal-delay-2">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-bar"><span>9:41</span><span>▮▮▮ ⬤</span></div>
+            <div class="phone-head">
+              <div class="phone-head-tag">Hotel Mirador · Demo</div>
+              <div class="phone-head-room">Habitación 204</div>
+              <div class="phone-head-sub">Bienvenido · Check-out: mañana 12:00</div>
+              <div class="phone-chip">🌡️ 22°C · Clima activo</div>
+            </div>
+            <div class="phone-controls">
+              <div class="phone-cc on"><span class="phone-cc-ico">💡</span><div class="phone-cc-lbl">Iluminación</div><div class="phone-cc-val">80% · Cálida</div><div class="phone-toggle on"></div></div>
+              <div class="phone-cc"><span class="phone-cc-ico">🪟</span><div class="phone-cc-lbl">Cortina</div><div class="phone-cc-val">Cerrada</div><div class="phone-toggle off"></div></div>
+              <div class="phone-cc on"><span class="phone-cc-ico">❄️</span><div class="phone-cc-lbl">Aire AC</div><div class="phone-cc-val">22°C · Auto</div><div class="phone-toggle on"></div></div>
+              <div class="phone-cc"><span class="phone-cc-ico">🔌</span><div class="phone-cc-lbl">Enchufe</div><div class="phone-cc-val">Apagado</div><div class="phone-toggle off"></div></div>
+            </div>
+            <div class="phone-foot">NexoSuite IoT · Acceso expira al checkout</div>
+          </div>
+        </div>
+        <p class="mock-disclaimer">Interfaz de demostración — datos de ejemplo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section section-surface" id="como-funciona">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow">Proceso simple</span>
+      <h2 class="section-headline">Cómo funciona</h2>
+      <p class="lead mx-auto">Tres pasos y el huésped tiene control total de su habitación. Sin fricción, sin apps.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-icon">🚪</div>
+        <h3>El huésped llega</h3>
+        <p>El sensor de puerta detecta el ingreso y activa la bienvenida: luces encendidas, temperatura ideal y mensaje personalizado del hotel.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-icon">📷</div>
+        <h3>Escanea el QR</h3>
+        <p>El código QR único de la estadía abre el panel de control directamente en el navegador del celular. Sin descargar nada.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-icon">✅</div>
+        <h3>Control total</h3>
+        <p>Luces, cortinas, aire acondicionado y más, desde la palma de la mano. El acceso expira automáticamente al checkout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE -->
+<section class="section">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow">Funcionalidades</span>
+      <h2 class="section-headline">Qué incluye el sistema</h2>
+      <p class="lead mx-auto">Todo lo que tu hotel necesita para ofrecer una experiencia moderna y diferenciada.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="card-icon">💡</div>
+        <div class="card-title">Iluminación inteligente</div>
+        <div class="card-body">Control de intensidad y temperatura de color — el huésped ajusta la luz a su gusto sin llamar a recepción.</div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">🪟</div>
+        <div class="card-title">Cortinas automáticas</div>
+        <div class="card-body">Apertura y cierre por app, voz o sensor de luminosidad — el huésped no se levanta y tú no recibes llamadas por el intercomunicador.</div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">🌡️</div>
+        <div class="card-title">Clima inteligente</div>
+        <div class="card-body">Control de temperatura y aire acondicionado desde la app. El aire se apaga solo cuando el huésped sale — eso se nota en la cuenta eléctrica.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🔌</div>
+        <div class="card-title">Enchufe inteligente</div>
+        <div class="card-body">Configuración remota de cualquier dispositivo conectado: lámparas, televisores o cargadores de escritorio.</div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">📱</div>
+        <div class="card-title">QR sin app</div>
+        <div class="card-body">QR único por estadía que abre la interfaz en el navegador — funciona en cualquier celular, sin actualizar nada.</div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Dashboard de recepción</div>
+        <div class="card-body">Vista en tiempo real del estado de todas las habitaciones — recepción puede asistir al huésped sin subir al piso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="section section-surface">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow">Galería</span>
+      <h2 class="section-headline">Así podría verse tu espacio</h2>
+      <p class="lead mx-auto">Recibe a tus huéspedes con la mejor tecnología y atención.</p>
+      <p class="gallery-context">Imágenes referenciales del tipo de instalación. Solicita ver fotos reales en tu demo.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item reveal">
+        <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Control de iluminación inteligente en habitación de hotel — NexoSuite IoT Chile" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Iluminación que el huésped ajusta desde el celular</div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática habitación hotel — NexoSuite IoT" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Cortinas automáticas — sin llamadas a recepción</div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app para huésped — habitación inteligente hotel Chile" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Control completo desde el navegador, sin app</div>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente Plan Max Comfort — automatización hotelera NexoSuite" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Baño inteligente — Plan Max Comfort</div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción en tiempo real — domótica hotelera NexoSuite Chile" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Dashboard recepción — todas las habitaciones en tiempo real</div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Control por voz Alexa Echo Dot habitación hotel — NexoSuite" loading="lazy"></div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Control por voz con Alexa — privacidad garantizada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES IOT -->
+<section class="section" id="precios">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow">Precios</span>
+      <h2 class="section-headline">Planes NexoSuite IoT</h2>
+      <p class="lead mx-auto">Instalación profesional, suscripción mensual, soporte local incluido.</p>
+    </div>
+    <div class="grid-3">
+      <div class="plan-card reveal">
+        <div class="plan-name">Base</div>
+        <div class="plan-sub">Control por app</div>
+        <div class="plan-price">UF 9,3<span style="font-size:var(--text-base);font-weight:500">/hab</span></div>
+        <div class="plan-price-unit">Instalación + UF 0,49/hab/mes</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Iluminación completa + cortina + enchufe</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Sensor de puerta + escenas automáticas</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Web app QR sin descarga</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Dashboard de recepción</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> 2 mantenciones anuales</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> NexoSuite PMS incluido gratis</div>
+        <a href="#contacto" class="btn btn-secondary btn-block" style="margin-top:auto">Solicitar cotización</a>
+      </div>
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-badge">Popular</div>
+        <div class="plan-name on-dark">Premium</div>
+        <div class="plan-sub on-dark">App + control por voz</div>
+        <div class="plan-price">UF 11,7<span style="font-size:var(--text-base);font-weight:500">/hab</span></div>
+        <div class="plan-price-unit on-dark">Instalación + UF 0,61/hab/mes</div>
+        <div class="plan-divider on-dark"></div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Todo el plan Base incluido</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Amazon Echo Dot + control por voz Alexa</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Botón físico de privacidad de micrófono</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Aire acondicionado inteligente + sensor de ventana</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Soporte remoto prioritario</div>
+        <a href="#contacto" class="btn btn-block" style="margin-top:auto;background:var(--c-white);color:var(--c-teal-dark)">Solicitar cotización</a>
+      </div>
+      <div class="plan-card reveal reveal-delay-2">
+        <div class="plan-name">Max Comfort</div>
+        <div class="plan-sub">La experiencia completa</div>
+        <div class="plan-price">UF 19,1<span style="font-size:var(--text-base);font-weight:500">/hab</span></div>
+        <div class="plan-price-unit">Instalación + UF 0,61/hab/mes</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Todo el plan Premium incluido</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Asiento bidet inteligente con calefacción</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Sensor de presencia en baño</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Ventilador extractor automático</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Soporte remoto prioritario</div>
+        <a href="#contacto" class="btn btn-secondary btn-block" style="margin-top:auto">Solicitar cotización</a>
+      </div>
+    </div>
+    <div class="plan-disclaimer reveal">
+      <strong>Precios desde, en UF + IVA. Mínimo 10 habitaciones por proyecto.</strong> El valor final puede variar según el estado de la habitación y adaptaciones eléctricas requeridas. La suscripción incluye 2 visitas de mantención presencial al año. PMS incluido gratis con cualquier plan IoT. Cotización sin compromiso.
+    </div>
+  </div>
+</section>
+
+<!-- SOPORTE Y MANTENCIÓN -->
+<section class="section section-surface">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow">Servicio post-venta</span>
+      <h2 class="section-headline">Soporte y mantención</h2>
+      <p class="lead mx-auto">Acompañamos al hotel durante toda la vida del sistema, no solo en la instalación.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">Capacitación del personal</div>
+        <div class="card-body">Capacitamos al equipo en el uso de la app de huéspedes y el dashboard de recepción, para resolver dudas frecuentes sin depender de nosotros.</div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">🔧</div>
+        <div class="card-title">2 mantenciones preventivas al año</div>
+        <div class="card-body">Dos visitas anuales incluidas para revisar y renovar preventivamente los dispositivos antes de que fallen.</div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">💻</div>
+        <div class="card-title">Soporte remoto primero</div>
+        <div class="card-body">La mayoría de los problemas se resuelven online el mismo día, sin necesidad de visita técnica.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ IOT -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 class="section-headline">Lo que nos preguntan antes de avanzar</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿El precio incluye mano de obra?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Sí. El precio de instalación incluye hardware, mano de obra certificada y puesta en marcha. El valor final puede variar según el estado eléctrico de las habitaciones — te lo informamos en la visita técnica previa, sin costo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Cuánto tiempo llevan las habitaciones fuera de servicio?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>La instalación se coordina en bloques para no afectar la ocupación. Trabajamos con tu equipo de housekeeping para instalar mientras las habitaciones están disponibles, sin interrumpir la operación del hotel.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Funciona si el internet del hotel se cae?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>El sistema es híbrido: parte del procesamiento ocurre en el hub instalado en el hotel y parte en la nube. Ante una caída de internet, las automatizaciones programadas siguen funcionando localmente. Los controles físicos siempre están disponibles como respaldo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Es compatible con mi instalación eléctrica?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Hacemos una visita técnica previa sin costo para evaluar compatibilidad. Si se requiere alguna adaptación eléctrica, te la informamos con costo desglosado antes de que te comprometas con nada.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Qué pasa con los dispositivos si termino el contrato?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Los dispositivos son propiedad del hotel desde el día de la instalación. Si terminas la suscripción, los dispositivos siguen siendo tuyos; dejas de recibir actualizaciones, soporte y mantenciones preventivas.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Los dispositivos son míos desde el primer día?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Sí. Todos los dispositivos instalados son propiedad del hotel desde el día de la instalación. La suscripción mensual cubre el software, las actualizaciones, el soporte remoto y las mantenciones preventivas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section section-dark" id="contacto">
+  <div class="container text-center">
+    <h2 class="hero-headline on-dark" style="font-size:var(--text-4xl)">¿Listo para modernizar tu hotel?</h2>
+    <p class="lead on-dark mx-auto" style="margin:14px auto 28px">Agenda una demo gratuita. Te mostramos el sistema funcionando en vivo, en una habitación real.</p>
+    <a href="index.html#contacto" class="btn btn-primary btn-lg" style="background:var(--c-white);color:var(--c-teal-dark)">Solicitar demo gratuita →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <svg viewBox="0 0 178 40" width="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+            <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="600" font-size="26" fill="#FFFFFF">NEXO</text>
+            <text x="93" y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="300" font-size="26" fill="#9FE1CB">Suite</text>
+          </svg>
+        </div>
+        <p class="footer-brand">El sistema operativo del hotel chileno · NEXOSMART SpA · Santiago, Chile</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Plataforma</div>
+        <a href="pms.html" class="footer-link">NexoSuite PMS</a>
+        <a href="iot.html" class="footer-link">NexoSuite IoT</a>
+        <a href="index.html#precios" class="footer-link">Precios</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <a href="index.html#contacto" class="footer-link">Contacto</a>
+        <a href="politica-privacidad.html" class="footer-link">Política de privacidad</a>
+        <span class="footer-link" style="margin-bottom:0">RUT: <!-- COMPLETAR: XX.XXX.XXX-X --></span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NexoSuite · Una marca de NEXOSMART SpA</p>
+      <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
+    </div>
+  </div>
+</footer>
+
+<!-- COMPLETAR: reemplazar XXXXXXXXX con el número real (sin el +) -->
+<a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20NexoSuite%20IoT" class="wa-fab" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-fab-label">WhatsApp</span>
+</a>
+
+<script>
+  const ham = document.getElementById('ham');
+  const links = document.getElementById('nav-links');
+  if (ham && links) ham.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    ham.setAttribute('aria-expanded', open);
+  });
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-btn').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.hidden = true;
+      });
+      if (!open) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.hidden = false;
+      }
+    });
+  });
+
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+    if (link.dataset.page === page) link.classList.add('active');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  }), 80);
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      const t = document.querySelector(href);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
+      links?.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
