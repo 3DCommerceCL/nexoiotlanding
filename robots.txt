@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/smartrooms-propuesta.pdf
+
+Sitemap: https://smartrooms.cl/sitemap.xml

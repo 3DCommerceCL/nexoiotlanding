@@ -3,19 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="smartrooms — Sistema de domótica para hoteles en Chile. Control total desde el celular del huésped sin descargar apps. Soporte local en Santiago. Una marca de NEXOSMART.">
-<title>smartrooms — Automatización inteligente para hoteles</title>
+<meta name="description" content="Domótica para hoteles en Chile. Control de luces, cortinas y clima desde el celular del huésped — sin apps, sin instrucciones, sin llamadas a recepción. Soporte local en Santiago. smartrooms by NEXOSMART.">
+<title>Domótica para hoteles en Chile | smartrooms</title>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="smartrooms — Automatización inteligente para hoteles">
-<meta property="og:description" content="Sistema de domótica para hoteles en Chile. Control total desde el celular del huésped, sin descargar ninguna app. Instalación profesional y soporte local incluido.">
+<meta property="og:title" content="Domótica para hoteles en Chile | smartrooms">
+<meta property="og:description" content="Domótica para hoteles en Chile. Control de habitaciones desde el celular del huésped, sin descargar ninguna app. Instalación profesional y soporte local en Santiago.">
 <meta property="og:image" content="assets/logo-smartrooms.png">
 <meta property="og:locale" content="es_CL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="smartrooms — Automatización inteligente para hoteles">
-<meta name="twitter:description" content="Sistema de domótica para hoteles en Chile. Sin apps, sin fricción.">
+<meta name="twitter:title" content="Domótica para hoteles en Chile | smartrooms">
+<meta name="twitter:description" content="Domótica hotelera en Chile. Sin apps, sin fricción. Soporte local incluido.">
 <meta name="twitter:image" content="assets/logo-smartrooms.png">
+
+<!-- Canonical y geo -->
+<!-- COMPLETAR: descomentar cuando el dominio esté registrado -->
+<!-- <link rel="canonical" href="https://smartrooms.cl/"> -->
+<meta name="robots" content="index, follow">
+<meta name="language" content="es-CL">
+<meta name="geo.region" content="CL-RM">
+<meta name="geo.placename" content="Santiago, Chile">
 
 <link rel="icon" type="image/png" href="assets/logo-smartrooms.png">
 <link rel="apple-touch-icon" href="assets/logo-smartrooms.png">
@@ -23,6 +31,47 @@
 <!-- Google Analytics 4 — COMPLETAR: reemplaza G-XXXXXXXXXX con tu Measurement ID -->
 <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://smartrooms.cl/#organization",
+      "name": "smartrooms",
+      "legalName": "NEXOSMART SpA",
+      "url": "https://smartrooms.cl",
+      "logo": "https://smartrooms.cl/assets/logo-smartrooms.png",
+      "description": "Sistema de domótica para hoteles y cabañas en Chile.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressRegion": "RM",
+        "addressCountry": "CL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "availableLanguage": "Spanish",
+        "email": "contacto@nexosmart.cl"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "smartrooms",
+      "applicationCategory": "BusinessApplication",
+      "description": "Domótica hotelera para Chile. Control de habitaciones sin apps.",
+      "offers": [
+        {"@type":"Offer","name":"Plan Base","price":"9.3","priceCurrency":"CLF"},
+        {"@type":"Offer","name":"Plan Premium","price":"11.7","priceCurrency":"CLF"},
+        {"@type":"Offer","name":"Plan Max Comfort","price":"19.1","priceCurrency":"CLF"}
+      ]
+    }
+  ]
+}
+</script>
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -49,11 +98,10 @@ body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;o
 /* ── NAVBAR ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;background:var(--g900);transition:box-shadow .3s}
 .nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,.25)}
-.nav-logo{font-size:1.4rem;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.5px;flex-shrink:0;display:flex;align-items:center}
+.nav-logo{text-decoration:none;flex-shrink:0;display:flex;align-items:center}
 .nav-logo-img{height:30px;display:block}
-.nav-center{display:flex;align-items:center;gap:24px}
-.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
-.nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;transition:color .2s;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:20px;list-style:none}
+.nav-links a{text-decoration:none;color:rgba(255,255,255,.8);font-size:.85rem;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--teal)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .badge-chile{display:inline-flex;align-items:center;gap:4px;background:rgba(29,158,117,.18);border:1px solid rgba(29,158,117,.35);color:rgba(255,255,255,.9);font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap}
@@ -62,14 +110,12 @@ body{font-family:var(--font);color:var(--g900);background:#fff;line-height:1.6;o
 .btn-primary:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,158,117,.35)}
 .btn-outline{background:transparent;color:var(--g700);border-color:var(--g200)}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal)}
-.btn-outline-teal{background:transparent;color:var(--teal);border-color:var(--teal)}
-.btn-outline-teal:hover{background:var(--teal);color:#fff}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s;display:block}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.1);z-index:999;flex-direction:column;gap:0;padding-bottom:16px;max-height:calc(100vh - 68px);overflow-y:auto}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.1);z-index:999;flex-direction:column;padding-bottom:16px;max-height:calc(100vh - 68px);overflow-y:auto}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:var(--g700);text-decoration:none;font-size:1rem;font-weight:500;padding:14px 28px;border-bottom:1px solid var(--g100);transition:color .2s}
 .mobile-menu a:last-child{margin:16px 28px 0;border:none;padding:0}
@@ -93,18 +139,19 @@ section{padding:96px 32px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-l);border:1px solid rgba(29,158,117,.25);padding:6px 14px;border-radius:100px;font-size:.78rem;font-weight:700;color:var(--teal);margin-bottom:24px}
 .hero-badge-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero-h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;line-height:1.08;letter-spacing:-1.5px;color:var(--g900);margin-bottom:22px}
+.hero-h1{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;color:var(--g900);margin-bottom:22px}
 .hero-h1 em{font-style:normal;color:var(--teal)}
-.hero-sub{font-size:1.1rem;color:var(--g500);line-height:1.75;margin-bottom:6px;max-width:460px}
-.hero-sub-alt{font-size:.88rem;color:var(--g400);margin-bottom:24px;max-width:460px}
+.hero-sub{font-size:1.05rem;color:var(--g500);line-height:1.75;margin-bottom:6px;max-width:480px}
+.hero-sub-alt{font-size:.88rem;color:var(--g400);margin-bottom:24px;max-width:480px}
 .trust-bar{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:32px}
 .trust-item{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--g500);font-weight:500}
 .trust-check{color:var(--teal);font-weight:700;font-size:1rem;flex-shrink:0;line-height:1}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .hero-btns .btn{padding:13px 26px;font-size:1rem}
+.mock-disclaimer{font-size:.72rem;color:var(--g400);text-align:center;margin-top:10px;font-style:italic}
 
 /* Phone mockup */
-.phone-wrap{display:flex;justify-content:center;align-items:center}
+.phone-wrap{display:flex;flex-direction:column;justify-content:center;align-items:center}
 .phone{width:256px;height:512px;background:#16213e;border-radius:42px;padding:10px;box-shadow:0 0 0 2px #2a2a4a,0 40px 90px rgba(0,0,0,.28),0 0 120px rgba(29,158,117,.08);position:relative;animation:float 4s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .phone-notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:56px;height:5px;background:#0d0d1a;border-radius:5px;z-index:2}
@@ -130,7 +177,7 @@ section{padding:96px 32px}
 .tog.off::after{content:'';position:absolute;left:2px;top:1.5px;width:12px;height:12px;border-radius:50%;background:var(--g400)}
 .s-foot{padding:9px 14px;background:#fff;border-top:1px solid var(--g100);text-align:center;font-size:.52rem;color:var(--g400)}
 
-/* ── HOW IT WORKS ── */
+/* ── CÓMO FUNCIONA ── */
 #como-funciona{background:var(--g50)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px;position:relative}
 .steps::before{content:'';position:absolute;top:36px;left:calc(16.67% + 16px);right:calc(16.67% + 16px);height:2px;background:linear-gradient(90deg,var(--teal),rgba(29,158,117,.2));z-index:0}
@@ -148,7 +195,7 @@ section{padding:96px 32px}
 .fc h3{font-size:1rem;font-weight:700;color:var(--g900);margin-bottom:8px}
 .fc p{font-size:.875rem;color:var(--g500);line-height:1.65}
 
-/* ── BENEFICIOS (Lo que gana tu hotel) ── */
+/* ── BENEFICIOS ── */
 #beneficios{background:var(--g900)}
 #beneficios .pill{background:rgba(29,158,117,.2);color:var(--teal)}
 #beneficios .h2{color:#fff}
@@ -166,7 +213,7 @@ section{padding:96px 32px}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
 .gal-item{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer}
 .gal-item::before{content:'';display:block;padding-top:75%}
-.gal-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:transform .35s ease}
+.gal-inner{position:absolute;inset:0;transition:transform .35s ease}
 .gal-item:hover .gal-inner{transform:scale(1.04)}
 .gal-inner img{width:100%;height:100%;object-fit:cover}
 .gal-overlay{position:absolute;inset:0;background:rgba(29,158,117,0);transition:background .3s;z-index:1;pointer-events:none}
@@ -205,17 +252,53 @@ section{padding:96px 32px}
 .why-ico{width:68px;height:68px;border-radius:18px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.7rem}
 .why-item h3{font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:10px}
 .why-item p{font-size:.875rem;color:var(--g500);line-height:1.7}
+.sla-block{border-top:1px solid var(--g200);padding-top:40px;margin-top:40px}
+.sla-block h3{font-size:1rem;font-weight:700;color:var(--g900);margin-bottom:16px}
+.sla-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:14px}
+.sla-item{background:var(--g50);border-radius:var(--r);padding:14px;text-align:center}
+.sla-val{display:block;font-size:1.3rem;font-weight:800;color:var(--g900)}
+.sla-lbl{display:block;font-size:.72rem;color:var(--g500);margin-top:4px;line-height:1.3}
+.sla-nota{font-size:.83rem;color:var(--g500);background:var(--g50);border-radius:8px;padding:12px 16px}
 
 /* ── EQUIPO ── */
 #equipo{background:var(--g50)}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
 .team-card{text-align:center;padding:36px 24px;background:#fff;border:1.5px solid var(--g200);border-radius:var(--rl);transition:all .3s}
 .team-card:hover{border-color:var(--teal);box-shadow:0 8px 28px rgba(29,158,117,.1);transform:translateY(-3px)}
-.team-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 20px;overflow:hidden;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;color:var(--teal);border:3px solid rgba(29,158,117,.15);flex-shrink:0}
+.team-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 20px;overflow:hidden;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;color:var(--teal);border:3px solid rgba(29,158,117,.15)}
 .team-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.team-initials{width:80px;height:80px;border-radius:50%;background:var(--teal-l);color:var(--teal);font-size:1.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto}
 .team-name{font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:4px}
 .team-role{font-size:.73rem;color:var(--teal);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px}
 .team-bio{font-size:.875rem;color:var(--g500);line-height:1.65}
+.team-linkedin{display:inline-block;font-size:.8rem;color:var(--teal);text-decoration:none;margin-top:8px;font-weight:600}
+.team-linkedin:hover{text-decoration:underline}
+.team-legal{background:var(--g100);border-radius:var(--r);padding:16px 20px;font-size:.83rem;color:var(--g500);line-height:1.8;margin-top:32px;text-align:center}
+.team-legal strong{color:var(--g700)}
+.team-legal a{color:var(--g500);text-decoration:none}
+.team-legal a:hover{color:var(--teal)}
+
+/* ── POR QUÉ SMARTROOMS ── */
+.competitive-block{border-top:1px solid var(--g200);padding-top:48px;margin-top:48px}
+.competitive-block h3{font-size:1.1rem;font-weight:700;color:var(--g900);margin-bottom:20px;text-align:center}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.comp-item{border:1px solid var(--g200);border-radius:var(--r);padding:16px 18px}
+.comp-highlight{border-color:var(--teal);background:var(--teal-l)}
+.comp-vs{font-size:.73rem;font-weight:600;color:var(--g500);margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
+.comp-highlight .comp-vs{color:var(--teal)}
+.comp-reason{font-size:.85rem;color:var(--g700);line-height:1.6}
+.comp-highlight .comp-reason{color:var(--teal-d)}
+
+/* ── FAQ ── */
+#faq{background:var(--g50)}
+.faq-cats{display:flex;flex-direction:column;gap:36px;margin-top:48px}
+.faq-cat-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:8px}
+.faq-item{border-bottom:1px solid var(--g200)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:.93rem;font-weight:600;color:var(--g900);text-align:left;font-family:var(--font);gap:12px}
+.faq-ico{font-size:1.3rem;color:var(--teal);flex-shrink:0;transition:transform .2s;line-height:1}
+.faq-q[aria-expanded="true"] .faq-ico{transform:rotate(45deg)}
+.faq-a{padding:0 0 16px}
+.faq-a p{font-size:.875rem;color:var(--g500);line-height:1.7}
 
 /* ── CONTACTO ── */
 #contacto{background:var(--teal);padding:96px 32px}
@@ -254,12 +337,10 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
 .foot-legal a:hover{color:var(--teal)}
 
 /* ── WHATSAPP FAB ── */
-.wa-fab-wrap{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.wa-tooltip{background:rgba(0,0,0,.78);color:#fff;font-size:.78rem;padding:6px 12px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none}
-.wa-fab-wrap:hover .wa-tooltip{opacity:1;transform:translateX(0)}
-.wa-fab{width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 4px 16px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,box-shadow .2s;flex-shrink:0}
-.wa-fab:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(37,211,102,.55)}
-.wa-fab svg{width:30px;height:30px;fill:#fff}
+.wa-btn{position:fixed;bottom:24px;right:20px;z-index:9999;background:#25D366;color:#fff;border-radius:100px;padding:12px 18px 12px 14px;display:flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s;font-weight:600;font-size:.85rem}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.5)}
+.wa-btn svg{flex-shrink:0}
+.wa-label{display:none}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1060px){
@@ -287,19 +368,22 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   .nav-links,.nav-cta,.badge-chile{display:none}
   .hamburger{display:flex}
   .team-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
-  .wa-fab-wrap{bottom:20px;right:16px}
+  .wa-btn{bottom:20px;right:16px}
+  .wa-label{display:none !important}
 }
 @media(max-width:600px){
   .feat-grid{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr}
-  .hero-h1{font-size:2.1rem}
+  .hero-h1{font-size:2rem}
   .phone{width:220px;height:440px}
   .trust-bar{flex-direction:column;gap:10px;align-items:center}
+  .comp-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .phone-wrap{display:none}
 }
+@media(min-width:768px){.wa-label{display:inline}}
 :focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 </style>
 </head>
@@ -313,7 +397,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     <li><a href="#que-incluye">Qué incluye</a></li>
     <li><a href="#planes">Planes</a></li>
     <li><a href="#soporte">Soporte</a></li>
-    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="nav-right">
@@ -331,7 +415,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   <a href="#que-incluye" class="mob-link">Qué incluye</a>
   <a href="#planes" class="mob-link">Planes</a>
   <a href="#soporte" class="mob-link">Soporte</a>
-  <a href="#galeria" class="mob-link">Galería</a>
+  <a href="#faq" class="mob-link">FAQ</a>
   <a href="#contacto" class="mob-link">Contacto</a>
   <a href="#contacto" class="btn btn-primary mob-link">Solicitar demo</a>
 </div>
@@ -345,17 +429,17 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           <span class="hero-badge-dot"></span>
           Sistema listo para instalar
         </div>
-        <h1 class="hero-h1">Tu hotel,<br><em>inteligente</em><br>desde el primer día</h1>
-        <p class="hero-sub">Sistema de domótica para hoteles. Control total desde el celular del huésped, sin descargar ninguna app.</p>
-        <p class="hero-sub-alt">También disponible para cabañas y apart-hoteles.</p>
+        <h1 class="hero-h1">Tus huéspedes <em>controlan</em> su habitación.<br>Tu equipo deja de intermediar.</h1>
+        <p class="hero-sub">Domótica para hoteles en Chile. Luces, cortinas y clima desde el celular del huésped — sin apps, sin instrucciones, sin llamadas a recepción. Instalación profesional en días, soporte local incluido.</p>
+        <p class="hero-sub-alt">Para hoteles boutique y cabañas de 10+ habitaciones en Chile.</p>
         <div class="trust-bar">
           <span class="trust-item"><span class="trust-check">✓</span> Instalado en hoteles boutique en Chile</span>
           <span class="trust-item"><span class="trust-check">✓</span> Soporte local en Santiago</span>
           <span class="trust-item"><span class="trust-check">✓</span> Demo en vivo en 30 min</span>
         </div>
         <div class="hero-btns">
-          <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
-          <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona</a>
+          <a href="#contacto" class="btn btn-primary">Solicitar demo gratuita</a>
+          <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona (2 min)</a>
         </div>
       </div>
       <div class="phone-wrap fu d2">
@@ -364,7 +448,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
           <div class="screen">
             <div class="s-bar"><span>9:41</span><span>▮▮▮ ⬤</span></div>
             <div class="s-head">
-              <div class="s-head-tag">Hotel Pacífico Sur</div>
+              <div class="s-head-tag">Hotel · Demo</div>
               <div class="s-head-room">Habitación 204</div>
               <div class="s-head-sub">Bienvenido · Check-out: mañana 12:00</div>
               <div class="s-chip">🌡️ 22°C · Clima activo</div>
@@ -378,6 +462,7 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
             <div class="s-foot">smartrooms · Acceso expira al checkout</div>
           </div>
         </div>
+        <p class="mock-disclaimer">Interfaz de demostración — datos de ejemplo.</p>
       </div>
     </div>
   </div>
@@ -423,17 +508,17 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       <div class="fc fu d1">
         <span class="fc-ico">💡</span>
         <h3>Iluminación inteligente</h3>
-        <p>Control de intensidad y temperatura de color para crear distintos ambientes según el momento del día o la preferencia del huésped.</p>
+        <p>Control de intensidad y temperatura de color para crear distintos ambientes según el momento del día — el huésped ajusta la luz a su gusto sin llamar a recepción.</p>
       </div>
       <div class="fc fu d2">
         <span class="fc-ico">🪟</span>
         <h3>Cortinas automáticas</h3>
-        <p>Apertura y cierre por app, por voz o por sensor de luminosidad. Integración total con el flujo de la habitación.</p>
+        <p>Apertura y cierre por app, por voz o por sensor de luminosidad — el huésped no necesita levantarse y tú no recibes solicitudes por el intercomunicador.</p>
       </div>
       <div class="fc fu d3">
         <span class="fc-ico">🌡️</span>
         <h3>Clima inteligente</h3>
-        <p>Control de temperatura y aire acondicionado desde la app. Ajuste automático al ingresar y apagado al salir para ahorrar energía.</p>
+        <p>Control de temperatura y aire acondicionado desde la app. El aire se apaga solo cuando el huésped sale. Eso se nota en la cuenta eléctrica.</p>
       </div>
       <div class="fc fu d1">
         <span class="fc-ico">🔌</span>
@@ -443,12 +528,12 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       <div class="fc fu d2">
         <span class="fc-ico">📱</span>
         <h3>Sin app que descargar</h3>
-        <p>QR único por estadía que abre la interfaz directamente en el navegador del celular. Expira automáticamente al checkout.</p>
+        <p>QR único por estadía que abre la interfaz directamente en el navegador — funciona en iPhone, Android, y en el celular que lleva 4 años sin actualizarse.</p>
       </div>
       <div class="fc fu d3">
         <span class="fc-ico">📊</span>
         <h3>Dashboard del hotel</h3>
-        <p>Vista en tiempo real del estado de todas las habitaciones para el equipo de recepción y housekeeping.</p>
+        <p>Vista en tiempo real del estado de todas las habitaciones — recepción puede controlar cualquier habitación remotamente para asistir al huésped sin subir al piso.</p>
       </div>
     </div>
   </div>
@@ -493,34 +578,34 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="gallery-grid">
       <div class="gal-item fu d1">
-        <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Habitación con iluminación ambiente smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-01-iluminacion.png" alt="Control de iluminación inteligente en habitación de hotel — domótica smartrooms Chile" loading="lazy"></div>
         <div class="gal-overlay"></div>
-        <div class="gal-label">Habitación — iluminación ambiente</div>
+        <div class="gal-label">Iluminación que el huésped ajusta desde el celular</div>
       </div>
       <div class="gal-item fu d2">
-        <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-02-cortina.png" alt="Cortina automática habitación hotel — sistema domótico smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
-        <div class="gal-label">Cortina automática</div>
+        <div class="gal-label">Cortinas automáticas — sin llamadas a recepción</div>
       </div>
       <div class="gal-item fu d3">
-        <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-03-panel-control.png" alt="Panel de control web app para huésped — habitación inteligente hotel Chile" loading="lazy"></div>
         <div class="gal-overlay"></div>
-        <div class="gal-label">Panel de control — web app</div>
+        <div class="gal-label">Control completo desde el navegador, sin app</div>
       </div>
       <div class="gal-item fu d1">
-        <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente, Plan Max Comfort smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-04-bano-smart.png" alt="Baño inteligente Plan Max Comfort — automatización hotelera smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
         <div class="gal-label">Baño inteligente — Plan Max Comfort</div>
       </div>
       <div class="gal-item fu d2">
-        <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-05-dashboard.png" alt="Dashboard de recepción en tiempo real — domótica hotelera smartrooms Chile" loading="lazy"></div>
         <div class="gal-overlay"></div>
-        <div class="gal-label">Dashboard recepción</div>
+        <div class="gal-label">Dashboard recepción — todas las habitaciones en tiempo real</div>
       </div>
       <div class="gal-item fu d3">
-        <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Echo Dot, control por voz smartrooms" loading="lazy"></div>
+        <div class="gal-inner"><img src="assets/gallery/gal-06-echo-dot.png" alt="Control por voz Alexa Echo Dot habitación hotel — smartrooms" loading="lazy"></div>
         <div class="gal-overlay"></div>
-        <div class="gal-label">Echo Dot — control por voz</div>
+        <div class="gal-label">Control por voz con Alexa — privacidad garantizada</div>
       </div>
     </div>
   </div>
@@ -536,27 +621,13 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="plans">
 
-      <!-- PLAN BASE -->
       <div class="pc fu d1">
         <div class="pc-name">Plan Base</div>
         <div class="pc-sub">Control por app</div>
         <div class="pc-prices">
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Instalación</div>
-            <div class="pc-pr-uf">Desde UF 9,3 + IVA /hab</div>
-            <div class="pc-pr-clp">~$380.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción mensual</div>
-            <div class="pc-pr-uf">UF 0,49 /hab/mes</div>
-            <div class="pc-pr-clp">~$20.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción anual</div>
-            <div class="pc-pr-uf">UF 5,4 /hab/año</div>
-            <div class="pc-pr-clp">~$220.000 CLP</div>
-            <div class="pc-pr-save">✦ Ahorra 1 mes</div>
-          </div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Instalación</div><div class="pc-pr-uf">Desde UF 9,3 + IVA /hab</div><div class="pc-pr-clp">~$380.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción mensual</div><div class="pc-pr-uf">UF 0,49 /hab/mes</div><div class="pc-pr-clp">~$20.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción anual</div><div class="pc-pr-uf">UF 5,4 /hab/año</div><div class="pc-pr-clp">~$220.000 CLP</div><div class="pc-pr-save">✦ Ahorra 1 mes</div></div>
         </div>
         <ul class="pc-feats">
           <li>Iluminación completa (velador + techo + LED bajo cama)</li>
@@ -572,28 +643,14 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
         <a href="#contacto" class="btn btn-outline btn-full btn-cotizacion" data-plan="Base">Solicitar cotización</a>
       </div>
 
-      <!-- PLAN PREMIUM -->
       <div class="pc premium fu d2">
         <div class="pc-badge" style="background:#534AB7">⭐ Popular</div>
         <div class="pc-name">Plan Premium</div>
         <div class="pc-sub">App + control por voz</div>
         <div class="pc-prices">
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Instalación</div>
-            <div class="pc-pr-uf">Desde UF 11,7 + IVA /hab</div>
-            <div class="pc-pr-clp">~$480.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción mensual</div>
-            <div class="pc-pr-uf">UF 0,61 /hab/mes</div>
-            <div class="pc-pr-clp">~$25.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción anual</div>
-            <div class="pc-pr-uf">UF 6,7 /hab/año</div>
-            <div class="pc-pr-clp">~$275.000 CLP</div>
-            <div class="pc-pr-save">✦ Ahorra 1 mes</div>
-          </div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Instalación</div><div class="pc-pr-uf">Desde UF 11,7 + IVA /hab</div><div class="pc-pr-clp">~$480.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción mensual</div><div class="pc-pr-uf">UF 0,61 /hab/mes</div><div class="pc-pr-clp">~$25.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción anual</div><div class="pc-pr-uf">UF 6,7 /hab/año</div><div class="pc-pr-clp">~$275.000 CLP</div><div class="pc-pr-save">✦ Ahorra 1 mes</div></div>
         </div>
         <ul class="pc-feats">
           <li>Todo el Plan Base incluido</li>
@@ -609,28 +666,14 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
         <a href="#contacto" class="btn btn-full btn-cotizacion" style="background:#534AB7;color:#fff;border-color:#534AB7" data-plan="Premium">Solicitar cotización</a>
       </div>
 
-      <!-- PLAN MAX COMFORT -->
       <div class="pc max-c fu d3">
         <div class="pc-badge" style="background:var(--teal)">✦ Premium Total</div>
         <div class="pc-name">Plan Max Comfort</div>
         <div class="pc-sub">La experiencia completa</div>
         <div class="pc-prices">
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Instalación</div>
-            <div class="pc-pr-uf">Desde UF 19,1 + IVA /hab</div>
-            <div class="pc-pr-clp">~$780.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción mensual</div>
-            <div class="pc-pr-uf">UF 0,61 /hab/mes</div>
-            <div class="pc-pr-clp">~$25.000 CLP</div>
-          </div>
-          <div class="pc-pr">
-            <div class="pc-pr-lbl">Suscripción anual</div>
-            <div class="pc-pr-uf">UF 6,7 /hab/año</div>
-            <div class="pc-pr-clp">~$275.000 CLP</div>
-            <div class="pc-pr-save">✦ Ahorra 1 mes</div>
-          </div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Instalación</div><div class="pc-pr-uf">Desde UF 19,1 + IVA /hab</div><div class="pc-pr-clp">~$780.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción mensual</div><div class="pc-pr-uf">UF 0,61 /hab/mes</div><div class="pc-pr-clp">~$25.000 CLP</div></div>
+          <div class="pc-pr"><div class="pc-pr-lbl">Suscripción anual</div><div class="pc-pr-uf">UF 6,7 /hab/año</div><div class="pc-pr-clp">~$275.000 CLP</div><div class="pc-pr-save">✦ Ahorra 1 mes</div></div>
         </div>
         <ul class="pc-feats">
           <li>Todo el Plan Premium incluido</li>
@@ -655,7 +698,6 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     <div class="plan-pdf-cta fu">
       <a href="assets/smartrooms-propuesta.pdf" download>↓ Descargar propuesta completa en PDF</a>
     </div>
-
   </div>
 </section>
 
@@ -687,12 +729,35 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     <div class="fu d3" style="max-width:760px;margin:48px auto 0;background:var(--teal-l);border-radius:20px;padding:32px 36px">
       <h3 style="font-size:1.05rem;font-weight:700;color:var(--g900);margin-bottom:12px">¿Y si un dispositivo se rompe físicamente?</h3>
       <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">Si un aparato presenta una falla física que no se puede solucionar de forma remota, enviamos un técnico a la brevedad para repararlo o reemplazarlo.</p>
-      <p style="font-size:.9rem;color:var(--g500);line-height:1.8;margin-bottom:10px">Luego evaluamos la causa de la falla:</p>
       <ul style="font-size:.9rem;color:var(--g500);line-height:1.8;padding-left:20px;margin-bottom:10px">
         <li><strong>Desgaste natural o falla no atribuible a mal uso:</strong> el reemplazo o reparación no tiene costo para el hotel.</li>
         <li><strong>Daño por mal uso:</strong> el costo del dispositivo se cobra en la siguiente mensualidad.</li>
       </ul>
-      <p style="font-size:.9rem;color:var(--g500);line-height:1.8">Las 2 mantenciones anuales son justamente para anticiparse a estos casos, renovando equipos de forma preventiva antes de que dejen de funcionar.</p>
+      <p style="font-size:.9rem;color:var(--g500);line-height:1.8">Las 2 mantenciones anuales son justamente para anticiparse a estos casos, renovando equipos de forma preventiva.</p>
+    </div>
+
+    <div class="sla-block fu">
+      <h3>Compromisos de servicio</h3>
+      <div class="sla-grid">
+        <div class="sla-item">
+          <span class="sla-val">99,5%</span>
+          <span class="sla-lbl">Uptime garantizado</span>
+        </div>
+        <div class="sla-item">
+          <span class="sla-val">&lt;15 min</span>
+          <span class="sla-lbl">Respuesta en falla crítica</span>
+        </div>
+        <div class="sla-item">
+          <span class="sla-val">Mismo día</span>
+          <span class="sla-lbl">Resolución remota típica</span>
+        </div>
+        <div class="sla-item">
+          <span class="sla-val">2 / año</span>
+          <span class="sla-lbl">Visitas preventivas incluidas</span>
+        </div>
+      </div>
+      <!-- COMPLETAR: agregar número de WhatsApp de emergencia cuando esté disponible -->
+      <p class="sla-nota">Canal de emergencia 24/7 para fallas con huésped activo: WhatsApp directo con el equipo técnico · Acceso al servidor las 24 horas.</p>
     </div>
   </div>
 </section>
@@ -707,33 +772,43 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="team-grid">
 
-      <!-- COMPLETAR: reemplazar iniciales, nombre, cargo y descripción con datos reales del equipo -->
+      <!-- COMPLETAR: reemplazar iniciales, nombre, cargo, bio y foto con datos reales -->
       <div class="team-card fu d1">
-        <!-- COMPLETAR: <img src="assets/team/persona1.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
+        <!-- COMPLETAR: <img src="assets/team/nombre.jpg" alt="Nombre Apellido"> dentro del div.team-avatar -->
         <div class="team-avatar">CF</div>
         <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
         <div class="team-role">Co-founder &amp; Director Comercial</div>
-        <p class="team-bio">10 años en automatización industrial y proyectos de infraestructura hotelera en Chile.</p>
+        <p class="team-bio"><!-- COMPLETAR: bio de 1-2 líneas relevante para hoteleros --></p>
+        <!-- COMPLETAR: <a href="https://linkedin.com/in/USUARIO" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a> -->
       </div>
 
-      <!-- COMPLETAR: segundo miembro del equipo -->
+      <!-- COMPLETAR: segundo co-founder -->
       <div class="team-card fu d2">
-        <!-- COMPLETAR: <img src="assets/team/persona2.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
+        <!-- COMPLETAR: <img src="assets/team/nombre.jpg" alt="Nombre Apellido"> dentro del div.team-avatar -->
         <div class="team-avatar" style="background:var(--purple-l);color:var(--purple)">MA</div>
         <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
         <div class="team-role">Co-founder &amp; Directora de Operaciones</div>
-        <p class="team-bio">Especialista en gestión hotelera con experiencia en implementación de tecnología para cadenas boutique.</p>
+        <p class="team-bio"><!-- COMPLETAR: bio de 1-2 líneas relevante para hoteleros --></p>
+        <!-- COMPLETAR: <a href="https://linkedin.com/in/USUARIO" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a> -->
       </div>
 
-      <!-- COMPLETAR: tercer miembro del equipo -->
+      <!-- COMPLETAR: tercer miembro (técnico / CTO) -->
       <div class="team-card fu d3">
-        <!-- COMPLETAR: <img src="assets/team/persona3.jpg" alt="[Nombre Apellido]"> dentro del div.team-avatar -->
-        <div class="team-avatar" style="background:#fef3c7;color:#d97706">RP</div>
+        <!-- COMPLETAR: <img src="assets/team/nombre.jpg" alt="Nombre Apellido"> dentro del div.team-avatar -->
+        <div class="team-avatar" style="background:#fef3c7;color:#d97706">NV</div>
         <div class="team-name"><!-- COMPLETAR: Nombre Apellido --></div>
-        <div class="team-role">Técnico de Instalaciones</div>
-        <p class="team-bio">Certificado en sistemas de domótica e integración de dispositivos IoT para ambientes comerciales.</p>
+        <div class="team-role">CTO &amp; Técnico de Instalaciones</div>
+        <p class="team-bio"><!-- COMPLETAR: bio de 1-2 líneas, experiencia en IoT / domótica --></p>
+        <!-- COMPLETAR: <a href="https://linkedin.com/in/USUARIO" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a> -->
       </div>
 
+    </div>
+
+    <div class="team-legal fu">
+      <strong>NEXOSMART SpA</strong> · RUT: <!-- COMPLETAR: XX.XXX.XXX-X --> · Santiago, Chile<br>
+      Fundada en <!-- COMPLETAR: año --> ·
+      <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
+      <!-- COMPLETAR: actualizar email si es diferente -->
     </div>
   </div>
 </section>
@@ -748,20 +823,119 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
     </div>
     <div class="why-grid">
       <div class="why-item fu d1">
-        <div class="why-ico">✨</div>
-        <h3>Sin complicaciones para el huésped</h3>
-        <p>Escanea un QR y listo. Sin apps que descargar, sin cuentas que crear, sin explicaciones en la recepción. Funciona en cualquier celular.</p>
+        <div class="why-ico">🇨🇱</div>
+        <h3>Sin obras, sin importaciones, sin esperas</h3>
+        <p>Todo el hardware se consigue y se instala en Chile. Sin depender de proveedores europeos, sin aranceles, sin tiempos de importación.</p>
       </div>
       <div class="why-item fu d2">
         <div class="why-ico">🛡️</div>
-        <h3>Sistema que no falla</h3>
-        <p>Router con UPS incorporado y control manual siempre disponible como respaldo. Si hay corte de luz, el sistema lo aguanta hasta que vuelva.</p>
+        <h3>Redundancia integrada</h3>
+        <p>Router con UPS incorporado y control manual siempre disponible. Si el internet falla o hay corte de luz, el sistema aguanta — y el huésped puede seguir usando los controles físicos.</p>
       </div>
       <div class="why-item fu d3">
         <div class="why-ico">🤝</div>
-        <h3>Soporte local en Chile</h3>
-        <p>Equipo técnico certificado con base en Santiago. Instalación, capacitación y mantención remota incluida en el plan mensual.</p>
+        <h3>Alguien contesta cuando algo falla</h3>
+        <p>Soporte con base en Santiago, no un ticket en inglés con respuesta en 48 horas. Para fallas con un huésped activo, hay canal de emergencia con respuesta en minutos.</p>
       </div>
+    </div>
+
+    <div class="competitive-block fu">
+      <h3>Por qué no las alternativas</h3>
+      <div class="comp-grid">
+        <div class="comp-item">
+          <p class="comp-vs">vs. soluciones europeas (Loxone, Vimar)</p>
+          <p class="comp-reason">Precio 3–5× mayor, soporte en otro huso horario, instalación por certificadores importados. No están adaptadas a la infraestructura eléctrica chilena.</p>
+        </div>
+        <div class="comp-item">
+          <p class="comp-vs">vs. dispositivos Tuya / Smart Life genéricos</p>
+          <p class="comp-reason">Sin dashboard hotelero, sin QR integrado, sin mantención incluida, sin contrato. El hotel queda solo con dispositivos de consumo masivo.</p>
+        </div>
+        <div class="comp-item comp-highlight">
+          <p class="comp-vs">smartrooms</p>
+          <p class="comp-reason">Producto verticalmente integrado: instalación local, QR sin app, dashboard de recepción, soporte en Santiago, precio en UF transparente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="fu">
+      <span class="pill">Preguntas frecuentes</span>
+      <h2 class="h2">Lo que nos preguntan antes de avanzar</h2>
+    </div>
+    <div class="faq-cats">
+
+      <div class="faq-cat fu d1">
+        <h3 class="faq-cat-title">Precios e inversión</h3>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿El precio de instalación incluye mano de obra?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí. El precio de instalación incluye hardware, mano de obra certificada y puesta en marcha. El valor final puede variar según el estado eléctrico de las habitaciones — te lo informamos en la visita técnica previa, sin costo.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cuánto cuesta para un hotel de 40 habitaciones?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Con el Plan Base: desde UF 372 de instalación (UF 9,3 × 40 hab) + UF 19,6/mes de suscripción. La suscripción equivale a menos de $700 CLP por noche activa con 60% de ocupación. Cotización sin compromiso, ajustada al estado real de tus habitaciones.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Hay descuento por volumen?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p><!-- COMPLETAR: política de descuentos por volumen --></p></div>
+        </div>
+      </div>
+
+      <div class="faq-cat fu d2">
+        <h3 class="faq-cat-title">Instalación y operación</h3>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cuánto tiempo debo tener las habitaciones fuera de servicio?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>La instalación se coordina en bloques para no afectar la ocupación. <!-- COMPLETAR: tiempo real por habitación --> Trabajamos con tu equipo de housekeeping para instalar mientras las habitaciones están disponibles, sin interrumpir la operación del hotel.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Es compatible con instalaciones eléctricas antiguas?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí. Hacemos una visita técnica previa sin costo para evaluar compatibilidad. Si se requiere alguna adaptación eléctrica, te la informamos con costo desglosado antes de que te comprometas con nada.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Recepción puede controlar la habitación remotamente?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí. El dashboard de recepción permite controlar cualquier dispositivo de cualquier habitación en tiempo real. Ideal para huéspedes que prefieren no usar el QR o necesitan asistencia para ajustar temperatura o cortinas.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-cat fu d3">
+        <h3 class="faq-cat-title">Integración y tecnología</h3>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Se integra con mi PMS (Cloudbeds, Opera, otros)?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí, tenemos integración nativa con Cloudbeds. Para otros PMS, podemos desarrollar la integración según requerimiento. El dashboard de smartrooms opera de forma independiente al PMS, por lo que la activación del QR del huésped es un proceso simple desde recepción.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿El sistema funciona si el internet del hotel se cae?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>El sistema es híbrido: parte del procesamiento ocurre en el hub instalado en el hotel y parte en la nube. Ante una caída de internet, las automatizaciones programadas (entrada, salida, escenas) siguen funcionando localmente. El acceso a la interfaz QR del huésped requiere conexión para la carga inicial, pero los controles físicos siempre están disponibles como respaldo.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Tienen API para integrar con otros sistemas?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí, disponemos de API REST documentada. Si tu equipo técnico o un proveedor quiere integrarse, coordinamos el acceso a la documentación durante el proceso de evaluación.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Qué protocolo usan los dispositivos?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Usamos una combinación de WiFi y Zigbee. Los sensores (puerta, ventana, presencia) operan sobre Zigbee para mayor confiabilidad y bajo consumo. Los actuadores (luces, cortinas, clima) pueden ser WiFi o Zigbee según el dispositivo. Todo coordinado por el hub local del hotel.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-cat fu d4">
+        <h3 class="faq-cat-title">Contrato y continuidad</h3>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Los dispositivos son míos desde el primer día?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>Sí. Todos los dispositivos instalados son propiedad del hotel desde el día de la instalación. La suscripción mensual cubre el software, las actualizaciones, el soporte remoto y las mantenciones preventivas.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Hay permanencia mínima de contrato?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p>No. No exigimos permanencia mínima. Puedes cancelar la suscripción mensual en cualquier momento sin penalización. Si la relación funciona bien, preferimos que te quedes por eso, no por un contrato.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Qué pasa con los dispositivos si smartrooms deja de operar?<span class="faq-ico">+</span></button>
+          <div class="faq-a" hidden><p><!-- COMPLETAR: garantías de continuidad — ej. escrow de código, acceso a hub local, compatibilidad con plataformas alternativas --></p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -782,7 +956,6 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
       <div class="fu d2">
         <div class="form-box">
           <form id="cform">
-            <!-- Campo hidden: se llena automáticamente cuando el usuario hace clic en "Solicitar cotización" desde un plan -->
             <input type="hidden" id="plan-interes" name="plan_interes" value="">
             <div class="plan-badge" id="plan-badge"></div>
             <div class="fgrid">
@@ -829,16 +1002,16 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
         <li><a href="#">Inicio</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li><a href="#planes">Planes</a></li>
-        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="politica-privacidad.html">Política de privacidad</a></li>
       </ul>
     </div>
     <div class="foot-bottom">
-      <p>© 2026 smartrooms · Santiago, Chile · Automatización inteligente para hoteles, oficinas y hospitales.</p>
+      <p>© 2026 smartrooms · Santiago, Chile · Domótica profesional para hoteles y cabañas.</p>
       <p class="foot-legal">
         smartrooms es una marca de <strong>NEXOSMART SpA</strong> · Santiago, Chile ·
-        <!-- COMPLETAR: RUT XX.XXX.XXX-X -->
+        RUT: <!-- COMPLETAR: XX.XXX.XXX-X --> ·
         <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
         <!-- COMPLETAR: actualizar email si es diferente -->
       </p>
@@ -846,13 +1019,13 @@ footer{background:var(--g900);color:#fff;padding:48px 32px 32px}
   </div>
 </footer>
 
-<!-- WhatsApp FAB — COMPLETAR: reemplazar 56XXXXXXXXX con el número real (sin el +) -->
-<div class="wa-fab-wrap">
-  <span class="wa-tooltip">Escríbenos por WhatsApp</span>
-  <a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20smartrooms" class="wa-fab" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-</div>
+<!-- WhatsApp FAB — COMPLETAR: reemplazar XXXXXXXXX con el número real (sin el +) -->
+<a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20smartrooms" class="wa-btn" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-label">WhatsApp</span>
+</a>
 
 <script>
 // Navbar scroll
@@ -900,7 +1073,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Plan interest — populate hidden field + show badge when clicking from plans section
+// Plan interest — populate hidden field when clicking from plans
 document.querySelectorAll('.btn-cotizacion').forEach(btn => {
   btn.addEventListener('click', () => {
     const plan = btn.dataset.plan;
@@ -908,6 +1081,21 @@ document.querySelectorAll('.btn-cotizacion').forEach(btn => {
     const badge = document.getElementById('plan-badge');
     badge.textContent = `Plan seleccionado: ${plan} ✓`;
     badge.classList.add('visible');
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.hidden = true;
+    });
+    if (!open) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.nextElementSibling.hidden = false;
+    }
   });
 });
 
