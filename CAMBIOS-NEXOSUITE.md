@@ -19,8 +19,22 @@ bajo la marca "NexoSuite" (PMS + IoT como dos módulos de una plataforma).
 ## Archivos NO modificados (fuera de alcance de este prompt)
 
 - `politica-privacidad.html` — no se tocó. Sigue referenciando `logo-smartrooms.png` y la marca "smartrooms" en su texto legal; es un documento legal y el prompt no pidió actualizarlo.
-- `robots.txt` — sin cambios (el dominio referenciado sigue siendo correcto).
-- `CNAME` — **deliberadamente sin cambios**, sigue en `smartrooms.cl`. El prompt pedía `nexosuite.cl` "cuando esté registrado" — como ese dominio no está registrado todavía, cambiar el CNAME rompería el sitio en vivo (GitHub Pages perdería el dominio personalizado). Todos los `canonical`/`og:url` de las 3 páginas nuevas usan `https://smartrooms.cl/...` por la misma razón. Queda como COMPLETAR de mayor urgencia (ver abajo).
+
+## Corrección post-deploy: dominio real del sitio
+
+Tanto `smartrooms.cl` como `nexosuite.cl` son dominios **no registrados** — ninguno de los dos
+pertenece a NEXOSMART todavía. El sitio en vivo es exclusivamente el GitHub Pages del repo:
+`https://3dcommercecl.github.io/nexoiotlanding/`.
+
+- **`CNAME` eliminado.** El archivo apuntaba a `smartrooms.cl`, un dominio no registrado — mantenerlo
+  podía confundir la configuración de dominio personalizado de GitHub Pages. Sin este archivo, el sitio
+  sirve normalmente desde la URL de GitHub Pages.
+- **`canonical`, `og:url`, `og:image` y los `@id`/`url`/`logo` del JSON-LD** en las 3 páginas, más
+  `sitemap.xml` y `robots.txt`, fueron actualizados a `https://3dcommercecl.github.io/nexoiotlanding/...`
+  en vez de `smartrooms.cl`.
+- Cuando se compre `nexosuite.cl` (o el dominio definitivo que se elija) y se configure su DNS hacia
+  GitHub Pages, hay que: crear el archivo `CNAME` con ese dominio, y reemplazar
+  `3dcommercecl.github.io/nexoiotlanding` por el dominio nuevo en los mismos lugares listados arriba.
 
 ## Contenido del sitio original NO trasladado a las páginas nuevas
 
@@ -43,7 +57,7 @@ pero el copy original sigue disponible en el historial de git si se quieren rein
 
 ### Bloqueantes antes de cerrar el primer contrato
 - **RUT de NEXOSMART SpA** — footer de las 3 páginas.
-- **Dominio nexosuite.cl**: registrar y, una vez registrado, actualizar `CNAME`, y los `canonical`/`og:url` de las 3 páginas (hoy apuntan a `smartrooms.cl`).
+- **Dominio propio** (nexosuite.cl u otro): registrar y, una vez registrado, crear `CNAME` y actualizar `canonical`/`og:url`/JSON-LD/`sitemap.xml`/`robots.txt` (hoy todos apuntan a `3dcommercecl.github.io/nexoiotlanding`, la URL real de GitHub Pages mientras no haya dominio propio).
 
 ### Mejoras no bloqueantes
 - Google Analytics 4 Measurement ID (snippet ya comentado y listo en `index.html`).
