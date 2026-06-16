@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexoSuite PMS — Gestión hotelera chilena con SII integrado</title>
+<meta name="description" content="PMS para hoteles en Chile con facturación electrónica SII, channel manager, reservas y reportes. Precio en UF desde UF 3/mes.">
+<meta name="robots" content="index, follow">
+<meta name="language" content="es-CL">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="NexoSuite PMS — Gestión hotelera chilena con SII integrado">
+<meta property="og:description" content="Reservas, channel manager, housekeeping y facturación SII en una sola plataforma. Desde UF 3/mes.">
+<meta property="og:url" content="https://smartrooms.cl/pms.html">
+<meta property="og:image" content="https://smartrooms.cl/assets/og-nexosuite.png">
+<!-- COMPLETAR: crear assets/og-nexosuite.png (1200x630px) -->
+<meta property="og:locale" content="es_CL">
+
+<link rel="canonical" href="https://smartrooms.cl/pms.html">
+<link rel="icon" type="image/png" href="assets/logo-smartrooms.png">
+<link rel="apple-touch-icon" href="assets/logo-smartrooms.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/nexosuite.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 178 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+        <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="600" font-size="26" fill="#085041">NEXO</text>
+        <text x="93" y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="300" font-size="26" fill="#1D9E75">Suite</text>
+      </svg>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-link" data-page="index.html">Inicio</a>
+      <a href="pms.html" class="nav-link" data-page="pms.html">NexoSuite PMS <span class="nav-module-badge badge-pms">PMS</span></a>
+      <a href="iot.html" class="nav-link" data-page="iot.html">NexoSuite IoT <span class="nav-module-badge badge-iot">IoT</span></a>
+      <a href="index.html#precios" class="nav-link">Precios</a>
+      <a href="#contacto" class="btn nav-cta">Solicitar demo</a>
+    </div>
+    <button class="nav-hamburger" id="ham" aria-label="Menú" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="section" style="padding-top:calc(var(--nav-h) + 64px)">
+  <div class="container">
+    <div class="grid-2">
+      <div class="reveal">
+        <span class="eyebrow eyebrow-pms">NexoSuite PMS</span>
+        <h1 class="hero-headline">Gestiona tu hotel <em>sin Excel, sin portales</em></h1>
+        <p class="lead">El primer PMS chileno con facturación electrónica SII integrada. Reservas, channel manager, housekeeping y reportes en una sola plataforma. Desde UF 3/mes.</p>
+        <div class="btn-group" style="margin-top:28px">
+          <a href="#contacto" class="btn btn-primary btn-lg">Solicitar demo gratuita</a>
+          <a href="#precios" class="btn btn-ghost">Ver precios</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot ui-dot-r"></div><div class="ui-dot ui-dot-y"></div><div class="ui-dot ui-dot-g"></div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="mock-cal-head">
+              <span class="mock-cal-nav">‹</span>
+              <span>Julio 2026</span>
+              <span class="mock-cal-nav">›</span>
+            </div>
+            <div class="mock-cal-grid">
+              <div class="mock-cal-dow">L</div><div class="mock-cal-dow">M</div><div class="mock-cal-dow">M</div><div class="mock-cal-dow">J</div><div class="mock-cal-dow">V</div><div class="mock-cal-dow">S</div><div class="mock-cal-dow">D</div>
+              <div class="mock-cal-day"></div><div class="mock-cal-day has-res"><div class="mock-cal-bar confirmed">M. Soto</div></div><div class="mock-cal-day has-res"><div class="mock-cal-bar confirmed">M. Soto</div></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day has-res"><div class="mock-cal-bar checkedin">R. Díaz</div></div><div class="mock-cal-day has-res"><div class="mock-cal-bar checkedin">R. Díaz</div></div>
+              <div class="mock-cal-day has-res"><div class="mock-cal-bar checkedin">R. Díaz</div></div><div class="mock-cal-day"></div><div class="mock-cal-day has-res"><div class="mock-cal-bar checkout">C. Vera</div></div><div class="mock-cal-day"></div><div class="mock-cal-day has-res"><div class="mock-cal-bar confirmed">F. Muñoz</div></div><div class="mock-cal-day has-res"><div class="mock-cal-bar confirmed">F. Muñoz</div></div><div class="mock-cal-day has-res"><div class="mock-cal-bar confirmed">F. Muñoz</div></div>
+              <div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div>
+              <div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div><div class="mock-cal-day"></div>
+            </div>
+            <div class="mock-cal-legend">
+              <span><i style="background:var(--c-teal)"></i>Confirmada</span>
+              <span><i style="background:var(--c-pms)"></i>Check-in</span>
+              <span><i style="background:var(--c-amber-dark)"></i>Checkout hoy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOS 6 MÓDULOS -->
+<section class="section section-surface">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow eyebrow-pms">Funcionalidades</span>
+      <h2 class="section-headline">Los 6 módulos del PMS</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="card-icon pms">📅</div>
+        <div class="card-title">Calendar drag &amp; drop</div>
+        <div class="card-body">Mueve reservas entre habitaciones y fechas con el mouse. Vista de 30 días, filtrable por tipo de habitación.</div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon pms">🔗</div>
+        <div class="card-title">Channel manager</div>
+        <div class="card-body">Sincronización en tiempo real con Booking.com, Airbnb y Expedia. Cero overbooking.</div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon pms">🧾</div>
+        <div class="card-title">Facturación SII</div>
+        <div class="card-body">Emite boletas (tipo 39) y facturas (tipo 33) con un clic desde el checkout. Sin abrir otro portal.</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon pms">💲</div>
+        <div class="card-title">Tarifas y temporadas</div>
+        <div class="card-body">Define precios base, multiplicadores por temporada y overrides por día específico.</div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon pms">🧹</div>
+        <div class="card-title">Housekeeping</div>
+        <div class="card-body">Estado de cada habitación en tiempo real. App para camareras desde su celular, sin necesidad de cuenta.</div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon pms">📊</div>
+        <div class="card-title">Reportes</div>
+        <div class="card-body">RevPAR, ADR, ocupación por período. Exportable a CSV.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO DEL SII -->
+<section class="section">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow eyebrow-pms">Facturación electrónica</span>
+      <h2 class="section-headline">La boleta que nadie más tiene</h2>
+      <p class="lead mx-auto">Del checkout al SII en segundos, sin salir de NexoSuite.</p>
+    </div>
+    <div class="flow-steps reveal">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <h4>Checkout</h4>
+        <p>Recepción hace clic en "Emitir boleta" desde la misma reserva.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <h4>Boleta o factura</h4>
+        <p>Selecciona el tipo de documento según el huésped. NexoSuite arma el DTE.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <h4>Enviado al SII</h4>
+        <p>El documento se timbra y envía en segundos. PDF disponible al instante.</p>
+      </div>
+    </div>
+    <p class="lead mx-auto text-center reveal" style="margin-top:32px">Ningún PMS del mercado hace esto en Chile. Cloudbeds, MiniHotel, Little Hotelier — todos requieren abrir el portal del SII por separado.</p>
+  </div>
+</section>
+
+<!-- PRECIOS PMS -->
+<section class="section section-surface" id="precios">
+  <div class="container">
+    <div class="section-head text-center reveal">
+      <span class="eyebrow eyebrow-pms">Precios</span>
+      <h2 class="section-headline">Planes NexoSuite PMS</h2>
+    </div>
+    <div class="grid-2">
+      <div class="plan-card reveal">
+        <div class="plan-name">Starter</div>
+        <div class="plan-sub">Hasta 20 habitaciones</div>
+        <div class="plan-price">UF 3<span style="font-size:var(--text-base);font-weight:500">/mes</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Reservas y calendario drag &amp; drop</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Facturación SII (boletas y facturas)</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> 2 canales OTA conectados</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Housekeeping básico</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Reportes esenciales</div>
+        <a href="#contacto" class="btn btn-secondary btn-block" style="margin-top:auto">Solicitar cotización</a>
+      </div>
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-name on-dark">Pro</div>
+        <div class="plan-sub on-dark">Hasta 60 habitaciones</div>
+        <div class="plan-price">UF 6<span style="font-size:var(--text-base);font-weight:500">/mes</span></div>
+        <div class="plan-divider on-dark"></div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Todo lo de Starter</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Multi-propiedad</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> 5 canales OTA conectados</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Tarifas y temporadas avanzadas</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Reportes RevPAR/ADR completos</div>
+        <a href="#contacto" class="btn btn-block" style="margin-top:auto;background:var(--c-white);color:var(--c-teal-dark)">Solicitar cotización</a>
+      </div>
+    </div>
+    <div class="plan-disclaimer reveal">
+      <strong>Al contratar NexoSuite IoT, el PMS pasa a ser gratuito.</strong> Cotización sin compromiso.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ PMS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-pms">Preguntas frecuentes</span>
+      <h2 class="section-headline">Lo que nos preguntan sobre el PMS</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Cuánto cuesta migrar desde Excel o desde otro PMS?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>La migración de datos básicos (habitaciones, tarifas, reservas futuras) está incluida en el setup inicial. Si vienes de otro PMS con exportación de datos, coordinamos la importación sin costo adicional en la mayoría de los casos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿El channel manager está incluido o es extra?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Está incluido en ambos planes, con un número de canales OTA conectados que varía según el plan (2 en Starter, 5 en Pro). Canales adicionales se cotizan por separado.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Se integra con Cloudbeds u Opera si ya los tenemos?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>NexoSuite está pensado para reemplazar a tu PMS actual, no para correr en paralelo. Si necesitas evaluar una migración, te ayudamos a planificar la transición sin perder historial de reservas.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Cuánto tarda el setup inicial?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>Para hoteles de hasta 40 habitaciones, el setup completo (carga de habitaciones, tarifas, conexión de canales OTA y capacitación del equipo) toma entre 3 y 7 días hábiles.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false">¿Hay mínimo de permanencia?<span class="faq-icon">+</span></button>
+        <div class="faq-answer" hidden><p>No. La suscripción es mensual y se puede cancelar en cualquier momento sin penalización.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section section-dark" id="contacto">
+  <div class="container text-center">
+    <h2 class="hero-headline on-dark" style="font-size:var(--text-4xl)">¿Listo para dejar el Excel?</h2>
+    <p class="lead on-dark mx-auto" style="margin:14px auto 28px">Te mostramos NexoSuite PMS funcionando en vivo, con tu número de habitaciones.</p>
+    <a href="index.html#contacto" class="btn btn-primary btn-lg" style="background:var(--c-white);color:var(--c-teal-dark)">Solicitar demo gratuita →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <svg viewBox="0 0 178 40" width="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+            <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="600" font-size="26" fill="#FFFFFF">NEXO</text>
+            <text x="93" y="29" font-family="'DM Sans', system-ui, sans-serif" font-weight="300" font-size="26" fill="#9FE1CB">Suite</text>
+          </svg>
+        </div>
+        <p class="footer-brand">El sistema operativo del hotel chileno · NEXOSMART SpA · Santiago, Chile</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Plataforma</div>
+        <a href="pms.html" class="footer-link">NexoSuite PMS</a>
+        <a href="iot.html" class="footer-link">NexoSuite IoT</a>
+        <a href="index.html#precios" class="footer-link">Precios</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <a href="index.html#contacto" class="footer-link">Contacto</a>
+        <a href="politica-privacidad.html" class="footer-link">Política de privacidad</a>
+        <span class="footer-link" style="margin-bottom:0">RUT: <!-- COMPLETAR: XX.XXX.XXX-X --></span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NexoSuite · Una marca de NEXOSMART SpA</p>
+      <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
+    </div>
+  </div>
+</footer>
+
+<!-- COMPLETAR: reemplazar XXXXXXXXX con el número real (sin el +) -->
+<a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20NexoSuite%20PMS" class="wa-fab" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-fab-label">WhatsApp</span>
+</a>
+
+<script>
+  const ham = document.getElementById('ham');
+  const links = document.getElementById('nav-links');
+  if (ham && links) ham.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    ham.setAttribute('aria-expanded', open);
+  });
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-btn').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.hidden = true;
+      });
+      if (!open) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.hidden = false;
+      }
+    });
+  });
+
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+    if (link.dataset.page === page) link.classList.add('active');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  }), 80);
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      const t = document.querySelector(href);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
+      links?.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
