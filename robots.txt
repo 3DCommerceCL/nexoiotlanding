@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /assets/smartrooms-propuesta.pdf
 
 Sitemap: https://3dcommercecl.github.io/nexoiotlanding/sitemap.xml
