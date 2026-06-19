@@ -332,25 +332,25 @@ ul { list-style: none; }
 .ui-mockup-body { padding: 16px; }
 .mock-disclaimer { font-size: var(--text-xs); color: var(--c-text-3); text-align: center; margin-top: 10px; font-style: italic; }
 
-/* Mockup — dashboard PMS recepción (index hero) */
-.mock-dash-header { font-size: var(--text-sm); font-weight: 700; color: var(--c-teal-dark); margin-bottom: 10px; }
-.mock-stats { display: flex; gap: 14px; flex-wrap: wrap; font-size: var(--text-xs); color: var(--c-text-2); margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--c-surface-2); }
-.mock-stats b { color: var(--c-text); }
-.mock-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); margin-bottom: 14px; }
-.mock-table th { text-align: left; color: var(--c-text-3); font-weight: 600; padding: 4px 6px; border-bottom: 1px solid var(--c-surface-2); }
-.mock-table td { padding: 7px 6px; border-bottom: 1px solid var(--c-surface); color: var(--c-text-2); }
-.mock-pill { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
-.mock-pill.ok { background: var(--c-teal-light); color: var(--c-teal-dark); }
-.mock-pill.wait { background: var(--c-amber); color: var(--c-amber-dark); }
-.mock-rooms { display: flex; gap: 6px; }
-.mock-room-sq { width: 28px; height: 28px; border-radius: 6px; flex-shrink: 0; }
-.mock-room-sq.free { background: var(--c-teal-light); }
-.mock-room-sq.occ { background: var(--c-pms-light); }
-.mock-room-sq.clean { background: var(--c-amber); }
-.mock-room-sq.maint { background: var(--c-surface-2); }
-.mock-legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; color: var(--c-text-3); margin-top: 8px; }
-.mock-legend span { display: inline-flex; align-items: center; gap: 4px; }
-.mock-legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+
+/* ── MOCKUP DASHBOARD (réplica del panel real de NexoSuite, hero de index.html) ── */
+.mock-d2-topbar { background: linear-gradient(135deg,#102943,#1E4066); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
+.mock-d2-hotel { color: var(--c-white); font-size: 13px; font-weight: 700; }
+.mock-d2-status { color: var(--c-teal-mid); font-size: 10px; }
+.mock-d2-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 14px 18px 0; }
+.mock-d2-kpi { background: linear-gradient(135deg,#102943,#1E4066); border-radius: 10px; padding: 10px 6px; text-align: center; }
+.mock-d2-kpi b { display: block; color: var(--c-white); font-size: 18px; font-weight: 700; line-height: 1; }
+.mock-d2-kpi span { display: block; color: rgba(255,255,255,.65); font-size: 8px; text-transform: uppercase; letter-spacing: .3px; margin-top: 4px; }
+.mock-d2-section-title { font-size: 10px; font-weight: 700; color: var(--c-text-3); text-transform: uppercase; letter-spacing: .5px; padding: 16px 18px 8px; }
+.mock-d2-rooms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 18px 18px; }
+.mock-d2-room { background: var(--c-white); border: 1px solid var(--c-surface-2); border-radius: 10px; padding: 8px; }
+.mock-d2-room.free { border-style: dashed; }
+.mock-d2-room-num { font-size: 13px; font-weight: 700; color: var(--c-text); }
+.mock-d2-room-tags { display: flex; gap: 3px; margin: 5px 0; flex-wrap: wrap; }
+.mock-d2-room-tags span { font-size: 8px; background: var(--c-surface); color: var(--c-text-3); padding: 1px 5px; border-radius: 6px; white-space: nowrap; }
+.mock-d2-room-guest { font-size: 10px; color: var(--c-text); font-weight: 600; }
+.mock-d2-room-qr { font-size: 9px; color: var(--c-teal); margin-top: 4px; }
+.mock-d2-room-empty { font-size: 10px; color: var(--c-text-3); margin-top: 6px; }
 
 /* Mockup — calendario PMS (pms.html hero) */
 .mock-cal-head { display: flex; justify-content: space-between; align-items: center; font-size: var(--text-sm); font-weight: 700; color: var(--c-teal-dark); margin-bottom: 12px; }
@@ -536,4 +536,6 @@ ul { list-style: none; }
   .btn-group { flex-direction: column; align-items: flex-start; }
   .gallery-grid { grid-template-columns: 1fr; }
   .phone-wrap { display: none; }
+  .mock-d2-kpis { grid-template-columns: repeat(2, 1fr); }
+  .mock-d2-rooms { grid-template-columns: 1fr 1fr; }
 }

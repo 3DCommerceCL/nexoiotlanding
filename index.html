@@ -115,39 +115,40 @@
           <div class="ui-mockup-bar">
             <div class="ui-dot ui-dot-r"></div><div class="ui-dot ui-dot-y"></div><div class="ui-dot ui-dot-g"></div>
           </div>
-          <div class="ui-mockup-body">
-            <div class="mock-dash-header">Hotel Mirador — Panel de recepción</div>
-            <div class="mock-stats">
-              <span><b>12</b> llegadas hoy</span>
-              <span><b>8</b> salidas</span>
-              <span><b>3</b> hab. limpias</span>
-              <span><b>1</b> en limpieza</span>
+          <div class="ui-mockup-body" style="padding:0">
+            <div class="mock-d2-topbar">
+              <span class="mock-d2-hotel">🏨 Hotel Mirador</span>
+              <span class="mock-d2-status">● Sistema activo</span>
             </div>
-            <table class="mock-table">
-              <thead><tr><th>Hab</th><th>Huésped</th><th>Estado</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>204</td><td>M. Soto</td><td><span class="mock-pill ok">Check-in</span></td><td>···</td></tr>
-                <tr><td>112</td><td>R. Díaz</td><td><span class="mock-pill wait">Limpieza</span></td><td>···</td></tr>
-                <tr><td>301</td><td>C. Vera</td><td><span class="mock-pill ok">Confirmada</span></td><td>···</td></tr>
-                <tr><td>108</td><td>F. Muñoz</td><td><span class="mock-pill wait">Checkout hoy</span></td><td>···</td></tr>
-              </tbody>
-            </table>
-            <div class="mock-rooms">
-              <div class="mock-room-sq free"></div>
-              <div class="mock-room-sq occ"></div>
-              <div class="mock-room-sq occ"></div>
-              <div class="mock-room-sq clean"></div>
-              <div class="mock-room-sq free"></div>
-              <div class="mock-room-sq maint"></div>
+            <div class="mock-d2-kpis">
+              <div class="mock-d2-kpi"><b>32</b><span>Ocupadas</span></div>
+              <div class="mock-d2-kpi"><b>8</b><span>Disponibles</span></div>
+              <div class="mock-d2-kpi"><b>5</b><span>Check-outs hoy</span></div>
+              <div class="mock-d2-kpi"><b>40</b><span>Total</span></div>
             </div>
-            <div class="mock-legend">
-              <span><i style="background:var(--c-teal-light)"></i>Disponible</span>
-              <span><i style="background:var(--c-pms-light)"></i>Ocupada</span>
-              <span><i style="background:var(--c-amber)"></i>Limpieza</span>
-              <span><i style="background:var(--c-surface-2)"></i>Mantención</span>
+            <div class="mock-d2-section-title">Habitaciones — vista rápida</div>
+            <div class="mock-d2-rooms">
+              <div class="mock-d2-room">
+                <div class="mock-d2-room-top"><span class="mock-d2-room-num">101</span></div>
+                <div class="mock-d2-room-tags"><span>Piso 1</span><span>Premium</span></div>
+                <div class="mock-d2-room-guest">M. Soto</div>
+                <div class="mock-d2-room-qr">● QR activo</div>
+              </div>
+              <div class="mock-d2-room free">
+                <div class="mock-d2-room-top"><span class="mock-d2-room-num">102</span></div>
+                <div class="mock-d2-room-tags"><span>Piso 1</span><span>Base</span></div>
+                <div class="mock-d2-room-empty">Disponible</div>
+              </div>
+              <div class="mock-d2-room">
+                <div class="mock-d2-room-top"><span class="mock-d2-room-num">204</span></div>
+                <div class="mock-d2-room-tags"><span>Piso 2</span><span>Premium</span></div>
+                <div class="mock-d2-room-guest">R. Díaz</div>
+                <div class="mock-d2-room-qr">● QR activo</div>
+              </div>
             </div>
           </div>
         </div>
+        <p class="mock-disclaimer">Interfaz de demostración — datos de ejemplo.</p>
       </div>
     </div>
   </div>
@@ -227,10 +228,10 @@
     </div>
     <div class="grid-3">
       <div class="plan-card reveal">
-        <div class="plan-name">Solo PMS</div>
-        <div class="plan-sub">3 planes según el tamaño de tu hotel</div>
-        <div class="plan-price">Desde UF 0,89<span style="font-size:var(--text-base);font-weight:500">/mes</span></div>
-        <div class="plan-price-unit">Inicio, Hotel o Full · sin mínimo de habitaciones</div>
+        <div class="plan-name">PMS Hotel</div>
+        <div class="plan-sub">20 a 100 habitaciones</div>
+        <div class="plan-price">UF 0,19<span style="font-size:var(--text-base);font-weight:500">/hab/mes</span></div>
+        <div class="plan-price-unit">El plan PMS más elegido · sin instalación</div>
         <div class="plan-divider"></div>
         <div class="plan-feature"><span class="plan-check">✓</span> Reservas y calendario</div>
         <div class="plan-feature"><span class="plan-check">✓</span> Facturación SII (boletas)</div>
@@ -240,27 +241,27 @@
       </div>
       <div class="plan-card featured reveal reveal-delay-1">
         <div class="plan-badge">Más popular</div>
-        <div class="plan-name on-dark">PMS + IoT Base</div>
-        <div class="plan-sub on-dark">PMS gratis según el tamaño de tu hotel</div>
-        <div class="plan-price">UF 0,69<span style="font-size:var(--text-base);font-weight:500">/hab/mes</span></div>
-        <div class="plan-price-unit on-dark">+ instalación única de UF 9,3/hab</div>
+        <div class="plan-name on-dark">PMS Hotel + IoT Premium</div>
+        <div class="plan-sub on-dark">PMS gratis + clima inteligente</div>
+        <div class="plan-price">UF 0,89<span style="font-size:var(--text-base);font-weight:500">/hab/mes</span></div>
+        <div class="plan-price-unit on-dark">+ instalación única de UF 11,7/hab</div>
         <div class="plan-divider on-dark"></div>
-        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Luces, LED bajo cama, TV y cortinas</div>
-        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Sensor de puerta + sensor de baño con luz</div>
-        <div class="plan-feature"><span class="plan-check on-dark">✓</span> QR sin app para el huésped</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Todo el plan IoT Base incluido</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Estufa inteligente + sensor de temperatura</div>
+        <div class="plan-feature"><span class="plan-check on-dark">✓</span> Aire acondicionado inteligente</div>
         <div class="plan-feature"><span class="plan-check on-dark">✓</span> NexoSuite PMS incluido sin costo</div>
         <a href="iot.html#precios" class="btn btn-block" style="margin-top:auto;background:var(--c-white);color:var(--c-teal-dark)">Ver detalle →</a>
       </div>
       <div class="plan-card reveal reveal-delay-2">
-        <div class="plan-name">PMS + IoT Premium</div>
-        <div class="plan-sub">PMS gratis + clima inteligente</div>
-        <div class="plan-price">UF 0,89<span style="font-size:var(--text-base);font-weight:500">/hab/mes</span></div>
-        <div class="plan-price-unit">+ instalación única de UF 11,7/hab</div>
+        <div class="plan-name">PMS + IoT Base</div>
+        <div class="plan-sub">PMS gratis según el tamaño de tu hotel</div>
+        <div class="plan-price">UF 0,69<span style="font-size:var(--text-base);font-weight:500">/hab/mes</span></div>
+        <div class="plan-price-unit">+ instalación única de UF 9,3/hab</div>
         <div class="plan-divider"></div>
-        <div class="plan-feature"><span class="plan-check">✓</span> Todo el plan Base incluido</div>
-        <div class="plan-feature"><span class="plan-check">✓</span> Estufa inteligente + sensor de temperatura</div>
-        <div class="plan-feature"><span class="plan-check">✓</span> Aire acondicionado inteligente</div>
-        <div class="plan-feature"><span class="plan-check">✓</span> Soporte remoto prioritario</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Luces, LED bajo cama, TV y cortinas</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Sensor de puerta + sensor de baño con luz</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> QR sin app para el huésped</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> NexoSuite PMS incluido sin costo</div>
         <a href="iot.html#precios" class="btn btn-secondary btn-block" style="margin-top:auto">Ver detalle →</a>
       </div>
     </div>
