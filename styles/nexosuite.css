@@ -274,6 +274,7 @@ ul { list-style: none; }
   padding: 28px 24px;
   background: var(--c-white);
   display: flex; flex-direction: column;
+  position: relative;
 }
 .plan-card.featured {
   border-color: var(--c-teal);
