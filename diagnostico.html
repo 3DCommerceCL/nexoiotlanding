@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué plan PMS le conviene a tu hotel? — Diagnóstico gratuito en 3 minutos | NexoSuite</title>
+<meta name="description" content="Responde 6 preguntas sobre cómo gestionas tu hotel hoy y te decimos al instante qué plan PMS te conviene y cuánto cuesta. Sin llamada, sin compromiso.">
+<meta name="robots" content="index, follow">
+<meta name="language" content="es-CL">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Qué plan PMS le conviene a tu hotel? — Diagnóstico gratuito en 3 minutos">
+<meta property="og:description" content="Responde 6 preguntas y te decimos al instante qué plan PMS te conviene y cuánto cuesta.">
+<meta property="og:url" content="https://3dcommercecl.github.io/nexoiotlanding/diagnostico.html">
+<meta property="og:image" content="https://3dcommercecl.github.io/nexoiotlanding/assets/og-nexosuite.png">
+<meta property="og:locale" content="es_CL">
+
+<link rel="canonical" href="https://3dcommercecl.github.io/nexoiotlanding/diagnostico.html">
+<link rel="icon" type="image/png" href="assets/favicon-nexosuite.png">
+<link rel="apple-touch-icon" href="assets/favicon-nexosuite.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/nexosuite.css">
+<style>
+  .diag-form-meta { font-size: var(--text-xs); color: var(--c-text-3); margin-bottom: 20px; }
+  .diag-result-plan { background: var(--c-teal-light); border-radius: var(--radius-lg); padding: 18px 20px; margin: 16px 0; text-align: left; }
+  .diag-result-plan b { display: block; font-size: var(--text-lg); color: var(--c-teal-dark); margin-bottom: 4px; }
+  .diag-result-extra { display: flex; gap: 10px; align-items: flex-start; font-size: var(--text-sm); color: var(--c-text-2); text-align: left; margin-bottom: 12px; line-height: 1.55; }
+  .diag-result-extra::before { content: '→'; color: var(--c-teal); font-weight: 700; flex-shrink: 0; }
+  .diag-result-disclaimer { font-size: var(--text-xs); color: var(--c-text-3); margin-top: 18px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 178 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+        <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-size="26"><tspan font-weight="600" fill="#085041">NEXO</tspan><tspan font-weight="300" fill="#1D9E75">Suite</tspan></text>
+      </svg>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-link" data-page="index.html">Inicio</a>
+      <a href="pms.html" class="nav-link" data-page="pms.html">NexoSuite PMS <span class="nav-module-badge badge-pms">PMS</span></a>
+      <a href="iot.html" class="nav-link" data-page="iot.html">NexoSuite IoT <span class="nav-module-badge badge-iot">IoT</span></a>
+      <a href="index.html#precios" class="nav-link">Precios</a>
+    </div>
+    <button class="nav-hamburger" id="ham" aria-label="Menú" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- HERO + FORMULARIO -->
+<section class="section" id="diagnostico" style="padding-top:calc(var(--nav-h) + 56px)">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow eyebrow-pms">Diagnóstico gratuito · 3 minutos</span>
+        <h1 class="hero-headline">¿Qué plan <em>le conviene a tu hotel</em>?</h1>
+        <p class="lead">Evaluamos el perfil de tu hotel —tamaño, ocupación y forma de operar— y te recomendamos las opciones de plan con mayor potencial para tu negocio.</p>
+        <div class="contact-perks">
+          <div class="contact-perk">Resultado al instante, en esta misma página</div>
+          <div class="contact-perk">Conoce el plan más adecuado para ti</div>
+          <div class="contact-perk">Sin compromiso — la cotización formal se confirma después contigo</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="form-box">
+          <form id="diag-form">
+            <p class="diag-form-meta">6 preguntas sobre tu hotel + tus datos de contacto.</p>
+
+            <div class="form-field">
+              <label for="d-habs">¿Cuántas habitaciones tiene tu hotel?</label>
+              <select id="d-habs" name="habitaciones" required>
+                <option value="">Selecciona una opción</option>
+                <option value="lt10">Menos de 10</option>
+                <option value="10-100">Entre 10 y 100</option>
+                <option value="100+">Más de 100</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="d-pms">¿Usas un PMS actualmente?</label>
+              <select id="d-pms" name="pms_actual" required>
+                <option value="">Selecciona una opción</option>
+                <option value="no">No, llevamos todo en Excel o papel</option>
+                <option value="si_cambiar">Sí, pero queremos cambiarnos</option>
+                <option value="si_explorando">Sí, solo estamos averiguando opciones</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="d-disponibilidad">¿Cómo actualizas disponibilidad en Booking/Airbnb?</label>
+              <select id="d-disponibilidad" name="disponibilidad" required>
+                <option value="">Selecciona una opción</option>
+                <option value="manual">A mano, todos los días</option>
+                <option value="channel">Con un channel manager</option>
+                <option value="no_ota">No vendemos en OTAs todavía</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="d-ocupacion">¿Tu ocupación durante el año es...?</label>
+              <select id="d-ocupacion" name="ocupacion" required>
+                <option value="">Selecciona una opción</option>
+                <option value="pareja">Bastante pareja todo el año</option>
+                <option value="variable">Varía mucho por temporada</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="d-domotica">¿Te interesaría que tus huéspedes controlen luces, clima o cortinas desde una app?</label>
+              <select id="d-domotica" name="domotica" required>
+                <option value="">Selecciona una opción</option>
+                <option value="si">Sí, me interesa</option>
+                <option value="tal_vez">Tal vez, cuéntame más</option>
+                <option value="no">No, por ahora solo PMS</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="d-facturacion">¿Cómo emites boletas o facturas hoy?</label>
+              <select id="d-facturacion" name="facturacion" required>
+                <option value="">Selecciona una opción</option>
+                <option value="manual">Entrando manualmente al portal del SII</option>
+                <option value="auto">Tenemos algo automatizado</option>
+                <option value="no_se">No emitimos / no estoy seguro</option>
+              </select>
+            </div>
+
+            <div class="plan-divider"></div>
+
+            <div class="form-field">
+              <label for="d-nombre">Tu nombre</label>
+              <input type="text" id="d-nombre" name="nombre" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-field">
+              <label for="d-hotel">Nombre del hotel</label>
+              <input type="text" id="d-hotel" name="hotel" placeholder="Hotel o cabaña" required>
+            </div>
+            <div class="form-field">
+              <label for="d-email">Email</label>
+              <input type="email" id="d-email" name="email" placeholder="tu@email.com" required>
+            </div>
+            <div class="form-field">
+              <label for="d-tel">WhatsApp</label>
+              <input type="tel" id="d-tel" name="telefono" placeholder="+56 9 1234 5678" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Ver mi recomendación →</button>
+            <p style="font-size:var(--text-xs);color:var(--c-text-3);text-align:center;margin-top:12px">Al enviar este formulario aceptas nuestra <a href="politica-privacidad.html" style="color:inherit;text-decoration:underline">política de privacidad</a>.</p>
+          </form>
+
+          <div class="form-ok" id="form-ok">
+            <div class="form-ok-icon">✅</div>
+            <h3>Esto es lo que te conviene</h3>
+            <div id="form-ok-content"></div>
+            <p class="diag-result-disclaimer">Esta recomendación es automática, no una cotización formal. Te escribimos dentro de 24 horas hábiles a tu WhatsApp para confirmarla con tus números reales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <svg viewBox="0 0 178 40" width="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexoSuite">
+            <text y="29" font-family="'DM Sans', system-ui, sans-serif" font-size="26"><tspan font-weight="600" fill="#FFFFFF">NEXO</tspan><tspan font-weight="300" fill="#9FE1CB">Suite</tspan></text>
+          </svg>
+        </div>
+        <p class="footer-brand">El sistema operativo del hotel chileno · NEXOSMART SpA · Santiago, Chile</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Plataforma</div>
+        <a href="pms.html" class="footer-link">NexoSuite PMS</a>
+        <a href="iot.html" class="footer-link">NexoSuite IoT</a>
+        <a href="index.html#precios" class="footer-link">Precios</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <a href="index.html#contacto" class="footer-link">Contacto</a>
+        <a href="politica-privacidad.html" class="footer-link">Política de privacidad</a>
+        <span class="footer-link" style="margin-bottom:0">RUT: <!-- COMPLETAR: XX.XXX.XXX-X --></span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NexoSuite · Una marca de NEXOSMART SpA</p>
+      <a href="mailto:contacto@nexosmart.cl">contacto@nexosmart.cl</a>
+    </div>
+  </div>
+</footer>
+
+<!-- COMPLETAR: reemplazar XXXXXXXXX con el número real (sin el +) -->
+<a href="https://wa.me/56XXXXXXXXX?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20NexoSuite%20PMS" class="wa-fab" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-fab-label">WhatsApp</span>
+</a>
+
+<script>
+  const ham = document.getElementById('ham');
+  const links = document.getElementById('nav-links');
+  if (ham && links) ham.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    ham.setAttribute('aria-expanded', open);
+  });
+
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+    if (link.dataset.page === page) link.classList.add('active');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  setTimeout(() => document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  }), 80);
+
+  // Lógica de recomendación — replica la estructura de planes vigente (ver pms.html#precios)
+  function calcularRecomendacion(d) {
+    let plan, precio, nota;
+    const variable = d.ocupacion === 'variable';
+
+    if (d.habitaciones === 'lt10') {
+      plan = 'PMS Inicio';
+      precio = 'UF 0,89/mes + 3% sobre el valor de cada reserva';
+      nota = 'Te conviene porque el costo se mueve con tus ventas reales — nunca pagas de más en temporada baja.';
+    } else if (d.habitaciones === '10-100') {
+      if (variable) {
+        plan = 'PMS Inicio o PMS Hotel';
+        precio = 'UF 0,89/mes + 3% por reserva, o UF 0,12/hab/mes sin comisión';
+        nota = 'Con ocupación variable vale la pena comparar ambos modelos — en la confirmación te mostramos el cálculo con tus números reales.';
+      } else {
+        plan = 'PMS Hotel';
+        precio = 'UF 0,12/hab/mes, sin comisión por reserva';
+        nota = 'Te conviene un precio fijo porque ya tienes flujo de reservas constante.';
+      }
+    } else {
+      if (variable) {
+        plan = 'PMS Inicio o PMS Full';
+        precio = 'UF 0,89/mes + 3% por reserva, o UF 0,09/hab/mes sin comisión';
+        nota = 'Con tu volumen de habitaciones y ocupación variable, vale la pena comparar ambos modelos con tus números reales.';
+      } else {
+        plan = 'PMS Full';
+        precio = 'UF 0,09/hab/mes, sin comisión por reserva';
+        nota = 'El mejor precio por habitación para tu volumen de distribución, con más de 3 canales OTA incluidos.';
+      }
+    }
+
+    const extras = [];
+    if (d.disponibilidad === 'manual') {
+      extras.push('Hoy actualizas disponibilidad a mano — es exactamente el problema que más rápido resolvemos. El channel manager certificado (Booking, Airbnb, Expedia) llega en agosto 2026; al ser de los primeros en escribirnos, te damos prioridad de acceso.');
+    }
+    if (d.facturacion === 'manual' || d.facturacion === 'no_se') {
+      extras.push('Tu boleta o factura sale con un clic desde el checkout, directo al SII, sin abrir otro portal — ningún otro PMS en Chile lo hace hoy.');
+    }
+    if (d.domotica === 'si' || d.domotica === 'tal_vez') {
+      const beneficio = d.habitaciones === 'lt10' ? 'tu PMS queda gratis' : 'tu plan PMS baja de precio';
+      extras.push('Como te interesa la domótica: si más adelante contratas NexoSuite IoT, ' + beneficio + ' — sin importar qué nivel de IoT elijas.');
+    }
+
+    return { plan, precio, nota, extras };
+  }
+
+  document.getElementById('diag-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const d = Object.fromEntries(fd.entries());
+
+    // COMPLETAR: enviar `d` a un endpoint real (ej. Formspree) para registrar el lead
+    // fetch('https://formspree.io/f/XXXXX', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+
+    const r = calcularRecomendacion(d);
+    let html = '<div class="diag-result-plan"><b>' + r.plan + '</b>' + r.precio + '</div>';
+    html += '<p style="font-size:var(--text-sm);color:var(--c-text-2);margin-bottom:16px">' + r.nota + '</p>';
+    r.extras.forEach(ex => { html += '<div class="diag-result-extra">' + ex + '</div>'; });
+
+    document.getElementById('form-ok-content').innerHTML = html;
+    document.getElementById('diag-form').style.display = 'none';
+    document.getElementById('form-ok').style.display = 'block';
+  });
+</script>
+</body>
+</html>
