@@ -37,7 +37,7 @@ Si no somos para ti, el mismo formulario te lo va a decir directo.
 
 Saludos,
 {{firma}}
-{{cargo}} — NexoSuite (NEXOSMART SpA)
+{{cargo}} — NexoSuite (NexoHub SpA)
 
 P.D.: Somos el único PMS en Chile con facturación electrónica SII integrada
 — boleta o factura con un clic desde el checkout, sin abrir otro portal.
