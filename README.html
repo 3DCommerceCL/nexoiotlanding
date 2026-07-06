@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NexoSuite — Sitio Web (Landing)</title>
+<style>
+  @page { margin: 2cm 1.8cm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a2332; font-size: 11.5px; line-height: 1.6; margin: 0; }
+
+  .portada { text-align: center; padding-top: 220px; page-break-after: always; }
+  .portada h1 { font-size: 30px; color: #085041; margin: 0; }
+  .portada .sub { font-size: 15px; color: #1D9E75; margin-top: 8px; }
+  .portada .meta { margin-top: 40px; color: #667; font-size: 11.5px; line-height: 1.8; }
+
+  h1 { font-size: 18px; color: #085041; border-bottom: 3px solid #1D9E75; padding-bottom: 6px; margin-top: 30px; }
+  h2 { font-size: 14px; color: #0a6b55; margin-top: 20px; }
+  h3 { font-size: 12.5px; color: #1a2332; margin-top: 14px; }
+  p, li { margin: 5px 0; }
+  ol, ul { padding-left: 20px; }
+
+  code { background: #eef2f0; padding: 1px 5px; border-radius: 3px; font-size: 10.5px; font-family: 'Consolas', monospace; }
+  pre { background: #1a2332; color: #d8e6df; padding: 12px 14px; border-radius: 8px; font-size: 10px; overflow-x: auto; line-height: 1.55; margin: 8px 0; }
+  pre code { background: none; padding: 0; color: inherit; font-size: 10px; }
+
+  .quote { background: #eef8f4; border-left: 4px solid #1D9E75; padding: 10px 14px; border-radius: 4px; margin: 10px 0; }
+
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { margin: 6px 0; padding-left: 22px; position: relative; }
+  .checklist li::before { content: "☐"; position: absolute; left: 0; color: #1D9E75; font-size: 13px; }
+
+  .footer-note { margin-top: 26px; text-align: center; color: #889; font-size: 9.5px; }
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <h1>NEXO<span style="font-weight:300;color:#1D9E75">Suite</span></h1>
+  <div class="sub">Sitio Web (Landing) — README del Desarrollador</div>
+  <div class="meta">Julio 2026 · Para desarrolladores frontend que reciben el proyecto<br>NexoHub SpA · Santiago, Chile</div>
+</div>
+
+<p><b>Para quién es esto:</b> un desarrollador frontend al que se le entrega este sitio para
+agregar animaciones y terminaciones visuales. No necesitas conocimiento previo del proyecto
+para trabajar aquí — este documento te da todo el contexto.</p>
+
+<p><b>Lo más importante:</b> este sitio <b>no tiene backend ni build step</b>. Son 4 páginas
+HTML estáticas + un archivo CSS compartido + JS vanilla mínimo embebido en cada HTML. Lo que
+ves en el archivo es exactamente lo que corre en el navegador.</p>
+
+<div class="quote">Si tu tarea también incluye la app del PMS/IoT (el otro repo,
+<code>nexo-room-app</code>), ese proyecto tiene su propio manual mucho más largo:
+<code>nexo-room-app/docs/MANUAL-DESARROLLADOR.pdf</code> — con sección de backend incluida.
+Este documento es solo para el sitio de marketing.</div>
+
+<h1>Estructura del proyecto</h1>
+<pre><code>nexo-landing/
+├── index.html               Home — landing principal
+├── pms.html                 Página del módulo PMS
+├── iot.html                 Página del módulo IoT
+├── diagnostico.html         Herramienta "¿qué plan me conviene?"
+├── politica-privacidad.html
+├── styles/
+│   └── nexosuite.css        Todo el CSS del sitio — un solo archivo
+└── assets/
+    ├── favicon-nexosuite.png
+    ├── logo-nexosuite.svg
+    └── gallery/              Imágenes de la galería de iot.html</code></pre>
+<p>Cada <code>.html</code> es autocontenido: trae su propio <code>&lt;script&gt;</code> al
+final del archivo con la lógica de esa página (menú hamburguesa, FAQ acordeón, animaciones de
+scroll). No hay un <code>main.js</code> compartido — si ves un patrón repetido en las 4
+páginas (por ejemplo el observer de scroll), es intencional, cada página lo trae por separado
+para no depender de un archivo externo.</p>
+
+<h1>Cómo trabajar en local</h1>
+<p>No necesita instalación. Dos formas:</p>
+<ol>
+<li><b>Directo:</b> doble clic en cualquier <code>.html</code> y ábrelo en el navegador.</li>
+<li><b>Con servidor local</b> (recomendado si vas a tocar rutas entre páginas):
+<pre><code>npx serve .</code></pre>
+o la extensión "Live Server" de VSCode (recarga automática al guardar).</li>
+</ol>
+
+<h1>Sistema de diseño</h1>
+<p>Todo el CSS vive en <code>styles/nexosuite.css</code>, con variables definidas en <code>:root</code>:</p>
+<pre><code>:root {
+  --c-bg:          #F8F7F4;   /* fondo general */
+  --c-surface:     #F0EDE6;   /* fondo de secciones alternas */
+  --c-teal-dark:   #085041;   /* verde oscuro — marca principal */
+  --c-teal:        #1D9E75;   /* verde medio */
+  --c-teal-light:  #E1F5EE;
+  --c-text:        #111111;
+  --c-text-2:      #4A4845;   /* texto secundario */
+  --c-white:       #FFFFFF;
+
+  --c-pms:         #185FA5;   /* azul — usado solo en el módulo PMS */
+  --c-iot:         #085041;   /* verde — usado solo en el módulo IoT */
+
+  --font-display:  'Fraunces', Georgia, serif;   /* títulos */
+  --font-body:     'DM Sans', system-ui, sans-serif;  /* cuerpo de texto */
+}</code></pre>
+<p><b>Usa siempre estas variables</b> (<code>var(--c-teal)</code>, etc.) en vez de escribir el
+color hexadecimal directo — así cualquier ajuste de paleta futuro se hace en un solo lugar.</p>
+<p>Hay también variables de espaciado responsive (<code>--section-py</code>) que cambian en
+el media query de mobile — no dupliques media queries si puedes ajustar la variable en su
+lugar.</p>
+
+<h1>Animaciones ya existentes — el patrón .reveal</h1>
+<p>El sitio ya tiene un sistema de animación de entrada al hacer scroll. <b>Reutilízalo en
+vez de crear uno nuevo:</b></p>
+<pre><code>/* En nexosuite.css */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }</code></pre>
+<pre><code>&lt;!-- En cualquier HTML --&gt;
+&lt;div class="card reveal reveal-delay-1"&gt;...&lt;/div&gt;</code></pre>
+<p>Al final de cada <code>.html</code> hay un <code>IntersectionObserver</code> que agrega la
+clase <code>.visible</code> cuando el elemento entra en pantalla — así dispara la transición.
+Para animar un elemento nuevo, <b>solo agrégale la clase <code>reveal</code></b> (y
+opcionalmente <code>reveal-delay-1/2/3</code> para escalonar varios elementos que aparecen
+juntos) — no necesitas tocar el JavaScript del observer, ya está buscando cualquier
+<code>.reveal</code> de la página.</p>
+
+<h2>Para agregar una animación distinta (no solo fade-in-up)</h2>
+<p>Puedes crear variantes nuevas siguiendo el mismo patrón, por ejemplo:</p>
+<pre><code>.reveal-scale { opacity: 0; transform: scale(.95); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal-scale.visible { opacity: 1; transform: none; }</code></pre>
+<p>Y en el HTML usar <code>class="card reveal-scale"</code> en vez de
+<code>class="card reveal"</code>. El observer existente en cada página busca la clase
+<code>reveal</code> — si usas un nombre de clase distinto para la variante, revisa el
+<code>&lt;script&gt;</code> al final del HTML y agrega tu selector nuevo al
+<code>querySelectorAll</code> del observer (es una sola línea, está al final de cada archivo).</p>
+
+<h1>Otros patrones de JS que ya existen (no los dupliques)</h1>
+<p>Cada página trae, en su <code>&lt;script&gt;</code> final:</p>
+<ul>
+<li><b>Menú hamburguesa</b> (<code>#ham</code> / <code>#nav-links</code>) — toggle de clase
+<code>.open</code>.</li>
+<li><b>FAQ acordeón</b> (<code>.faq-btn</code> / <code>.faq-answer</code>) — mismo patrón en
+las 4 páginas.</li>
+<li><b>Highlight del link activo en el nav</b> según la URL actual.</li>
+<li><b>Scroll suave</b> para links internos (<code>a[href^="#"]</code>).</li>
+</ul>
+<p>Si necesitas agregar interactividad nueva, revisa primero si ya existe algo parecido en
+ese mismo <code>&lt;script&gt;</code> — es corto (menos de 50 líneas) y fácil de leer completo.</p>
+
+<h1>Checklist antes de cada push</h1>
+<p>Este repo <b>también tiene auto-deploy</b>: cualquier push a <code>main</code> se publica
+solo en GitHub Pages (nexosuite.cl / el dominio de GitHub Pages configurado), sin ambiente
+intermedio.</p>
+<ul class="checklist">
+<li>Probé el cambio abriendo el <code>.html</code> en el navegador (no solo lo leí en el código)</li>
+<li>Usé variables CSS (<code>var(--c-...)</code>) en vez de colores hardcodeados</li>
+<li>Si es una animación de scroll, usé la clase <code>.reveal</code> existente en vez de
+crear un observer nuevo</li>
+<li>Probé en mobile (o con las devtools en modo responsive) — el sitio tiene un layout
+distinto bajo cierto ancho de pantalla (ver el media query en <code>nexosuite.css</code>)</li>
+<li>No agregué librerías externas (jQuery, GSAP, etc.) sin avisar — el sitio es
+deliberadamente liviano, sin dependencias</li>
+</ul>
+
+<div class="footer-note">NexoSuite · Sitio Web · Julio 2026</div>
+
+</body>
+</html>
