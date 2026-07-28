@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img"
+     aria-label="NexoSuite — PMS y habitaciones inteligentes para hoteles en Chile">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#0B2033"/>
+      <stop offset="55%"  stop-color="#102943"/>
+      <stop offset="100%" stop-color="#143A56"/>
+    </linearGradient>
+    <linearGradient id="verde" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1D9E75"/>
+      <stop offset="100%" stop-color="#7FD4BC"/>
+    </linearGradient>
+    <!-- Halo de marca: da profundidad sin competir con el texto -->
+    <radialGradient id="halo" cx="0.82" cy="0.22" r="0.6">
+      <stop offset="0%"   stop-color="#1D9E75" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#1D9E75" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#fondo)"/>
+  <rect width="1200" height="630" fill="url(#halo)"/>
+
+  <!-- Retícula tenue: sugiere "sistema/panel" sin dibujar una captura que
+       envejezca cada vez que cambie la interfaz -->
+  <g stroke="#FFFFFF" stroke-opacity="0.045">
+    <path d="M0 160H1200M0 315H1200M0 470H1200"/>
+    <path d="M300 0V630M600 0V630M900 0V630"/>
+  </g>
+
+  <!-- Marca -->
+  <g transform="translate(96,132)">
+    <text font-family="'DM Sans', 'Segoe UI', system-ui, sans-serif" font-size="62" letter-spacing="-1">
+      <tspan fill="#FFFFFF" font-weight="600">NEXO</tspan><tspan fill="url(#verde)" font-weight="300">Suite</tspan>
+    </text>
+  </g>
+
+  <!-- Claim principal -->
+  <g transform="translate(96,250)" font-family="'DM Sans', 'Segoe UI', system-ui, sans-serif">
+    <text fill="#FFFFFF" font-size="54" font-weight="600" letter-spacing="-1.2">
+      <tspan x="0" dy="0">El sistema operativo</tspan>
+      <tspan x="0" dy="66">del hotel chileno</tspan>
+    </text>
+    <text fill="#A9C2D6" font-size="27" font-weight="400">
+      <tspan x="0" dy="118">Gestión hotelera + habitaciones inteligentes,</tspan>
+      <tspan x="0" dy="38">en una sola plataforma.</tspan>
+    </text>
+  </g>
+
+  <!-- Diferenciadores: lo que un hotelero chileno reconoce de inmediato -->
+  <g transform="translate(96,545)" font-family="'DM Sans', 'Segoe UI', system-ui, sans-serif" font-size="21">
+    <g fill="#7FD4BC">
+      <circle cx="6"   cy="-7" r="5"/>
+      <circle cx="286" cy="-7" r="5"/>
+      <circle cx="560" cy="-7" r="5"/>
+    </g>
+    <text fill="#D7E4EE">
+      <tspan x="26">Facturación SII</tspan>
+      <tspan x="306">Precio en UF</tspan>
+      <tspan x="580">Soporte en Chile</tspan>
+    </text>
+  </g>
+
+  <!-- Franja de acento inferior -->
+  <rect x="0" y="614" width="1200" height="16" fill="url(#verde)"/>
+</svg>
