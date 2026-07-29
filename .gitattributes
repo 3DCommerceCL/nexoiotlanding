@@ -1,0 +1,25 @@
+# Finales de línea — por qué existe este archivo
+#
+# Este repo se trabaja desde Windows, donde Git for Windows instala
+# core.autocrlf=true por defecto, y cada clon convierte los archivos a CRLF al
+# hacer checkout. Un `git config core.autocrlf false` arregla un clon y nada
+# más; este archivo viaja con el repositorio y vale para todos.
+#
+# Mismo criterio que en nexo-room-app.
+
+# Todo lo que git detecte como texto: LF en el repositorio Y en el working tree.
+* text=auto eol=lf
+
+# Binarios: git no debe inspeccionarlos ni normalizarlos nunca.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+
+# .svg es XML (texto): se queda con la regla general de arriba, no como binario.
