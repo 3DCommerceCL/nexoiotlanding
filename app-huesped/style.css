@@ -1,0 +1,1181 @@
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* smartrooms — Guest Room App · Mobile-first light/minimal theme              */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@import url("./theme.css");
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+/* touch-action: solo scroll — desactiva pellizco y doble-tap para hacer zoom.
+   Los sliders declaran su propio touch-action, así que no se ven afectados. */
+html { font-size:16px; -webkit-text-size-adjust:100%; touch-action: pan-x pan-y; }
+body {
+  font-family: var(--font);
+  background:  var(--bg);
+  color:       var(--text);
+  min-height:  100dvh;
+  overflow-x:  hidden;
+  -webkit-font-smoothing: antialiased;
+  touch-action: pan-x pan-y;
+}
+
+/* iOS hace zoom automático al enfocar un campo con font-size < 16px y luego
+   deja la app descuadrada. En pantallas táctiles subimos los campos a 16px. */
+@media (pointer: coarse) {
+  .scene-name-input,
+  .report-other-textarea,
+  .room-switcher { font-size: 16px; }
+}
+
+/* ── LOADING ──────────────────────────────────────────────────────────────── */
+#loading-screen {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px; z-index: 100;
+}
+.loader-ring {
+  width: 44px; height: 44px;
+  border: 3px solid var(--border);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-text { font-size: 14px; color: var(--text2); }
+
+/* ── ERROR ────────────────────────────────────────────────────────────────── */
+#error-screen {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; padding: 32px; text-align: center;
+}
+#error-screen .err-icon  { opacity: .7; display: flex; align-items: center; justify-content: center; }
+#error-screen .err-icon svg { width: 56px; height: 56px; }
+#error-screen .err-title { font-size: 20px; font-weight: 700; }
+#error-screen .err-sub   { font-size: 14px; color: var(--text2); line-height: 1.6; max-width: 280px; }
+
+/* ── APP LAYOUT ───────────────────────────────────────────────────────────── */
+#app {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+  min-height: 100dvh;
+  background: var(--bg);
+}
+#app.hidden { display: none; }
+.view { padding-top: 18px; }
+
+/* ── HEADER ───────────────────────────────────────────────────────────────── */
+.app-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--header-grad);
+  color: #fff;
+  border-radius: 0 0 22px 22px;
+  padding: 16px 20px 18px;
+  box-shadow: 0 6px 20px rgba(16,40,70,.18);
+}
+.header-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.header-left { display: flex; align-items: center; gap: 10px; }
+.hamburger-btn {
+  background: none; border: none; color: #fff;
+  font-size: 20px; line-height: 1; cursor: pointer; padding: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hotel-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #8FCBFF;
+}
+.header-right { display: flex; align-items: center; gap: 12px; }
+.checkout-btn {
+  font-size: 11px; color: rgba(255,255,255,.65); background: none; border: none;
+  cursor: pointer; font-family: var(--font);
+  display: flex; align-items: center; gap: 4px;
+  padding: 4px 0; transition: color .15s;
+}
+.checkout-btn:hover { color: #fff; }
+.theme-toggle-btn {
+  background: none; border: none; color: #fff;
+  font-size: 18px; line-height: 1; cursor: pointer; padding: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hdr-icon-btn {
+  background: rgba(255,255,255,.12); border: none; color: #fff;
+  font-size: 16px; line-height: 1; cursor: pointer; padding: 5px 7px;
+  border-radius: 8px; -webkit-tap-highlight-color: transparent;
+  transition: background .15s;
+  box-shadow: 0 1px 3px rgba(16,24,40,.15);
+}
+.hdr-icon-btn:hover { background: rgba(255,255,255,.22); }
+.hamburger-btn, .hdr-icon-btn, .theme-toggle-btn { display: inline-flex; align-items: center; }
+.hamburger-btn svg, .hdr-icon-btn svg, .theme-toggle-btn svg, .checkout-btn svg, .clock-ico svg { display: block; }
+.room-name  { font-size: 22px; font-weight: 800; letter-spacing: -.5px; color: #fff; }
+.room-switcher {
+  margin-top: 6px; font: inherit; font-size: 15px; font-weight: 600;
+  padding: 7px 12px; border-radius: 10px; cursor: pointer;
+  background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.35);
+}
+.room-switcher option { color: #111; }
+.guest-name { font-size: 13px; color: rgba(255,255,255,.65); margin-top: 1px; }
+.checkout-info {
+  font-size: 11px; color: rgba(255,255,255,.65); margin-top: 3px;
+  display: flex; align-items: center; gap: 4px;
+}
+.checkout-info.soon   { color: #FFD9A0; }
+.checkout-info.urgent { color: #FFB3B3; }
+/* ── RELOJ EN TIEMPO REAL ─────────────────────────────────────────────────── */
+.clock-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 9px 14px;
+  background: rgba(255,255,255,.10);
+  border: none;
+  border-radius: 999px;
+}
+.clock-ico { font-size: 15px; flex-shrink: 0; }
+#live-clock {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1.5px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.countdown {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  margin-left: auto;
+  white-space: nowrap;
+  transition: background .4s, color .4s;
+}
+.countdown.ok      { background: rgba(255,255,255,.18); color: #fff; }
+.countdown.soon    { background: rgba(240,160,48,.28);  color: #FFE3B0; }
+.countdown.urgent  { background: rgba(255,255,255,.22); color: #FFB3B3; animation: blink-badge 1s infinite; }
+.countdown.expired { background: #fff;                  color: var(--alert); animation: blink-badge 1s infinite; }
+
+/* ── INDICADOR DE CONEXIÓN ────────────────────────────────────────────────── */
+.conn-status {
+  display: flex; align-items: center; gap: 5px; flex-shrink: 0;
+  font-size: 11px; color: rgba(255,255,255,.7);
+}
+.conn-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4ADE80; flex-shrink: 0;
+}
+.conn-status.offline { color: #FFB3B3; }
+.conn-status.offline .conn-dot {
+  background: var(--alert); animation: blink-badge 1s infinite;
+}
+@keyframes blink-badge { 0%,100%{opacity:1} 50%{opacity:.55} }
+
+.door-status {
+  display: none; font-size: 11px; color: #FFD9A0;
+  margin-top: 8px; align-items: center; gap: 4px;
+}
+.door-status svg { flex-shrink: 0; display: block; }
+
+/* ── DEMO BANNER ──────────────────────────────────────────────────────────── */
+.demo-banner {
+  display: none;
+  align-items: center; justify-content: center; gap: 6px;
+  background: var(--purple-l, rgba(83,74,183,.10));
+  border-bottom: 1px solid rgba(83,74,183,.2);
+  padding: 8px 20px;
+  font-size: 11px; color: #534AB7; text-align: center;
+}
+.demo-banner svg { flex-shrink: 0; }
+
+/* ── SIDEBAR (menú lateral) ───────────────────────────────────────────────── */
+.sidebar-backdrop {
+  position: fixed; inset: 0; background: rgba(16,24,40,.45);
+  z-index: 90; opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.sidebar-backdrop.open { opacity: 1; pointer-events: all; }
+
+.sidebar {
+  position: fixed; top: 0; bottom: 0; left: 0;
+  width: 260px; max-width: 80vw;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  box-shadow: 8px 0 30px rgba(16,24,40,.08);
+  z-index: 95;
+  display: flex; flex-direction: column;
+  padding: 18px 0;
+  transform: translateX(-100%);
+  transition: transform .25s ease;
+}
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-brand {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 20px 18px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: var(--teal-l); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px;
+}
+.sidebar-hotel {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--teal); margin-bottom: 2px;
+}
+.sidebar-room { font-size: 14px; font-weight: 700; color: var(--text); }
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 12px; border-radius: var(--rsm);
+  background: none; border: none; color: var(--text2);
+  font-size: 14px; font-weight: 600; font-family: var(--font);
+  text-align: left; cursor: pointer; width: 100%;
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+}
+.nav-item .nav-ico { width: 22px; height: 18px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nav-item .nav-ico svg { display: block; width: 18px; height: 18px; }
+.nav-item:hover  { background: rgba(16,24,40,.04); color: var(--text); }
+.nav-item.active { background: var(--teal-l); color: var(--teal); box-shadow: var(--shadow); }
+
+/* ── SCENES (vista Escenas) ───────────────────────────────────────────────── */
+.scenes-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; padding: 0 12px;
+}
+.scene-card {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 6px; text-align: left;
+  padding: 16px 14px; border-radius: var(--r);
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  border: none;
+  box-shadow: 0 3px 12px rgba(0,157,113,.20);
+  cursor: pointer; font-family: var(--font);
+  transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.scene-card-ico   { font-size: 26px; line-height: 1; color: #fff; }
+.scene-card-ico svg { display: block; width: 26px; height: 26px; }
+.scene-card-title { font-size: 14px; font-weight: 700; color: #fff; }
+.scene-card-desc  { font-size: 11px; color: rgba(255,255,255,.75); line-height: 1.4; }
+.scene-card:hover, .scene-card:active {
+  background: linear-gradient(135deg, #00B985, var(--teal));
+  box-shadow: 0 5px 18px rgba(0,157,113,.40);
+}
+.scene-card.loading { opacity: .6; pointer-events: none; }
+
+/* Misma idea que .card-icons-row en las tarjetas de Controles: los botones de
+   acción van abajo, en su propia fila, no flotando sobre el título. */
+.scene-card-actions {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  width: 100%; margin-top: 4px; padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.scene-action-btn {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,.18); color: #fff;
+  font-size: 12px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 1px 3px rgba(16,24,40,.15);
+}
+.scene-action-btn svg { display: block; }
+.scene-action-btn:hover, .scene-action-btn:active { background: rgba(255,255,255,.32); }
+
+.scenes-hint {
+  font-size: 11px; color: var(--text2); line-height: 1.5;
+  padding: 10px 12px 0;
+}
+
+/* Botones de ancho completo de la vista Escenas ("Crear nueva escena",
+   "Guardar esta configuración", "Cancelar"): respetan el mismo inset lateral
+   (12px en celular) que las tarjetas de escena y la grilla de dispositivos,
+   en lugar de pegarse a los bordes de la vista. El inset de escritorio (40px)
+   se ajusta dentro del media query de desktop. */
+.scenes-full-btn {
+  width: calc(100% - 24px);
+  margin-left: 12px;
+  margin-right: 12px;
+  justify-content: center;
+}
+
+/* ── MODAL: NUEVA ESCENA ──────────────────────────────────────────────────── */
+.scene-modal-desc {
+  font-size: 12px; color: var(--text2); line-height: 1.5;
+  margin-bottom: 16px;
+}
+.scene-name-input {
+  width: 100%; padding: 10px 12px; margin-bottom: 14px;
+  border-radius: var(--rsm); border: 1px solid var(--border);
+  background: var(--card2); color: var(--text);
+  font-size: 13px; font-family: var(--font); outline: none;
+}
+.scene-name-input:focus { border-color: var(--teal); }
+.scene-icon-picker {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 20px;
+}
+.scene-icon-opt {
+  width: 38px; height: 38px; border-radius: var(--rsm);
+  border: 1.5px solid var(--border); background: var(--card2);
+  font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow);
+}
+.scene-icon-opt.active { border-color: var(--teal); background: var(--teal-l); }
+.scene-modal-actions { display: flex; gap: 10px; }
+.scene-modal-actions .support-btn { flex: 1; justify-content: center; }
+#scene-modal-cancel { background: var(--card2); color: var(--text2); }
+
+/* ── MODAL: REPORTAR PROBLEMA DE DISPOSITIVO ─────────────────────────────── */
+.report-options {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 16px; max-height: 280px; overflow-y: auto;
+}
+.report-option {
+  width: 100%; text-align: left; padding: 11px 14px;
+  border-radius: var(--rsm); border: 1.5px solid var(--border);
+  background: var(--card2); color: var(--text);
+  font-size: 13px; font-family: var(--font); cursor: pointer;
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow);
+}
+.report-option.active { border-color: var(--teal); background: var(--teal-l); font-weight: 600; }
+.report-other-textarea {
+  width: 100%; padding: 10px 12px; margin-bottom: 16px;
+  border-radius: var(--rsm); border: 1px solid var(--border);
+  background: var(--card2); color: var(--text);
+  font-size: 13px; font-family: var(--font); outline: none; resize: vertical; min-height: 90px;
+}
+.report-other-textarea:focus { border-color: var(--teal); }
+#report-modal-back { background: var(--card2); color: var(--text2); }
+
+/* ── SECTION LABEL ────────────────────────────────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--text2);
+  padding: 0 20px 8px;
+}
+
+/* ── FAVORITOS (accesos rápidos) ─────────────────────────────────────────── */
+.favorites-bar { padding: 0 12px 14px; }
+.favorites-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--text2);
+  padding: 0 8px 8px;
+}
+.favorites-row {
+  display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px;
+}
+.fav-chip {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 14px; font-size: 12px; font-weight: 600; color: var(--text);
+  cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow);
+}
+.fav-chip-ico { display: inline-flex; align-items: center; line-height: 1; }
+.fav-chip-ico svg { display: block; width: 14px; height: 14px; }
+.fav-chip.on {
+  background: linear-gradient(135deg, #00B985, var(--teal));
+  border-color: transparent; color: #fff;
+}
+
+/* ── DEVICE GRID ──────────────────────────────────────────────────────────── */
+.device-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 12px;
+}
+
+/* #home-services (card "No molestar" + botones de Servicios) y
+   #servicios-directorio ("Qué ofrece el hotel") comparten el mismo inset
+   horizontal que .device-grid y .scenes-grid, para alinearse con sus
+   secciones. */
+#home-services,
+#servicios-directorio {
+  padding: 0 12px;
+}
+
+/* ── DEVICE CARD ──────────────────────────────────────────────────────────── */
+.device-card {
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  border: none;
+  border-radius: var(--r);
+  box-shadow: 0 3px 12px rgba(0,157,113,.20);
+  padding: 16px 14px;
+  min-width: 0;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s, box-shadow .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.device-card.full-width { grid-column: 1 / -1; }
+.device-card.offline    { opacity: .5; pointer-events: none; }
+.device-card.on {
+  background: linear-gradient(135deg, #00B985, var(--teal));
+  box-shadow: 0 5px 18px rgba(0,157,113,.40);
+}
+
+.card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 10px;
+}
+/* Solo el interruptor principal vive en card-head ahora — favorito, programar,
+   reportar, ayuda y agrandar bajaron a card-icons-row para que una etiqueta
+   larga (ej. en portugués) no empuje al interruptor fuera de la tarjeta. */
+.card-head-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.card-icons-row {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+.fav-btn {
+  background: none; border: none; cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center; line-height: 1; color: rgba(255,255,255,.5);
+  transition: color .2s, transform .15s;
+}
+.fav-btn svg { display: block; }
+.fav-btn:active { transform: scale(1.15); }
+.fav-btn.active { color: #FFD66B; }
+.report-btn {
+  background: none; border: none; cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center; line-height: 1; color: rgba(255,255,255,.55);
+  transition: color .2s, transform .15s;
+}
+.report-btn svg { display: block; }
+.report-btn:active { transform: scale(1.15); }
+.card-ico-name  { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.card-ico {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,.20); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; line-height: 1; flex-shrink: 0;
+}
+.card-ico svg   { display: block; }
+.card-label     { font-size: 13px; font-weight: 600; color: #fff; min-width: 0; }
+.card-status    { font-size: 11px; color: rgba(255,255,255,.75); margin-bottom: 10px; }
+/* Segunda línea de la tarjeta: estado a la izquierda + interruptor a la derecha,
+   separada del título — así el interruptor queda siempre en el mismo lugar sin
+   importar cuántas líneas ocupe la etiqueta encima (ver card-head). */
+.card-status-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 10px;
+}
+.card-status-row .card-status { margin-bottom: 0; }
+.card-status.on { color: #fff; }
+.offline-label  { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 6px; }
+
+/* ── TOGGLE SWITCH ────────────────────────────────────────────────────────── */
+.toggle {
+  width: 48px; height: 26px; border-radius: 13px;
+  background: rgba(16,24,40,.25); position: relative; cursor: pointer;
+  transition: background .2s; flex-shrink: 0;
+}
+.toggle.on { background: #fff; }
+.toggle::after {
+  content: ''; position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; transition: transform .2s, background .2s;
+  box-shadow: 0 1px 4px rgba(16,24,40,.18);
+}
+.toggle.on::after { transform: translateX(22px); background: var(--teal); }
+.toggle.disabled { opacity: .4; pointer-events: none; }
+/* Bloqueado mientras corre el fundido (~1-2 s): un toque a mitad rompía la luz.
+   El pulso avisa que está trabajando, no colgado. Ver lockFade() en app.js. */
+.toggle.fading { pointer-events: none; animation: toggleFade 1s ease-in-out infinite; }
+@keyframes toggleFade { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+.toggle.toggle-sm { width: 36px; height: 20px; }
+.toggle.toggle-sm::after { width: 14px; height: 14px; }
+.toggle.toggle-sm.on::after { transform: translateX(16px); }
+
+/* ── MODO MANUAL ──────────────────────────────────────────────────────────── */
+.manual-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.25);
+  font-size: 11px; color: rgba(255,255,255,.85);
+}
+.manual-note {
+  font-size: 10px; color: #FFE3B0; margin-top: 6px; line-height: 1.4;
+}
+
+/* ── SLIDER (intensity / curtain) ─────────────────────────────────────────── */
+.slider-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 2px;
+}
+.slider-lbl { font-size: 10px; color: rgba(255,255,255,.85); margin-bottom: 5px; }
+.slider-val { font-size: 11px; color: rgba(255,255,255,.85); min-width: 32px; text-align: right; }
+input[type=range] {
+  -webkit-appearance: none; flex: 1;
+  height: 4px; border-radius: 2px;
+  background: rgba(255,255,255,.30); outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  border-radius: 50%; background: #fff; cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.22);
+}
+input[type=range]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; border: none; cursor: pointer;
+}
+input[type=range]:disabled { opacity: .4; pointer-events: none; }
+
+/* ── COLOR TEMP BUTTONS ───────────────────────────────────────────────────── */
+.ct-row {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px;
+}
+.ct-btn {
+  flex: 1 1 calc(50% - 3px); min-width: 0; box-sizing: border-box;
+  padding: 6px 4px; border-radius: var(--rsm);
+  border: 1px solid rgba(255,255,255,.35); background: transparent;
+  color: rgba(255,255,255,.9); font-size: 10px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+}
+.ct-btn.active { background: rgba(255,255,255,.25); border-color: #fff; color: #fff; }
+.ct-btn:hover  { border-color: rgba(255,255,255,.6); color: #fff; background: rgba(255,255,255,.10); }
+
+/* ── BOTÓN COLOR + RUEDA RGB ──────────────────────────────────────────────── */
+.color-toggle-btn {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.color-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #ccc; flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(16,24,40,.12);
+}
+
+.color-wheel-wrap {
+  display: flex; justify-content: center; margin-top: 12px;
+}
+/* Contenedor que captura todos los eventos de pointer */
+.color-wheel {
+  position: relative;
+  width: 140px; height: 140px;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* Anillo de color — conic-gradient con hueco central via mask */
+.color-wheel::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    hsl(0,100%,50%), hsl(30,100%,50%), hsl(60,100%,50%), hsl(90,100%,50%),
+    hsl(120,100%,50%), hsl(150,100%,50%), hsl(180,100%,50%), hsl(210,100%,50%),
+    hsl(240,100%,50%), hsl(270,100%,50%), hsl(300,100%,50%), hsl(330,100%,50%),
+    hsl(360,100%,50%)
+  );
+  -webkit-mask: radial-gradient(transparent 40px, black 41px);
+  mask: radial-gradient(transparent 40px, black 41px);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.2);
+  pointer-events: none;
+}
+/* Preview del color seleccionado en el centro del anillo */
+.color-wheel-center {
+  position: absolute; top: 50%; left: 50%;
+  width: 72px; height: 72px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.25), 0 2px 8px rgba(0,0,0,.4);
+  transition: background 0.12s;
+  pointer-events: none;
+}
+.color-wheel-cursor {
+  position: absolute; top: 50%; left: 50%;
+  width: 20px; height: 20px; border-radius: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  pointer-events: none;
+  transition: transform 0.05s;
+}
+
+/* ── CURTAIN CARD ─────────────────────────────────────────────────────────── */
+.curtain-btns {
+  display: flex; gap: 6px; margin-bottom: 10px;
+}
+.curtain-btn {
+  flex: 1; padding: 9px 4px; border-radius: var(--rsm);
+  border: 1px solid rgba(255,255,255,.35); background: transparent;
+  color: rgba(255,255,255,.9); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+}
+.curtain-btn:hover, .curtain-btn:active {
+  background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.6);
+  color: #fff;
+}
+.curtain-btn.stop-btn { color: #FFE3B0; border-color: rgba(255,227,176,.4); }
+.curtain-btn:disabled { opacity: .4; pointer-events: none; }
+
+/* ── CORTINA: control vertical (flechas + barra) ──────────────────────────── */
+.curtain-vcontrol {
+  display: flex; align-items: stretch; gap: 14px; justify-content: center;
+  padding: 4px 0 8px;
+}
+.curtain-vbtns { display: flex; flex-direction: column; gap: 6px; justify-content: space-between; }
+.curtain-vbtn {
+  padding: 8px 10px; border-radius: var(--rsm); text-align: left;
+  border: 1px solid rgba(255,255,255,.35); background: transparent;
+  color: rgba(255,255,255,.9); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+}
+.curtain-vbtn:hover, .curtain-vbtn:active {
+  background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.6); color: #fff;
+}
+.curtain-vbtn.stop-vbtn { color: #FFE3B0; border-color: rgba(255,227,176,.4); }
+.curtain-vbtn:disabled { opacity: .4; pointer-events: none; }
+.curtain-vslider-wrap {
+  width: 40px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.curtain-vtrack {
+  width: 40px; height: 108px;
+  display: flex; align-items: center; justify-content: center;
+}
+.curtain-vslider {
+  width: 108px; height: 8px; margin: 0;
+  transform: rotate(-90deg); /* mínimo (cerrado) queda abajo, máximo (abierto) arriba */
+}
+.curtain-vval { font-size: 11px; color: rgba(255,255,255,.85); }
+
+/* ── SWITCH 3CH ───────────────────────────────────────────────────────────── */
+.ch-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.ch-row:last-child { border-bottom: none; padding-bottom: 0; }
+.ch-label { font-size: 13px; color: #fff; }
+
+/* ── AC CARD ──────────────────────────────────────────────────────────────── */
+.ac-temp-display {
+  text-align: center; margin: 8px 0;
+}
+.ac-temp-val {
+  font-size: 38px; font-weight: 800;
+  letter-spacing: -1px; line-height: 1;
+  color: #fff;
+  transition: color .2s;
+}
+.ac-temp-val.on { color: #fff; }
+.ac-temp-btns {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-top: 8px;
+}
+.ac-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.14);
+  color: #fff; font-size: 22px; font-weight: 300;
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: all .15s; font-family: var(--font);
+  box-shadow: 0 1px 3px rgba(16,24,40,.15);
+}
+.ac-btn:hover, .ac-btn:active { background: rgba(255,255,255,.25); border-color: #fff; color: #fff; }
+.ac-range { font-size: 10px; color: rgba(255,255,255,.7); }
+
+/* ── ONBOARDING (primera visita) ──────────────────────────────────────────── */
+.onboarding-overlay {
+  position: fixed; inset: 0; background: rgba(16,24,40,.55);
+  z-index: 250; display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  /* Fade del fondo oscuro. visibility con transition-delay hace que, al
+     cerrar, el overlay siga "visible" (y por lo tanto animable) durante los
+     .18s que dura el fade, y recién después se saque del todo de la
+     accesibilidad/tabulación — al abrir, visibility cambia sin demora para
+     que el fade-in se vea desde el primer frame. */
+  opacity: 1; visibility: visible;
+  transition: opacity .22s ease, visibility 0s linear 0s;
+}
+.onboarding-overlay.hidden {
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s ease, visibility 0s linear .18s;
+}
+.onboarding-card {
+  background: var(--card); border-radius: 18px; padding: 28px 24px;
+  max-width: 340px; width: 100%; text-align: center;
+  box-shadow: 0 16px 40px rgba(16,24,40,.25);
+  /* La tarjeta además se desliza/escala un poco al aparecer, no solo el fondo. */
+  opacity: 1; transform: translateY(0) scale(1);
+  transition: opacity .22s ease, transform .22s ease;
+}
+.onboarding-overlay.hidden .onboarding-card {
+  opacity: 0; transform: translateY(10px) scale(.96);
+}
+.onboarding-ico { margin-bottom: 8px; display: flex; align-items: center; justify-content: center; }
+.onboarding-ico svg { width: 40px; height: 40px; }
+.onboarding-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.onboarding-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.onboarding-card p  { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 18px; text-align: left; }
+/* Sin max-height ni alto fijo: el modal crece con su contenido. Si igual queda
+   más alto que la pantalla, quien scrollea es .onboarding-overlay (ver abajo),
+   no esta tarjeta — así el botón de cerrar puede seguir sticky sin necesitar
+   su propio scroll interno. Padding igual en los 4 lados (antes 28px arriba/
+   abajo y 24px a los costados, heredado de .onboarding-card). */
+.enlarge-card {
+  max-width: 420px; position: relative;
+  padding: 24px;
+  display: flex; flex-direction: column;
+}
+.enlarge-close {
+  /* sticky (no absolute) para que el botón de cerrar no se pierda scrolleando
+     cuando el contenido es más alto que la pantalla. margin-bottom negativo
+     compensa el espacio que el botón ahora sí ocupa en el flujo, para que el
+     título quede en la misma posición de siempre. */
+  position: sticky; top: 0; align-self: flex-end; z-index: 1;
+  margin-bottom: -28px;
+  background: var(--border); border: none; border-radius: 50%;
+  width: 28px; height: 28px; cursor: pointer; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+}
+.enlarge-close svg { display: block; }
+.enlarge-body {
+  /* zoom (no transform) porque zoom sí agranda el tamaño real de layout —
+     con transform:scale, el padding-bottom de la tarjeta no alcanzaba a
+     cubrir el 30% extra de alto que el escalado agregaba solo visualmente. */
+  width: 260px; margin: 14px auto 0;
+  zoom: 1.3;
+}
+.onboarding-list {
+  list-style: none; display: flex; flex-direction: column; gap: 14px;
+  margin-bottom: 22px; text-align: left;
+}
+.onboarding-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: var(--text2); line-height: 1.5;
+}
+.onboarding-ico-sm { flex-shrink: 0; display: flex; align-items: center; color: var(--teal); }
+.onboarding-ico-sm svg { width: 18px; height: 18px; }
+.onboarding-card .support-btn { width: 100%; justify-content: center; }
+
+/* ── ALARMA DE PUERTA ─────────────────────────────────────────────────────── */
+.door-alarm-overlay {
+  position: fixed; inset: 0; background: rgba(180,30,30,.85);
+  z-index: 400; display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: doorAlarmFlash 1s ease-in-out infinite;
+}
+.door-alarm-overlay.hidden { display: none; animation: none; }
+@keyframes doorAlarmFlash { 0%, 100% { background: rgba(180,30,30,.85); } 50% { background: rgba(220,50,50,.95); } }
+.door-alarm-card {
+  background: var(--card); border-radius: 18px; padding: 32px 24px;
+  max-width: 340px; width: 100%; text-align: center;
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+.door-alarm-ico { margin-bottom: 10px; color: #E5484D; display: flex; align-items: center; justify-content: center; }
+.door-alarm-ico svg { width: 48px; height: 48px; }
+.door-alarm-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #E5484D; }
+.door-alarm-card p { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+.door-alarm-card .support-btn { width: 100%; justify-content: center; }
+
+/* ── MODAL: PROGRAMAR (rango horario + repetición) ────────────────────────── */
+.schedule-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; display: block; text-align: left; }
+.schedule-check-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--text); margin-bottom: 12px; cursor: pointer;
+}
+.schedule-days-row { display: flex; gap: 5px; justify-content: space-between; margin-bottom: 14px; }
+.schedule-day-btn {
+  flex: 1; padding: 8px 0; border-radius: var(--rsm);
+  border: 1.5px solid var(--border); background: var(--card2); color: var(--text);
+  font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font); transition: all .15s;
+  box-shadow: var(--shadow);
+}
+.schedule-day-btn.active { border-color: var(--teal); background: var(--teal-l); color: var(--teal); }
+
+/* ── TUTORIAL: ELEGIR RECORRIDO GUIADO ───────────────────────────────────── */
+.tutorial-choice-actions { display: flex; flex-direction: column; gap: 10px; }
+.tutorial-choice-actions .support-btn { width: 100%; justify-content: center; }
+.tutorial-skip-btn { background: var(--card2); color: var(--text2); box-shadow: none; }
+.tutorial-skip-btn:hover, .tutorial-skip-btn:active { background: var(--border); }
+
+/* ── TUTORIAL GUIADO (recorrido paso a paso) ─────────────────────────────── */
+.tutorial-overlay { position: fixed; inset: 0; z-index: 280; }
+.tutorial-overlay.hidden { display: none; }
+.tutorial-highlight {
+  position: fixed; border-radius: 14px;
+  box-shadow: 0 0 0 9999px rgba(16,24,40,.6);
+  border: 2px solid var(--teal);
+  pointer-events: none;
+  transition: top .25s ease, left .25s ease, width .25s ease, height .25s ease;
+}
+.tutorial-exit-btn {
+  position: fixed; top: 16px; right: 16px;
+  display: flex; align-items: center; gap: 6px;
+  background: var(--card); color: var(--text);
+  border: none; border-radius: 999px;
+  padding: 8px 14px; font-size: 12px; font-weight: 600;
+  font-family: var(--font); cursor: pointer;
+  box-shadow: 0 4px 14px rgba(16,24,40,.25);
+  -webkit-tap-highlight-color: transparent;
+}
+.tutorial-tooltip {
+  position: fixed; max-width: 300px; width: calc(100% - 32px);
+  background: var(--card); border-radius: var(--r);
+  padding: 16px; box-shadow: 0 12px 30px rgba(16,24,40,.3);
+}
+.tutorial-tooltip h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.tutorial-tooltip p  { font-size: 12px; color: var(--text2); line-height: 1.5; margin-bottom: 14px; }
+.tutorial-tooltip-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.tutorial-step-count { font-size: 11px; color: var(--text3); flex-shrink: 0; }
+.tutorial-tooltip-actions { display: flex; gap: 8px; }
+.tutorial-nav-btn {
+  background: var(--card2); color: var(--text2); border: none;
+  border-radius: var(--rsm); padding: 8px 14px;
+  font-size: 12px; font-weight: 700; font-family: var(--font);
+  cursor: pointer; transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow);
+}
+.tutorial-nav-btn:hover, .tutorial-nav-btn:active { background: var(--border); }
+.tutorial-nav-btn.primary { background: var(--teal); color: #fff; }
+.tutorial-nav-btn.primary:hover, .tutorial-nav-btn.primary:active { background: var(--teal-d); }
+
+/* ── TOAST ────────────────────────────────────────────────────────────────── */
+#toast-container {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 200; display: flex; flex-direction: column; gap: 8px;
+  align-items: center; width: calc(100% - 40px); max-width: 400px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 11px 16px;
+  font-size: 13px; color: var(--text);
+  animation: toastIn .25s ease;
+  box-shadow: 0 8px 24px rgba(16,24,40,.12);
+  text-align: center; max-width: 100%;
+  pointer-events: all;
+}
+.toast.success { border-color: var(--teal); background: var(--teal-l); color: var(--teal-d); }
+.toast.error   { border-color: var(--alert); background: var(--alert-l); color: #C0292E; }
+@keyframes toastIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+/* ── FUNCIONES DEL PLAN (placeholders) ────────────────────────────────────── */
+.feature-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.feature-row:last-child { border-bottom: none; padding-bottom: 0; }
+.feature-row-label { font-size: 12px; color: #fff; display: flex; align-items: center; gap: 6px; }
+.led-dot {
+  width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.35);
+  flex-shrink: 0; transition: background .2s, box-shadow .2s;
+}
+.led-dot.on { background: #fff; box-shadow: 0 0 6px rgba(255,255,255,.8); }
+.preview-tag { font-size: 9px; font-weight: 700; letter-spacing: .5px; color: rgba(255,255,255,.7); text-transform: uppercase; }
+.source-row, .level-row { display: flex; gap: 6px; margin-top: 8px; }
+.source-btn, .level-btn {
+  flex: 1; padding: 7px 4px; border-radius: var(--rsm);
+  border: 1px solid rgba(255,255,255,.35); background: transparent;
+  color: rgba(255,255,255,.9); font-size: 11px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+}
+.source-btn.active, .level-btn.active { background: rgba(255,255,255,.25); border-color: #fff; color: #fff; }
+/* Stepper del objetivo bloqueado hasta elegir modo (Frío/Calor/Auto): se ve pero
+   no funciona. El title del row avisa al pasar el mouse; el click da un toast. */
+.source-row.ac-locked { cursor: help; }
+.source-row.ac-locked .source-btn { opacity: .45; cursor: not-allowed; }
+.source-btn:hover, .level-btn:hover { color: #fff; border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.10); }
+
+/* ── VISTA: AJUSTES ───────────────────────────────────────────────────────── */
+.settings-list { padding: 0 20px; }
+.settings-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-row span:first-child { color: var(--text2); }
+.settings-row span:last-child  { color: var(--text); font-weight: 600; text-align: right; }
+
+/* ── PREFERENCIAS: IDIOMA Y ACCESIBILIDAD ─────────────────────────────────── */
+.pref-row { flex-wrap: wrap; gap: 8px; }
+.pref-options { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.pref-btn {
+  padding: 7px 13px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text2); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow);
+}
+.pref-btn:hover  { border-color: var(--teal); color: var(--teal); }
+.pref-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+.pref-note {
+  font-size: 11px; color: var(--text2); line-height: 1.5;
+  padding: 10px 12px; margin-top: 10px;
+  background: var(--teal-l); border-radius: var(--rsm);
+}
+
+/* ── ACCESIBILIDAD: BAJA VISIÓN ───────────────────────────────────────────────
+   Texto y controles más grandes, con mayor contraste. */
+.a11y-vision .card-label     { font-size: 17px; }
+.a11y-vision .card-status    { font-size: 14px; color: rgba(255,255,255,.92); }
+.a11y-vision .card-ico       { width: 44px; height: 44px; font-size: 22px; }
+.a11y-vision .toggle         { width: 60px; height: 32px; border-radius: 16px; }
+.a11y-vision .toggle::after  { width: 26px; height: 26px; }
+.a11y-vision .toggle.on::after { transform: translateX(28px); }
+.a11y-vision .toggle.toggle-sm { width: 48px; height: 26px; }
+.a11y-vision .toggle.toggle-sm::after { width: 20px; height: 20px; }
+.a11y-vision .toggle.toggle-sm.on::after { transform: translateX(22px); }
+.a11y-vision .ct-btn, .a11y-vision .source-btn, .a11y-vision .level-btn { font-size: 13px; padding: 10px 6px; border-width: 2px; }
+.a11y-vision .curtain-btn    { font-size: 15px; padding: 13px 6px; border-width: 2px; }
+.a11y-vision .slider-lbl, .a11y-vision .slider-val { font-size: 13px; }
+.a11y-vision input[type=range] { height: 7px; }
+.a11y-vision input[type=range]::-webkit-slider-thumb { width: 26px; height: 26px; }
+.a11y-vision .manual-row     { font-size: 13px; }
+.a11y-vision .manual-note    { font-size: 12px; }
+.a11y-vision .ch-label, .a11y-vision .feature-row-label { font-size: 15px; }
+.a11y-vision .nav-item       { font-size: 16px; padding: 14px 12px; }
+.a11y-vision .section-label  { font-size: 13px; color: var(--text); }
+.a11y-vision .settings-row   { font-size: 15px; }
+.a11y-vision .scene-card-title { font-size: 16px; }
+.a11y-vision .scene-card-desc  { font-size: 13px; color: rgba(255,255,255,.9); }
+.a11y-vision .room-name      { font-size: 26px; }
+.a11y-vision .toast          { font-size: 15px; }
+
+/* ── ACCESIBILIDAD: AUDITIVA ──────────────────────────────────────────────────
+   Avisos visuales destacados (los toasts además duran más vía JS). */
+.a11y-hearing .toast {
+  font-size: 15px; font-weight: 600; border-width: 2px;
+  box-shadow: 0 10px 30px rgba(16,24,40,.22);
+}
+.a11y-hearing #toast-container { bottom: 40%; }
+.a11y-hearing .door-status, .a11y-hearing .demo-banner { animation: blink-badge 1.2s infinite; }
+
+/* Solo perceptible por lectores de pantalla — no se oculta con display:none
+   porque eso también lo sacaría del árbol de accesibilidad. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ── VISTA: SOPORTE ───────────────────────────────────────────────────────── */
+.support-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 14px; padding: 48px 32px;
+}
+.support-card-ico { display: flex; align-items: center; justify-content: center; color: var(--teal); }
+.support-card-ico svg { width: 40px; height: 40px; }
+.directorio-item {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  background: var(--card2, #f4f5f7); border-radius: var(--r); padding: 12px 16px; margin-bottom: 8px;
+}
+.directorio-item.upsell { border: 1px solid var(--teal); }
+.directorio-nombre { font-size: 13px; font-weight: 600; }
+.directorio-desc   { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.directorio-precio { font-size: 12px; font-weight: 700; color: var(--teal); white-space: nowrap; }
+.support-card p   { font-size: 13px; color: var(--text2); line-height: 1.6; max-width: 280px; }
+.support-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--teal); color: #fff; border: none;
+  font-size: 14px; font-weight: 700; font-family: var(--font);
+  padding: 13px 26px; border-radius: var(--r);
+  cursor: pointer; transition: background .15s;
+  box-shadow: 0 4px 14px rgba(0,157,113,.3);
+  -webkit-tap-highlight-color: transparent;
+}
+.support-btn:hover, .support-btn:active { background: var(--teal-d); }
+.support-link-sm {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; color: var(--text2); text-decoration: underline;
+  -webkit-tap-highlight-color: transparent;
+}
+.support-link-sm svg { flex-shrink: 0; }
+
+/* ── FOOTER ───────────────────────────────────────────────────────────────── */
+.app-footer {
+  text-align: center; padding: 24px 20px 8px;
+  font-size: 11px; color: var(--text3);
+}
+.app-footer a { color: var(--text3); text-decoration: none; }
+
+/* ── HELPERS ──────────────────────────────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ── RESPONSIVE (desktop centering) ──────────────────────────────────────── */
+@media (min-width: 540px) {
+  #app { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ── DISEÑO DE ESCRITORIO ─────────────────────────────────────────────────────
+   Se activa solo con ancho de laptop/desktop Y puntero de mouse/trackpad
+   (hover:hover + pointer:fine). Un iPad, aunque esté en horizontal y sea tan
+   ancho como una laptop, sigue teniendo pointer:coarse/hover:none con touch,
+   así que no entra acá — celular y tablet quedan exactamente como estaban.
+   Todo vive dentro de este media query: nada de lo de arriba se modificó. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+
+  /* Sidebar: de menú-cajón a columna fija siempre visible */
+  .sidebar {
+    transform: none;
+    box-shadow: none;
+  }
+  .sidebar-backdrop { display: none; }
+  .hamburger-btn    { display: none; }
+
+  /* Contenido principal: deja el ancho de la sidebar a la izquierda y usa
+     TODO el resto del ancho disponible — sin tope máximo, para que en
+     pantallas grandes (2K, ultrawide) no quede una franja vacía a la
+     derecha. Lo que evita que las tarjetas queden gigantes o el contenido
+     "flote" perdido no es un max-width acá, sino que cada grilla de abajo
+     usa auto-fill/minmax: agrega más columnas a medida que hay más ancho
+     en vez de estirar las que ya tiene. */
+  #app {
+    margin: 0 0 0 260px;
+    max-width: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  /* Header: barra ancha en vez de tarjeta angosta apilada */
+  .app-header {
+    padding: 26px 40px 28px;
+    border-radius: 0 0 24px 24px;
+  }
+  .room-name { font-size: 30px; }
+  .clock-row { max-width: 340px; }
+
+  /* Secciones con inset horizontal más generoso que el de celular (12/20px) */
+  .device-grid,
+  .scenes-grid,
+  .favorites-bar,
+  #home-services,
+  #servicios-directorio,
+  .section-label,
+  .scenes-hint {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  /* Los botones de ancho completo de Escenas usan margen (no padding) para su
+     inset, así que se alinean al mismo margen de 40px que las secciones. */
+  .scenes-full-btn {
+    width: calc(100% - 80px);
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  /* Controles y escenas: tantas columnas como quepan (mínimo cómodo por
+     tarjeta), no un número fijo — así se aprovecha el ancho tanto en una
+     laptop de 1366px como en un monitor ultrawide de 3440px */
+  .device-grid  { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .scenes-grid  { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+
+  /* Servicios de la habitación: la tarjeta "No molestar" ocupa el ancho
+     completo arriba, y los botones de solicitud se acomodan en filas debajo
+     en vez de apilarse uno bajo el otro */
+  #home-services {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  #home-services > .support-card {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    max-width: none; margin: 0;
+  }
+
+  /* Directorio del hotel: dos columnas en vez de una lista larga */
+  #servicios-directorio {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+  }
+  #servicios-directorio .directorio-item { margin-bottom: 0; }
+
+  /* Tarjetas de estado vacío / soporte: centradas, no estiradas a todo el ancho */
+  .support-card { max-width: 480px; margin: 0 auto; }
+
+  .settings-list { max-width: 640px; margin-left: 40px; }
+
+  .app-footer { padding: 32px 40px 16px; }
+}
+
+/* ── Botón de voz push-to-talk (se crea solo si el navegador trae Web Speech) ── */
+#voice-btn {
+  position: fixed; right: 16px; bottom: 92px; width: 56px; height: 56px;
+  border-radius: 50%; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--teal); color: #fff; z-index: 260;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  touch-action: none; user-select: none; -webkit-user-select: none;
+}
+#voice-btn svg { display: block; }
+#voice-btn:active { transform: scale(.95); }
+#voice-btn.listening {
+  background: #c0392b;
+  animation: voice-pulse 1.1s ease-in-out infinite;
+}
+@keyframes voice-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,.45); }
+  50%      { box-shadow: 0 0 0 14px rgba(192,57,43,0); }
+}
+
+/* ── CHAT con recepción (app del huésped) ───────────────────────────────── */
+.chat-box{display:flex;flex-direction:column;gap:8px;min-height:220px;max-height:52vh;overflow-y:auto;padding:4px 2px 10px}
+.chat-msg{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.35;word-break:break-word}
+.chat-msg .chat-meta{display:block;font-size:10px;opacity:.7;margin-top:3px}
+.chat-msg.mio{align-self:flex-end;background:var(--teal,#009D71);color:#fff;border-bottom-right-radius:4px}
+.chat-msg.hotel{align-self:flex-start;background:rgba(127,127,127,.16);border-bottom-left-radius:4px}
+.chat-vacio{text-align:center;opacity:.65;font-size:13px;padding:26px 10px}
+.chat-form{display:flex;gap:8px;margin-top:8px}
+.chat-form input{flex:1;padding:11px 14px;border-radius:999px;border:1.5px solid rgba(127,127,127,.35);background:transparent;color:inherit;font-family:inherit;font-size:14px}
+.chat-send{border:none;background:var(--teal,#009D71);color:#fff;width:44px;height:44px;border-radius:50%;font-size:16px;cursor:pointer;flex:none}
+.chat-send:disabled{opacity:.5;cursor:default}
+.chat-badge{background:#dc3545;color:#fff;border-radius:999px;font-size:10px;font-weight:700;padding:1px 6px;margin-left:auto}
+
+/* ── GUÍA DE INSTALACIÓN (iOS: la instalación es manual, Apple no permite otra) ── */
+.inst-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);display:flex;align-items:flex-end;justify-content:center;z-index:9999;padding:0;animation:instFade .18s ease}
+@keyframes instFade{from{opacity:0}to{opacity:1}}
+.inst-caja{background:var(--card,#fff);color:inherit;border-radius:18px 18px 0 0;padding:22px 20px 26px;width:100%;max-width:520px;box-shadow:0 -6px 28px rgba(0,0,0,.28);animation:instUp .22s ease}
+@keyframes instUp{from{transform:translateY(24px)}to{transform:translateY(0)}}
+.inst-titulo{font-size:16px;font-weight:700;margin-bottom:12px;text-align:center}
+.inst-pasos{margin:0 0 4px;padding-left:20px;font-size:14px;line-height:1.7}
+.inst-pasos li{margin-bottom:6px}
+.inst-ico{display:inline-block;transform:translateY(1px)}
+.inst-nota{font-size:12.5px;opacity:.75;margin-top:10px}
+.inst-alerta{background:rgba(234,179,8,.14);border:1px solid rgba(234,179,8,.4);border-radius:10px;padding:9px 12px;font-size:13px;margin:0 0 12px}
+.inst-cerrar{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;background:var(--teal,#009D71);color:#fff;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+/* Mensaje del asistente: se distingue del hotel para que el huésped sepa si le
+   responde una persona o el sistema. */
+.chat-msg.bot{align-self:flex-start;background:rgba(0,157,113,.13);border:1px solid rgba(0,157,113,.3);border-bottom-left-radius:4px}
+.chat-voz-hint{text-align:center;font-size:12px;opacity:.6;margin-top:8px}
+
+/* ── Ficha de servicio del huésped ──────────────────────────────────────────
+   Una fila simple ("Wi-Fi: clave en la tarjeta") se ve igual que siempre. Si el
+   hotel completó la ficha —foto, horarios, cupos, qué incluye— la tarjeta crece
+   y muestra lo suficiente para decidir sin bajar a preguntar a recepción. */
+.directorio-item.srv-rica{display:block;padding:0;overflow:hidden}
+.srv-foto{width:100%;height:150px;object-fit:cover;display:block;background:var(--card2)}
+.srv-rica .srv-cuerpo{padding:12px 14px 14px}
+.srv-cabecera{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.srv-detalle{display:flex;flex-direction:column;gap:5px;margin-top:9px}
+.srv-dato{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text2);line-height:1.35}
+.srv-dato svg{flex-shrink:0;color:var(--teal)}
+.srv-inc{font-size:12.5px;color:var(--text2);margin-top:9px;line-height:1.45}
+.srv-inc-lbl{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--teal-d);margin-bottom:1px}
+.srv-inc.srv-no .srv-inc-lbl{color:var(--text3)}
+.srv-cancel{font-size:11.5px;color:var(--text3);margin-top:9px;padding-top:8px;border-top:1px solid var(--border);line-height:1.4}

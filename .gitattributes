@@ -21,5 +21,9 @@
 *.woff  binary
 *.woff2 binary
 *.ttf   binary
+# modelos 3D, su geometría y la luz HDRI de la simulación (assets/3d/)
+*.glb   binary
+*.bin   binary
+*.hdr   binary
 
 # .svg es XML (texto): se queda con la regla general de arriba, no como binario.
