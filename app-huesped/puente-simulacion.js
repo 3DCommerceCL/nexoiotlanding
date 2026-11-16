@@ -13,6 +13,21 @@
   const madre = window.parent !== window ? window.parent : null;
   const avisar = (m) => { if (madre) madre.postMessage({ nexo: true, ...m }, '*'); };
 
+  // ── RELOJ DE LA SIMULACIÓN (16-11): la app ve la hora simulada de la escena (el día de la estadía pasa
+  //    rápido), no la del computador. Así su reloj, la cuenta regresiva del check-out y el tema de noche la siguen.
+  const DateReal = Date;
+  let desfase = (+q.get('t') || DateReal.now()) - DateReal.now(), oscuroAntes = null;
+  class DateSim extends DateReal {
+    constructor(...a) { if (a.length) super(...a); else super(DateReal.now() + desfase); }
+    static now() { return DateReal.now() + desfase; }
+  }
+  window.Date = DateSim;
+  const horaSim = (ms) => {
+    desfase = ms - DateReal.now();
+    const h = new DateReal(ms).getHours(), oscuro = h >= 20 || h < 7;
+    if (oscuro !== oscuroAntes) { oscuroAntes = oscuro; try { if (typeof applyTheme === 'function') applyTheme(); } catch { /* sin tema automático */ } }
+  };
+
   // ── Textos propios de la simulación (la oferta de eco y los pasos del aire en el tutorial) ──
   const TX = {
     'Modo eco': ['Eco mode', 'Modo eco'],
@@ -97,9 +112,12 @@
   };
 
   // ── Datos de la habitación 204 según el plan ──────────────────────────────────
-  const hoy = new Date(); const manana = new Date(Date.now() + 86400000); manana.setHours(12, 0, 0, 0);
+  // check-in y check-out del día simulado (la escena los manda en ci y co); sin ellos, hoy y mañana a las 12:00
+  const hoy = new DateReal(+q.get('ci') || DateReal.now());
+  const manana = q.get('co') ? new DateReal(+q.get('co')) : (() => { const d = new DateReal(DateReal.now() + 86400000); d.setHours(12, 0, 0, 0); return d; })();
   window.NEXO_SIM = {
     plan: PLAN,
+    hora: horaSim,   // la escena le pasa la hora simulada
     datos(base) {
       // luces regulables con blanco cálido, neutro o frío y color RGB, como en la demo de la app
       const luz = (label, intensity, colorTemp) => ({ label, type: 'light_rgb', available: true, state: { on: false, intensity, mode: 'white', colorTemp, hue: 30, saturation: 1000 } });
