@@ -67,19 +67,19 @@
   ],
   "images": [
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "coffee_table_round_01_nor_gl.png",
-      "uri": "textures/coffee_table_round_01_nor_gl_1k.jpg"
+      "uri": "textures/coffee_table_round_01_nor_gl_1k.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "coffee_table_round_01_diff.png",
-      "uri": "textures/coffee_table_round_01_diff_1k.jpg"
+      "uri": "textures/coffee_table_round_01_diff_1k.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "coffee_table_round_01_metal.png-coffee_table_round_01_rough.png",
-      "uri": "textures/coffee_table_round_01_arm_1k.jpg"
+      "uri": "textures/coffee_table_round_01_arm_1k.webp"
     }
   ],
   "accessors": [

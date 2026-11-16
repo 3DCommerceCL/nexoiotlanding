@@ -67,19 +67,19 @@
   ],
   "images": [
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "ceramic_vase_01_nor_gl",
-      "uri": "textures/ceramic_vase_01_nor_gl_1k.jpg"
+      "uri": "textures/ceramic_vase_01_nor_gl_1k.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "ceramic_vase_01_diff",
-      "uri": "textures/ceramic_vase_01_diff_1k.jpg"
+      "uri": "textures/ceramic_vase_01_diff_1k.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "ceramic_vase_01_metal-ceramic_vase_01_rough",
-      "uri": "textures/ceramic_vase_01_arm_1k.jpg"
+      "uri": "textures/ceramic_vase_01_arm_1k.webp"
     }
   ],
   "accessors": [
