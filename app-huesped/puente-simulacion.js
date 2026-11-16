@@ -139,6 +139,23 @@
           { view: 'room', selector: () => document.querySelector('#feature-climateIr [data-action="clima-modo"][data-modo="cool"]') || document.querySelector('#feature-climateIr [data-ir="ac_mode_cool"]'), titleKey: 'tutAcModoTitle', descKey: 'tutAcModoDesc' },
           { view: 'room', selector: () => document.querySelector('#feature-climateIr [data-action="ir-obj-paso"][data-dir="-1"]') || document.querySelector('#feature-climateIr [data-ir^="ac_cool_t"]'), titleKey: 'tutAcTempTitle', descKey: 'tutAcTempDesc' });
       } catch { /* la app cambió: el tutorial sigue con sus pasos */ }
+      // la cortina se enseña cerrando, parando y abriendo, para que al terminar quede abierta (pedido de Iga, 16-11)
+      try {
+        const orden = ['tutCurtainCloseTitle', 'tutCurtainStopTitle', 'tutCurtainOpenTitle'];
+        const cort = orden.map((k) => TUTORIAL_STEPS.find((p) => p.titleKey === k));
+        if (cort.every(Boolean)) {
+          const i0 = TUTORIAL_STEPS.findIndex((p) => orden.includes(p.titleKey));
+          const resto = TUTORIAL_STEPS.filter((p) => !orden.includes(p.titleKey));
+          resto.splice(i0, 0, ...cort);
+          TUTORIAL_STEPS.splice(0, TUTORIAL_STEPS.length, ...resto);
+        }
+      } catch { /* la app cambió: queda su orden */ }
+      // la escena mira lo que enseña cada paso (la luz, la cortina, el aire): se le avisa qué paso se muestra
+      try {
+        const mostrar = window.positionTutorial, terminar = window.endTutorial;
+        if (typeof mostrar === 'function') window.positionTutorial = function (target, step) { avisar({ tipo: 'tutorial-paso', clave: step && step.titleKey }); return mostrar.apply(this, arguments); };
+        if (typeof terminar === 'function') window.endTutorial = function () { avisar({ tipo: 'tutorial-fin' }); return terminar.apply(this, arguments); };
+      } catch { /* sin avisos: la cámara no se mueve */ }
       try { loadEcoHuesped(); } catch { /* sin tarjeta eco */ }
       avisar({ tipo: 'listo' });
     },
