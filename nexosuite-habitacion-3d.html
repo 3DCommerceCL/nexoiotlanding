@@ -542,10 +542,43 @@ const vidrioV = new THREE.Mesh(new THREE.PlaneGeometry(VW, VY1 - VY0), mats.vidr
 const hojaV = new THREE.Group(); hojaV.position.set(VW / 2, (VY0 + VY1) / 2, Z0 - 0.05); mN.add(hojaV);   // hoja que se abre
 const marcoHoja = caja(VW / 2, VY1 - VY0, 0.04, M({ color: 0xffffff, transparent: true, opacity: 0.18, roughness: 0.05 }), -VW / 4, 0, 0, hojaV, false);
 let texVistaNoche = texNoche;
-const texVista = tex('fotos/vista-bahia.webp', 1, true, (t) => { texVistaNoche = nocheDe(t.image); });
+// color medio de la franja de arriba (cielo) y de abajo (roca) de una foto: el paisaje lejano se funde con ellos
+function bandas(img) {
+  const c = document.createElement('canvas'); c.width = 16; c.height = 50; const g = c.getContext('2d'); g.drawImage(img, 0, 0, 16, 50);
+  const media = (y0, y1) => { const d = g.getImageData(0, y0, 16, y1 - y0).data; let r = 0, v = 0, a = 0; for (let i = 0; i < d.length; i += 4) { r += d[i]; v += d[i + 1]; a += d[i + 2]; } const n = d.length / 4; return new THREE.Color().setRGB(r / n / 255, v / n / 255, a / n / 255, THREE.SRGBColorSpace); };
+  return { arriba: media(0, 3), abajo: media(47, 50) };
+}
+const colorS = (hex) => new THREE.Color().setStyle(hex, THREE.SRGBColorSpace);
+let bandasDia = { arriba: colorS('#7fb2e5'), abajo: colorS('#55707f') }, bandasNoche = { arriba: colorS('#0a1222'), abajo: colorS('#1c2436') };
+const texVista = tex('fotos/vista-bahia.webp', 1, true, (t) => { texVistaNoche = nocheDe(t.image); try { bandasDia = bandas(t.image); bandasNoche = bandas(texVistaNoche.image); } catch { /* sin acceso a los píxeles: quedan los colores de respaldo */ } });
 const texDia = lienzo(64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#7fb2e5'); gr.addColorStop(0.62, '#d4e6f4'); gr.addColorStop(0.64, '#6f8fa8'); gr.addColorStop(1, '#55707f'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
 if (texVista) texVista.wrapS = texVista.wrapT = THREE.ClampToEdgeWrapping;
 const exterior = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 2.13), new THREE.MeshBasicMaterial({ map: texVista, color: new THREE.Color().setScalar(1.25) })); exterior.position.set(0, 1.5, Z0 - 0.7); scene.add(exterior);
+// VISTA LEJANA (17-11): desde dentro de la pieza el paisaje va en una media esfera grande que se lee por dirección,
+// como un fondo infinito (sin paralaje, igual que un paisaje a kilómetros). Al acercarse a la ventana ya no se ven
+// los bordes de la foto: a los lados sigue en espejo, arriba se funde con el cielo y abajo con la roca.
+// Desde fuera de la pieza (casa de muñecas) se usa el plano de siempre, para no cambiar el fondo de la escena.
+const VISTA_H = 2.1, VISTA_V = VISTA_H / 1.5, VISTA_HORIZONTE = 0.41;   // ancho y alto que cubre la foto (radianes); fila del horizonte, desde abajo
+const domo = new THREE.Mesh(new THREE.SphereGeometry(40, 48, 24, Math.PI, Math.PI), new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite: false,
+  uniforms: { mapa: { value: texVista || texDia }, arriba: { value: bandasDia.arriba.clone() }, abajo: { value: bandasDia.abajo.clone() }, brillo: { value: 1.25 } },
+  vertexShader: 'varying vec3 vMundo; void main() { vec4 p = modelMatrix * vec4(position, 1.0); vMundo = p.xyz; gl_Position = projectionMatrix * viewMatrix * p; }',
+  fragmentShader: `uniform sampler2D mapa; uniform vec3 arriba; uniform vec3 abajo; uniform float brillo; varying vec3 vMundo;
+    void main() {
+      vec3 d = normalize(vMundo - cameraPosition);
+      float u = 0.5 + atan(d.x, -d.z) / ${VISTA_H.toFixed(4)};
+      float v = ${VISTA_HORIZONTE.toFixed(4)} + asin(clamp(d.y, -1.0, 1.0)) / ${VISTA_V.toFixed(4)};
+      u = 1.0 - abs(mod(u, 2.0) - 1.0);                              // a los lados, la foto sigue en espejo
+      float vm = v < 0.0 ? -v : (v > 1.0 ? 2.0 - v : v);             // arriba y abajo también (sin franjas estiradas)
+      vec3 c = texture2D(mapa, vec2(u, clamp(vm, 0.003, 0.997))).rgb;
+      c = mix(c, arriba, smoothstep(0.97, 1.15, v));                  // y se funde pronto con el cielo...
+      c = mix(c, abajo, 1.0 - smoothstep(-0.08, 0.03, v));            // ...y con la roca, antes de que el espejo se note
+      gl_FragColor = vec4(c * brillo, 1.0);
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
+    }`,
+}));
+domo.position.set(0, 1.5, Z0); domo.renderOrder = -1; domo.visible = false; scene.add(domo);
 
 const mS = muro([0, 0, 1], [0, 1.3, Z1]);    // puerta
 const PX = -1.35, PW = 0.95, PH = 2.12;
@@ -1997,7 +2030,7 @@ function colorLuz(o, t) {
   const ct = Math.max(0, Math.min(100, o.ct)) / 50;
   return ct <= 1 ? colTmp.copy(BLANCO[0]).lerp(BLANCO[1], ct) : colTmp.copy(BLANCO[1]).lerp(BLANCO[2], ct - 1);
 }
-function lejos(si) { if (si) { exterior.position.set(0, 1.25, Z0 - 4.5); exterior.scale.setScalar(4.2); } else { exterior.position.set(0, 1.45, Z0 - 0.4); exterior.scale.setScalar(0.75); } }
+function lejos(si) { domo.visible = si; exterior.visible = !si; if (!si) { exterior.position.set(0, 1.45, Z0 - 0.4); exterior.scale.setScalar(0.75); } }
 
 function cuadro() {
   const dt = Math.min(reloj.getDelta(), 0.05), ahora = performance.now();
@@ -2024,6 +2057,7 @@ function cuadro() {
   puertaVis.v = acerca(puertaVis.v, abierta ? 1 : 0, dt * 3); bisagra.rotation.y = puertaVis.v * 1.35;
   hojaV.rotation.y = acerca(hojaV.rotation.y, S.ventana ? 0.9 : 0, dt * 3);
   exterior.material.map = S.dia ? texVista || texDia : texVistaNoche;
+  { const u = domo.material.uniforms, b = S.dia ? bandasDia : bandasNoche; u.mapa.value = exterior.material.map; u.arriba.value.copy(b.arriba); u.abajo.value.copy(b.abajo); }
   sol.intensity = acerca(sol.intensity, S.dia ? 4.2 * (0.1 + 0.9 * cortinaVis.v) : 0, dt * 3);
   hemi.intensity = acerca(hemi.intensity, S.dia ? 0.1 + 0.22 * cortinaVis.v : 0.04, dt * 3);
   const amb = S.dia ? 0.1 + 0.26 * cortinaVis.v : 0.03 + (luzTecho.intensity / 4.2) * 0.14 + S.veladores * 0.05;
@@ -2141,6 +2175,8 @@ if (new URLSearchParams(location.search).has('prueba')) window.__objetos = () =>
 if (new URLSearchParams(location.search).has('prueba')) window.__cam = () => camara.position.toArray().map((n) => n.toFixed(2)).join(',');
 if (new URLSearchParams(location.search).has('prueba')) window.__vistaModo = (v) => document.querySelector(`[data-vista="${v}"]`).click();
 if (new URLSearchParams(location.search).has('prueba')) window.__estado = () => ({ paso: idPaso(), S: JSON.parse(JSON.stringify({ ...S, app: S.app })), kwhCon, kwhSin, ahorroEco, guia: guia.visible, pasillo: nivelPasillo, huesped: huesped.position.toArray(), visible: huesped.visible });
+if (new URLSearchParams(location.search).has('prueba')) window.__S = S;
+if (new URLSearchParams(location.search).has('prueba')) window.__libre = (p, yaw, pitch) => { libre = true; posLibre.set(...p); camara.position.set(...p); yawLibre = yaw; pitchLibre = pitch; yawOff = pitchOff = 0; };   // primera persona en un punto y mirando a un lado
 if (new URLSearchParams(location.search).has('prueba')) window.__vista = (p, t) => { viaje = null; camara.position.set(...p); ctl.target.set(...t); ctl.update(); };
 </script>
 </body>
